@@ -52,26 +52,34 @@ namespace TemplateEngine.Docx.Example
                             new TableRowContent
                             {
                                 Fields = new List<FieldContent>
-                                    {
-                                        new FieldContent
-										{
-											Name = "Name",
-											Value = "Eric"
-										},
-                                        new FieldContent
-										{
-											Name = "Title",
-											Value = "Program Manager"
-										}
-                                    }
+								{
+									new FieldContent
+									{
+										Name = "Name",
+										Value = "Eric"
+									},
+									new FieldContent
+									{
+										Name = "Title",
+										Value = "Program Manager"
+									}
+								}
                             },
                             new TableRowContent
                             {
                                 Fields = new List<FieldContent>
-                                    {
-                                        new FieldContent { Name = "Name", Value = "Bob" },
-                                        new FieldContent { Name = "Title", Value = "Developer" }
-                                    }
+								{
+									new FieldContent
+									{
+										Name = "Name",
+										Value = "Bob"
+									},
+									new FieldContent
+									{
+										Name = "Title",
+										Value = "Developer"
+									}
+								}
                             },
                         }
                     }
