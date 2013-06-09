@@ -7,6 +7,7 @@ Based on [Eric White code sample](http://msdn.microsoft.com/en-us/magazine/ee532
 ## Installation
 
 You can get it with [NuGet package](https://nuget.org/packages/TemplateEngine.Docx/).
+
 ![nuget install command](http://unit6.ru/img/template-engine/NuGet-Install.png)
 
 ## Example of usage
