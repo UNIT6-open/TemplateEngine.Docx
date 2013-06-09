@@ -5,7 +5,6 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
-using TemplateEngine.Docx.TemplateCustomContent;
 
 namespace TemplateEngine.Docx
 {

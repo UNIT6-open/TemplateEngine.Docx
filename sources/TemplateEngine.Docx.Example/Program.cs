@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using TemplateEngine.Docx.TemplateCustomContent;
+using TemplateEngine.Docx;
 
 namespace TemplateEngine.Docx.Example
 {

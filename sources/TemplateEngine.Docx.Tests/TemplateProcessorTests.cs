@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using TemplateEngine.Docx.TemplateCustomContent;
 using TemplateEngine.Docx.Tests.Properties;
 
 namespace TemplateEngine.Docx.Tests
