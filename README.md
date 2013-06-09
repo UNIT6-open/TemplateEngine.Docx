@@ -2,7 +2,7 @@
 
 Template engine for generating Word docx documents on the server-side with a human-created Word templates, based on content controls Word feature.
 
-Based on Eric White code sample http://msdn.microsoft.com/en-us/magazine/ee532473.aspx
+Based on [Eric White code sample](http://msdn.microsoft.com/en-us/magazine/ee532473.aspx).
 
 ## Installation
 
@@ -31,8 +31,16 @@ namespace TemplateEngine.Docx.Example
             {
                 Fields = new List<FieldContent>
                 {
-                    new FieldContent { Name = "ReportDate", Value = DateTime.Now.ToShortDateString() },
-                    new FieldContent { Name = "Count", Value = "2" },
+                    new FieldContent
+					{
+						Name = "ReportDate",
+						Value = DateTime.Now.ToShortDateString()
+					},
+                    new FieldContent
+					{
+						Name = "Count",
+						Value = "2"
+					},
                 },
                 Tables = new List<TableContent>
                 {
@@ -45,8 +53,16 @@ namespace TemplateEngine.Docx.Example
                             {
                                 Fields = new List<FieldContent>
                                     {
-                                        new FieldContent { Name = "Name", Value = "Eric" },
-                                        new FieldContent { Name = "Title", Value = "Program Manager" }
+                                        new FieldContent
+										{
+											Name = "Name",
+											Value = "Eric"
+										},
+                                        new FieldContent
+										{
+											Name = "Title",
+											Value = "Program Manager"
+										}
                                     }
                             },
                             new TableRowContent
