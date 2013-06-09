@@ -13,6 +13,11 @@ namespace TemplateEngine.Docx.Example
         {
             var valuesToFill = new Content
             {
+                Fields = new List<FieldContent>
+                {
+                    new FieldContent { Name = "ReportDate", Value = DateTime.Now.ToShortDateString() },
+                    new FieldContent { Name = "Count", Value = "2" },
+                },
                 Tables = new List<TableContent>
                 {
                     new TableContent 
@@ -41,6 +46,7 @@ namespace TemplateEngine.Docx.Example
                 }
             };
 
+            File.Delete("OutputDocument.docx");
             File.Copy("InputTemplate.docx", "OutputDocument.docx");
             new TemplateProcessor("OutputDocument.docx")
                 .FillContent(valuesToFill)
