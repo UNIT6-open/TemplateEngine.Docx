@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Docx", "Temp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Docx.Tests", "TemplateEngine.Docx.Tests\TemplateEngine.Docx.Tests.csproj", "{F2E9C8DD-6940-40F5-8D74-3DE53F453675}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Docx.Example", "TemplateEngine.Docx.Example\TemplateEngine.Docx.Example.csproj", "{6820886F-5146-4113-AB62-BCF893E76435}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{F2E9C8DD-6940-40F5-8D74-3DE53F453675}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2E9C8DD-6940-40F5-8D74-3DE53F453675}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2E9C8DD-6940-40F5-8D74-3DE53F453675}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6820886F-5146-4113-AB62-BCF893E76435}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6820886F-5146-4113-AB62-BCF893E76435}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6820886F-5146-4113-AB62-BCF893E76435}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6820886F-5146-4113-AB62-BCF893E76435}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
