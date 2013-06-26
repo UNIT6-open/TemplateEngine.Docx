@@ -27,7 +27,7 @@ namespace TemplateEngine.Docx
 
                 wordDocument.MainDocumentPart.AddAnnotation(xdoc);
             }
-
+            
             Document = xdoc;
         }
 
@@ -40,6 +40,8 @@ namespace TemplateEngine.Docx
             {
                 Document.Save(xw);
             }
+
+            wordDocument.Close();
         }
 
         public TemplateProcessor(XDocument templateSource)
