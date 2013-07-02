@@ -75,17 +75,5 @@ All data binds on content control tag value (you should switch to developer ribb
 Have fun!
 
 <p>
-<div style="display:none;"><script type="text/javascript">
-(function(w, c) {
-	(w[c] = w[c] || []).push(function() {
-		try {
-			w.yaCounter9260296 = new Ya.Metrika({id:9260296, enableAll: true, webvisor:true});
-		}
-		catch(e) { }
-	});
-})(window, "yandex_metrika_callbacks");
-</script></div>
-<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
-<noscript><div><img src="//mc.yandex.ru/watch/9260296" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </p>
 
