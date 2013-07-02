@@ -73,3 +73,5 @@ All data binds on content control tag value (you should switch to developer ribb
 ![docx template settings](http://unit6.ru/img/template-engine/Word-Template-2.png)
 
 Have fun!
+
+![yandex counter](//mc.yandex.ru/watch/9260296)
