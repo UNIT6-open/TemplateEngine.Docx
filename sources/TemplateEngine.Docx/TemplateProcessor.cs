@@ -8,7 +8,7 @@ using DocumentFormat.OpenXml.Packaging;
 
 namespace TemplateEngine.Docx
 {
-    public class TemplateProcessor
+    public class TemplateProcessor : IDisposable
     {
         public readonly XDocument Document;
         private readonly WordprocessingDocument wordDocument;
@@ -196,6 +196,13 @@ namespace TemplateEngine.Docx
                                 new XElement(W.t, s)))));
 
             return this;
+        }
+
+        public void Dispose()
+        {
+            if (wordDocument == null) return;
+
+            wordDocument.Dispose();
         }
     }
 }

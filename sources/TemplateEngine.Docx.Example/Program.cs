@@ -38,9 +38,11 @@ namespace TemplateEngine.Docx.Example
             File.Delete("OutputDocument.docx");
             File.Copy("InputTemplate.docx", "OutputDocument.docx");
 
-            new TemplateProcessor("OutputDocument.docx")
-                .FillContent(valuesToFill)
-                .SaveChanges();
+            using(var outputDocument = new TemplateProcessor("OutputDocument.docx"))
+            {
+                outputDocument.FillContent(valuesToFill);
+                outputDocument.SaveChanges();
+            }
         }
     }
 }
