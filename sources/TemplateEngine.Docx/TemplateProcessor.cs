@@ -58,15 +58,14 @@ namespace TemplateEngine.Docx
             {
                 foreach (var field in content.Fields)
                 {
-                    var fieldContentControl = Document.Root
+                    var fieldsContentControl = Document.Root
                         .Element(W.body)
                         .Descendants(W.sdt)
-                        .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value)
-                        .FirstOrDefault();
+                        .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
 
                     // If there isn't a field with that name, add an error to the error string,
                     // and continue with next field.
-                    if (fieldContentControl == null)
+                    if (fieldsContentControl == null)
                     {
                         errors.Add(String.Format("Field Content Control '{0}' not found.",
                             field.Name));
@@ -74,11 +73,14 @@ namespace TemplateEngine.Docx
                     }
 
                     // Set content control value to the new value
-                    fieldContentControl
-                        .Element(W.sdtContent)
-                        .Descendants(W.t)
-                        .FirstOrDefault()
-                        .Value = field.Value;
+                    foreach (var fieldContentControl in fieldsContentControl)
+                    {
+                        fieldContentControl
+                            .Element(W.sdtContent)
+                            .Descendants(W.t)
+                            .FirstOrDefault()
+                            .Value = field.Value;
+                    }
                 }
             }
             
