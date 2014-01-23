@@ -117,5 +117,28 @@ namespace TemplateEngine.Docx.Tests
 
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
+
+		[TestMethod]
+		public void FillingOneFieldWithValueAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleField);
+			var expectedDocument = XDocument.Parse(Resources.TemplateWithSingleFieldAndRemovedCC);
+
+			var valuesToFill = new Content
+			{
+				Fields = new List<FieldContent>
+                {
+                    new FieldContent { Name = "ReportDate", Value = "09.06.2013" }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+							.SetRemoveContentControls(true)
+							.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
     }
 }
