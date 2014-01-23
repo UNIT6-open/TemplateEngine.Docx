@@ -12,6 +12,7 @@ namespace TemplateEngine.Docx
     {
         public readonly XDocument Document;
         private readonly WordprocessingDocument wordDocument;
+	    private bool _isNeedToRemoveContentControls = false;
 
         public TemplateProcessor(string fileName)
         {
@@ -30,6 +31,12 @@ namespace TemplateEngine.Docx
             
             Document = xdoc;
         }
+
+	    public TemplateProcessor AndRemoveContentControls(bool isNeedToRemove)
+	    {
+		    _isNeedToRemoveContentControls = isNeedToRemove;
+		    return this;
+	    }
 
         public void SaveChanges()
         {
@@ -74,11 +81,19 @@ namespace TemplateEngine.Docx
                     }
 
                     // Set content control value to the new value
-                    fieldContentControl
-                        .Element(W.sdtContent)
-                        .Descendants(W.t)
-                        .FirstOrDefault()
-                        .Value = field.Value;
+					fieldContentControl
+						.Element(W.sdtContent)
+						.Descendants(W.t)
+						.FirstOrDefault()
+						.Value = field.Value;
+
+	                if (_isNeedToRemoveContentControls)
+	                {
+						// Remove the content control for the table and replace it with its contents.
+						XElement replacementElement =
+							new XElement(fieldContentControl.Element(W.sdtContent).Elements().First());
+						fieldContentControl.ReplaceWith(replacementElement);
+	                }
                 }
             }
             
@@ -159,10 +174,18 @@ namespace TemplateEngine.Docx
                             }
 
                             // Set content control value th the new value
-                            sdt.Element(W.sdtContent)
-                                .Descendants(W.t)
-                                .FirstOrDefault()
-                                .Value = newValueElement.Value;
+							sdt.Element(W.sdtContent)
+								.Descendants(W.t)
+								.FirstOrDefault()
+								.Value = newValueElement.Value;
+
+	                        if (_isNeedToRemoveContentControls == true)
+	                        {
+								// Remove the content control, and replace it with its contents.
+								XElement replacementElement =
+									new XElement(sdt.Element(W.sdtContent).Elements().First());
+								sdt.ReplaceWith(replacementElement);
+	                        }
                         }
 
                         // Add the newRow to the list of rows that will be placed in the newly
@@ -170,10 +193,18 @@ namespace TemplateEngine.Docx
                         newRows.Add(newRow);
                     }
 
-                    // Remove the prototype row and add all of the newly constructed rows.
-                    prototypeRow.AddAfterSelf(newRows);
-                    prototypeRow.Remove();
+					XElement tableElement = prototypeRow.Ancestors(W.tbl).First();
 
+					// Remove the prototype row and add all of the newly constructed rows.
+					prototypeRow.AddAfterSelf(newRows);
+					prototypeRow.Remove(); 
+
+	                if (_isNeedToRemoveContentControls == true)
+	                {
+						// Remove the content control for the table and replace it with its contents.
+						XElement tableClone = new XElement(tableElement);
+						tableContentControl.ReplaceWith(tableClone);
+	                }
                 }
             }
 
