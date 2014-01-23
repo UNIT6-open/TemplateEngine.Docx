@@ -88,7 +88,7 @@ namespace TemplateEngine.Docx.Tests
                 }
 			};
 
-			var template = new TemplateProcessor(templateDocument).AndRemoveContentControls(true)
+			var template = new TemplateProcessor(templateDocument).SetRemoveContentControls(true)
 				.FillContent(valuesToFill);
 
 			var documentXml = template.Document.ToString();

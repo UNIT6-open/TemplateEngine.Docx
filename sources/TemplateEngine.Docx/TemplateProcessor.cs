@@ -11,28 +11,28 @@ namespace TemplateEngine.Docx
     public class TemplateProcessor : IDisposable
     {
         public readonly XDocument Document;
-        private readonly WordprocessingDocument wordDocument;
+        private readonly WordprocessingDocument _wordDocument;
 	    private bool _isNeedToRemoveContentControls = false;
 
         public TemplateProcessor(string fileName)
         {
-            wordDocument = WordprocessingDocument.Open(fileName, true);
+            _wordDocument = WordprocessingDocument.Open(fileName, true);
 
-            var xdoc = wordDocument.MainDocumentPart.Annotation<XDocument>();
+            var xdoc = _wordDocument.MainDocumentPart.Annotation<XDocument>();
             if (xdoc == null)
             {
-                using (Stream str = wordDocument.MainDocumentPart.GetStream())
-                using (StreamReader streamReader = new StreamReader(str))
+                using (Stream str = _wordDocument.MainDocumentPart.GetStream())
+                using (var streamReader = new StreamReader(str))
                 using (XmlReader xr = XmlReader.Create(streamReader))
                     xdoc = XDocument.Load(xr);
 
-                wordDocument.MainDocumentPart.AddAnnotation(xdoc);
+                _wordDocument.MainDocumentPart.AddAnnotation(xdoc);
             }
             
             Document = xdoc;
         }
 
-	    public TemplateProcessor AndRemoveContentControls(bool isNeedToRemove)
+	    public TemplateProcessor SetRemoveContentControls(bool isNeedToRemove)
 	    {
 		    _isNeedToRemoveContentControls = isNeedToRemove;
 		    return this;
@@ -43,12 +43,12 @@ namespace TemplateEngine.Docx
             if (Document == null) return;
 
             // Serialize the XDocument object back to the package.
-            using (XmlWriter xw = XmlWriter.Create(wordDocument.MainDocumentPart.GetStream (FileMode.Create, FileAccess.Write)))
+            using (XmlWriter xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetStream (FileMode.Create, FileAccess.Write)))
             {
                 Document.Save(xw);
             }
 
-            wordDocument.Close();
+            _wordDocument.Close();
         }
 
         public TemplateProcessor(XDocument templateSource)
@@ -58,7 +58,7 @@ namespace TemplateEngine.Docx
 
         public TemplateProcessor FillContent(Content content)
         {
-            List<string> errors = new List<string>();
+            var errors = new List<string>();
 
             // Filling a fields
             if (content.Fields != null)
@@ -66,10 +66,9 @@ namespace TemplateEngine.Docx
                 foreach (var field in content.Fields)
                 {
                     var fieldContentControl = Document.Root
-                        .Element(W.body)
-                        .Descendants(W.sdt)
-                        .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value)
-                        .FirstOrDefault();
+	                    .Element(W.body)
+	                    .Descendants(W.sdt)
+						.FirstOrDefault(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
 
                     // If there isn't a field with that name, add an error to the error string,
                     // and continue with next field.
@@ -105,10 +104,9 @@ namespace TemplateEngine.Docx
                     // Find the content control with Table Name
                     var listName = table.Name;
                     var tableContentControl = Document.Root
-                        .Element(W.body)
-                        .Elements(W.sdt)
-                        .Where(sdt => listName == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value)
-                        .FirstOrDefault();
+	                    .Element(W.body)
+	                    .Elements(W.sdt)
+						.FirstOrDefault(sdt => listName == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
 
                     // If there isn't a table with that name, add an error to the error string,
                     // and continue with next table.
@@ -193,18 +191,18 @@ namespace TemplateEngine.Docx
                         newRows.Add(newRow);
                     }
 
-					XElement tableElement = prototypeRow.Ancestors(W.tbl).First();
-
-					// Remove the prototype row and add all of the newly constructed rows.
 					prototypeRow.AddAfterSelf(newRows);
-					prototypeRow.Remove(); 
 
 	                if (_isNeedToRemoveContentControls == true)
 	                {
 						// Remove the content control for the table and replace it with its contents.
-						XElement tableClone = new XElement(tableElement);
+						XElement tableElement = prototypeRow.Ancestors(W.tbl).First();
+						var tableClone = new XElement(tableElement);
 						tableContentControl.ReplaceWith(tableClone);
 	                }
+
+					// Remove the prototype row and add all of the newly constructed rows.
+					prototypeRow.Remove(); 
                 }
             }
 
@@ -231,9 +229,9 @@ namespace TemplateEngine.Docx
 
         public void Dispose()
         {
-            if (wordDocument == null) return;
+            if (_wordDocument == null) return;
 
-            wordDocument.Dispose();
+            _wordDocument.Dispose();
         }
     }
 }
