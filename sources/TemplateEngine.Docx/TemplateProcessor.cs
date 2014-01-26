@@ -68,7 +68,8 @@ namespace TemplateEngine.Docx
                     var fieldsContentControl = Document.Root
 	                    .Element(W.body)
 	                    .Descendants(W.sdt)
-                        .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
+                        .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value)
+                        .ToList();
 
                     // If there isn't a field with that name, add an error to the error string,
                     // and continue with next field.
