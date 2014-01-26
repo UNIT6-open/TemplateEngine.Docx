@@ -140,5 +140,27 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
+
+        [TestMethod]
+        public void FillingOneFieldWithWrongValue_WillNoticeWithWarning()
+        {
+            var templateDocument = XDocument.Parse(Resources.TemplateWithSingleField);
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleFieldWrongFilled);
+
+            var valuesToFill = new Content
+            {
+                Fields = new List<FieldContent>
+                {
+                    new FieldContent { Name = "WrongReportDate", Value = "09.06.2013" }
+                }
+            };
+
+            var template = new TemplateProcessor(templateDocument)
+                            .FillContent(valuesToFill);
+
+            var documentXml = template.Document.ToString();
+
+            Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+        }
     }
 }

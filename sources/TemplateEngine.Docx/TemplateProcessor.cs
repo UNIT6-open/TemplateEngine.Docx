@@ -73,7 +73,7 @@ namespace TemplateEngine.Docx
 
                     // If there isn't a field with that name, add an error to the error string,
                     // and continue with next field.
-                    if (fieldsContentControl == null)
+                    if (!fieldsContentControl.Any())
                     {
                         errors.Add(String.Format("Field Content Control '{0}' not found.",
                             field.Name));
