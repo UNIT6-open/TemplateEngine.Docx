@@ -91,6 +91,12 @@
   <ItemGroup>
     <None Include="Resources\DocumentWithSingleFieldFilled.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\DocumentWithSingleTableFilledWithTwoRowsAndRemovedCC.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TemplateWithSingleFieldAndRemovedCC.xml" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
