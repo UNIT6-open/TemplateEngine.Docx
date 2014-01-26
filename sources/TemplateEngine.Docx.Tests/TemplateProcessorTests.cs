@@ -122,7 +122,7 @@ namespace TemplateEngine.Docx.Tests
 		public void FillingOneFieldWithValueAndRemoveContentControl()
 		{
 			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleField);
-			var expectedDocument = XDocument.Parse(Resources.TemplateWithSingleFieldAndRemovedCC);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleFieldAndRemovedCC);
 
 			var valuesToFill = new Content
 			{
