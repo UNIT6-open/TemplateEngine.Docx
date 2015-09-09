@@ -53,6 +53,7 @@
     <Compile Include="TemplateCustomContent\TableRowContent.cs" />
     <Compile Include="TemplateProcessor.cs" />
     <Compile Include="W.cs" />
+    <Compile Include="XElementExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

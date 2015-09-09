@@ -165,18 +165,7 @@ namespace TemplateEngine.Docx
 						    }
 
 						    // Set content control value th the new value
-						    sdt.Element(W.sdtContent)
-							    .Descendants(W.t)
-							    .FirstOrDefault()
-							    .Value = newValueElement.Value;
-
-						    if (_isNeedToRemoveContentControls == true)
-						    {
-							    // Remove the content control, and replace it with its contents.
-							    XElement replacementElement =
-								    new XElement(sdt.Element(W.sdtContent).Elements().First());
-							    sdt.ReplaceWith(replacementElement);
-						    }
+						   sdt.ReplaceContentControlWithNewValue(newValueElement.Value, _isNeedToRemoveContentControls);
 					    }
 
 					    // Add the newRow to the list of rows that will be placed in the newly
@@ -201,7 +190,7 @@ namespace TemplateEngine.Docx
 
 			return errors;
 		}
-		
+
 		// Filling a fields
 		private IEnumerable<string> FillFields(Content content)
 	    {
@@ -230,18 +219,7 @@ namespace TemplateEngine.Docx
 				    // Set content control value to the new value
 				    foreach (var fieldContentControl in fieldsContentControl)
 				    {
-					    fieldContentControl
-						    .Element(W.sdtContent)
-						    .Descendants(W.t)
-						    .FirstOrDefault()
-						    .Value = field.Value;
-					    if (_isNeedToRemoveContentControls)
-					    {
-						    // Remove the content control for the table and replace it with its contents.
-						    XElement replacementElement =
-							    new XElement(fieldContentControl.Element(W.sdtContent).Elements().First());
-						    fieldContentControl.ReplaceWith(replacementElement);
-					    }
+					    fieldContentControl.ReplaceContentControlWithNewValue(field.Value, _isNeedToRemoveContentControls);
 				    }
 			    }
 		    }

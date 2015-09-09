@@ -127,6 +127,9 @@
   <data name="DocumentWithSingleFieldFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleFieldFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="DocumentWithSingleFieldWithSeveralTextEntriesFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleFieldWithSeveralTextEntriesFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="DocumentWithSingleFieldWrongFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleFieldWrongFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -144,6 +147,9 @@
   </data>
   <data name="TemplateWithSingleField" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleField.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleFieldWithSeveralTextEntries" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleFieldWithSeveralTextEntries.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
   <data name="TemplateWithSingleTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleTable.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>

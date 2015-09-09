@@ -255,5 +255,28 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
+
+
+		[TestMethod]
+		public void FillingOneFieldWithSeveralTextEntries()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleFieldWithSeveralTextEntries);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleFieldWithSeveralTextEntriesFilled);
+
+			var valuesToFill = new Content
+			{
+				Fields = new List<FieldContent>
+                {
+                    new FieldContent { Name = "ReportDate", Value = "09.06.2013" }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
     }
 }

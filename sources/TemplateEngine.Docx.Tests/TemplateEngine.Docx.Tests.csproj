@@ -76,8 +76,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -99,8 +99,10 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TemplateWithSingleFieldWithSeveralTextEntries.xml" />
     <None Include="Resources\DocumentWithSingleTableWrongFilled.xml" />
     <None Include="Resources\DocumentWithFieldInTableHeaderFilled.xml" />
+    <None Include="Resources\DocumentWithSingleFieldWithSeveralTextEntriesFilled.xml" />
     <Content Include="Resources\DocumentWithSingleFieldWrongFilled.xml" />
     <None Include="Resources\TemplateWithFieldInTableHeader.xml" />
   </ItemGroup>
