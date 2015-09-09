@@ -99,6 +99,8 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TemplateWithSingleTableWithAdjacentRows.xml" />
+    <None Include="Resources\DocumentWithSingleTableWithAdjacentRowsFilled.xml" />
     <None Include="Resources\TemplateWithSingleFieldWithSeveralTextEntries.xml" />
     <None Include="Resources\DocumentWithSingleTableWrongFilled.xml" />
     <None Include="Resources\DocumentWithFieldInTableHeaderFilled.xml" />

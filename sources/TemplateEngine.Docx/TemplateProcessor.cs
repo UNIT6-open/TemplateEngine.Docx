@@ -106,85 +106,98 @@ namespace TemplateEngine.Docx
 					    continue;
 				    }
 
-				    var fieldNames = table.Rows.First().Fields.Select(f => f.Name);
+				    var fieldNames = table.Rows.SelectMany(r=>r.Fields.Select(f=>f.Name)).Distinct().ToList();
 
-				    // Determine the element for the row that contains the content controls.
-				    // This is the prototype for the rows that the code will generate from data.
-				    var prototypeRow = tableContentControl
-					    .Descendants(W.tr)
-						.FirstOrDefault(tr => 
-							tr.Descendants(W.sdt)
-								.Select(sdt => 
-									sdt.Element(W.sdtPr)
-									.Element(W.tag)
-									.Attribute(W.val).Value)
-								.Intersect(fieldNames).Count() == fieldNames.Count());
+					
+					// Determine the elements that contains the content controls with specified names.
+					// This is the prototype for the rows that the code will generate from data.
+					var prototypeRows = tableContentControl
+						.Descendants(W.tr)
+						.Where(tr =>
+								tr.Descendants(W.sdt)
+								.Any(sdt => 
+									fieldNames.Contains(
+									    sdt.Element(W.sdtPr)
+										    .Element(W.tag)
+										    .Attribute(W.val).Value)))
+						.ToList();
 
-				    if (prototypeRow == null)
-				    {
-					    errors.Add(String.Format(
-							 "Table Content Control '{0}' doesn't contain row with cell content controls {1}.",
-							 listName,
-							 string.Join(", ", fieldNames.Select(fn=>string.Format("'{0}'", fn)))));
-					    continue;
-				    }
+					//Select content controls tag names
+					var contentControlTagNames = prototypeRows
+						.Descendants(W.sdt)
+						.Select(sdt => 
+							sdt.Element(W.sdtPr)
+							.Element(W.tag)
+							.Attribute(W.val).Value)
+						.Where(fieldNames.Contains);
 
-				    // Create a list of new rows to be inserted into the document.  Because this
-				    // is a document centric transform, this is written in a non-functional
-				    // style, using tree modification.
-				    var newRows = new List<XElement>();
-				    foreach (var row in table.Rows)
-				    {
-					    // Clone the prototypeRow into newRow.
-					    var newRow = new XElement(prototypeRow);
+					//If there are not content controls with the one of specified field name we need to add the warning
+					if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
+					{
+						errors.Add(String.Format(
+							"Table Content Control '{0}' doesn't contain rows with cell content controls {1}.",
+							listName,
+							string.Join(", ", fieldNames.Select(fn => string.Format("'{0}'", fn)))));
+						continue;
+					}
 
-					    // Create new rows that will contain the data that was passed in to this
-					    // method in the XML tree.
-					    foreach (var sdt in newRow.Descendants(W.sdt).ToList())
-					    {
-						    // Get fieldName from the content control tag.
-						    string fieldName = sdt
-							    .Element(W.sdtPr)
-							    .Element(W.tag)
-							    .Attribute(W.val)
-							    .Value;
 
-						    // Get the new value out of contentControlValues.
-						    var newValueElement = row
-							    .Fields
-							    .Where(f => f.Name == fieldName)
-							    .FirstOrDefault();
+					// Create a list of new rows to be inserted into the document.  Because this
+					// is a document centric transform, this is written in a non-functional
+					// style, using tree modification.
+					var newRows = new List<List<XElement>>();
+					foreach (var row in table.Rows)
+					{
+						// Clone the prototypeRows into newRowsEntry.
+						var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
 
-						    // Generate error message if the new value doesn't exist.
-						    if (newValueElement == null)
-						    {
-							    errors.Add(String.Format(
-								    "Table '{0}', Field '{1}' value isn't specified.",
-								    listName, fieldName));
-							    continue;
-						    }
+						// Create new rows that will contain the data that was passed in to this
+						// method in the XML tree.
+						foreach (var sdt in newRowsEntry.Descendants(W.sdt).ToList())
+						{
+							// Get fieldName from the content control tag.
+							string fieldName = sdt
+								.Element(W.sdtPr)
+								.Element(W.tag)
+								.Attribute(W.val)
+								.Value;
 
-						    // Set content control value th the new value
-						   sdt.ReplaceContentControlWithNewValue(newValueElement.Value, _isNeedToRemoveContentControls);
-					    }
+							// Get the new value out of contentControlValues.
+							var newValueElement = row
+								.Fields
+								.Where(f => f.Name == fieldName)
+								.FirstOrDefault();
 
-					    // Add the newRow to the list of rows that will be placed in the newly
-					    // generated table.
-					    newRows.Add(newRow);
-				    }
+							// Generate error message if the new value doesn't exist.
+							if (newValueElement == null)
+							{
+								errors.Add(String.Format(
+									"Table '{0}', Field '{1}' value isn't specified.",
+									listName, fieldName));
+								continue;
+							}
 
-				    prototypeRow.AddAfterSelf(newRows);
+							// Set content control value th the new value
+							sdt.ReplaceContentControlWithNewValue(newValueElement.Value, _isNeedToRemoveContentControls);
+						}
+
+						// Add the newRow to the list of rows that will be placed in the newly
+						// generated table.
+						newRows.Add(newRowsEntry);
+					}
+
+				    prototypeRows.Last().AddAfterSelf(newRows);
 
 				    if (_isNeedToRemoveContentControls == true)
 				    {
 					    // Remove the content control for the table and replace it with its contents.
-					    XElement tableElement = prototypeRow.Ancestors(W.tbl).First();
+					    XElement tableElement = prototypeRows.Ancestors(W.tbl).First();
 					    var tableClone = new XElement(tableElement);
 					    tableContentControl.ReplaceWith(tableClone);
 				    }
 
 				    // Remove the prototype row and add all of the newly constructed rows.
-				    prototypeRow.Remove();
+				    prototypeRows.Remove();
 			    }
 		    }
 

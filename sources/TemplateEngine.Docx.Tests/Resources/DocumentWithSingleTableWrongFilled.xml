@@ -8,7 +8,7 @@
           <w:szCs w:val="28" />
           <w:highlight w:val="yellow" />
         </w:rPr>
-        <w:t>Table Content Control 'Team Members' doesn't contain row with cell content controls 'Name', 'Title', 'WrongFieldName'.</w:t>
+        <w:t>Table Content Control 'Team Members' doesn't contain rows with cell content controls 'Name', 'Title', 'WrongFieldName'.</w:t>
       </w:r>
     </w:p>
     <w:sdt>

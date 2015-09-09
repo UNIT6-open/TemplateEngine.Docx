@@ -278,5 +278,55 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
+
+		[TestMethod]
+		public void FillingOneTableWithAdjacentRows()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithAdjacentRows);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithAdjacentRowsFilled);
+
+			var valuesToFill = new Content
+			{
+				Tables = new List<TableContent>
+                {
+                    new TableContent 
+                    {
+                        Name = "Team Members",
+                        Rows = new List<TableRowContent>
+                        {
+                            new TableRowContent
+                            {
+                                Fields = new List<FieldContent>
+                                    {
+                                        new FieldContent { Name = "Name", Value = "Eric" },
+                                        new FieldContent { Name = "Title", Value = "Program Manager" },
+										new FieldContent { Name = "Age", Value = "33" },
+										new FieldContent { Name = "Gender", Value = "Male" },
+										new FieldContent { Name = "Comment", Value = "" }
+                                    }
+                            },
+                            new TableRowContent
+                            {
+                                 Fields = new List<FieldContent>
+                                    {
+                                        new FieldContent { Name = "Name", Value = "Bob" },
+                                        new FieldContent { Name = "Title", Value = "Developer" },
+										new FieldContent { Name = "Age", Value = "51" },
+										new FieldContent { Name = "Gender", Value = "Male" },
+										new FieldContent { Name = "Comment", Value = "Retiral" }
+                                    }
+                            },
+                        }
+                    }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
     }
 }

@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 wp14">
+	<w:body>
+		<w:sdt>
+			<w:sdtPr>
+				<w:alias w:val="Team Members"/>
+				<w:tag w:val="Team Members"/>
+				<w:id w:val="147950210"/>
+				<w:placeholder>
+					<w:docPart w:val="DefaultPlaceholder_22675703"/>
+				</w:placeholder>
+			</w:sdtPr>
+			<w:sdtEndPr/>
+			<w:sdtContent>
+				<w:tbl>
+					<w:tblPr>
+						<w:tblStyle w:val="a9"/>
+						<w:tblW w:w="0" w:type="auto"/>
+						<w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+					</w:tblPr>
+					<w:tblGrid>
+						<w:gridCol w:w="4788"/>
+						<w:gridCol w:w="4788"/>
+					</w:tblGrid>
+					<w:tr w:rsidR="002D21DC" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="002D21DC" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Name: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Name"/>
+										<w:tag w:val="Name"/>
+										<w:id w:val="147950212"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_22675703"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00470D5F">
+											<w:t>Eric</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="002D21DC" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Role: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Role"/>
+										<w:tag w:val="Title"/>
+										<w:id w:val="147950216"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_22675703"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00470D5F">
+											<w:t>Program Manager</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00BF25E3" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00BF25E3" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Age: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Age"/>
+										<w:tag w:val="Age"/>
+										<w:id w:val="1776442709"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00BF25E3">
+											<w:t>33</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00BF25E3" w:rsidRPr="00BF25E3" w:rsidRDefault="001112C3" w:rsidP="00BF25E3">
+								<w:r>
+									<w:t xml:space="preserve">Gender: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Gender"/>
+										<w:tag w:val="Gender"/>
+										<w:id w:val="-504980046"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00BF25E3">
+											<w:t>Male</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidRDefault="00B73DA6" w:rsidP="00B73DA6">
+								<w:pPr>
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+								</w:pPr>
+								<w:r>
+									<w:t>Comment</w:t>
+								</w:r>
+								<w:r w:rsidRPr="00B73DA6">
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+									<w:t xml:space="preserve">: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Comment"/>
+										<w:tag w:val="Comment"/>
+										<w:id w:val="-1046600100"/>
+										<w:placeholder>
+											<w:docPart w:val="CBD79BCB383C4EABB888A0B32500C925"/>
+										</w:placeholder>
+										<w:showingPlcHdr/>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidRPr="00CA24E0">
+											<w:t></w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidRDefault="00B73DA6" w:rsidP="00BF25E3">
+								<w:pPr>
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+								</w:pPr>
+							</w:p>
+						</w:tc>
+					</w:tr>
+										<w:tr w:rsidR="002D21DC" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="002D21DC" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Name: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Name"/>
+										<w:tag w:val="Name"/>
+										<w:id w:val="147950212"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_22675703"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00470D5F">
+											<w:t>Bob</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="002D21DC" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Role: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Role"/>
+										<w:tag w:val="Title"/>
+										<w:id w:val="147950216"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_22675703"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00470D5F">
+											<w:t>Developer</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00BF25E3" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00BF25E3" w:rsidRDefault="001112C3" w:rsidP="00470D5F">
+								<w:r>
+									<w:t xml:space="preserve">Age: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Age"/>
+										<w:tag w:val="Age"/>
+										<w:id w:val="1776442709"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00BF25E3">
+											<w:t>51</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00BF25E3" w:rsidRPr="00BF25E3" w:rsidRDefault="001112C3" w:rsidP="00BF25E3">
+								<w:r>
+									<w:t xml:space="preserve">Gender: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Gender"/>
+										<w:tag w:val="Gender"/>
+										<w:id w:val="-504980046"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00BF25E3">
+											<w:t>Male</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidRDefault="00B73DA6" w:rsidP="00B73DA6">
+								<w:pPr>
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+								</w:pPr>
+								<w:r>
+									<w:t>Comment</w:t>
+								</w:r>
+								<w:r w:rsidRPr="00B73DA6">
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+									<w:t xml:space="preserve">: </w:t>
+								</w:r>
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Team Member Comment"/>
+										<w:tag w:val="Comment"/>
+										<w:id w:val="-1046600100"/>
+										<w:placeholder>
+											<w:docPart w:val="CBD79BCB383C4EABB888A0B32500C925"/>
+										</w:placeholder>
+										<w:showingPlcHdr/>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidRPr="00CA24E0">
+											<w:t>Retiral</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00B73DA6" w:rsidRPr="00B73DA6" w:rsidRDefault="00B73DA6" w:rsidP="00BF25E3">
+								<w:pPr>
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+								</w:pPr>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="009224D9" w:rsidTr="00BF25E3">
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="009224D9" w:rsidRDefault="009224D9" w:rsidP="009224D9">
+								<w:pPr>
+									<w:jc w:val="right"/>
+								</w:pPr>
+								<w:r>
+									<w:t>Total</w:t>
+								</w:r>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="009224D9" w:rsidRDefault="00CA24E0" w:rsidP="00470D5F">
+								<w:sdt>
+									<w:sdtPr>
+										<w:alias w:val="Members count"/>
+										<w:tag w:val="Count"/>
+										<w:id w:val="-1211725622"/>
+										<w:placeholder>
+											<w:docPart w:val="DefaultPlaceholder_1082065158"/>
+										</w:placeholder>
+										<w:text/>
+									</w:sdtPr>
+									<w:sdtEndPr/>
+									<w:sdtContent>
+										<w:r w:rsidR="00470D5F">
+											<w:t>1</w:t>
+										</w:r>
+									</w:sdtContent>
+								</w:sdt>
+								<w:r w:rsidR="00EC1D4D">
+									<w:t xml:space="preserve"> members</w:t>
+								</w:r>
+							</w:p>
+						</w:tc>
+					</w:tr>
+				</w:tbl>
+			</w:sdtContent>
+		</w:sdt>
+		<w:p w:rsidR="002D21DC" w:rsidRDefault="002D21DC" w:rsidP="002E4CDE">
+			<w:bookmarkStart w:id="0" w:name="_GoBack"/>
+			<w:bookmarkEnd w:id="0"/>
+		</w:p>
+		<w:sectPr w:rsidR="002D21DC" w:rsidSect="006E2549">
+			<w:pgSz w:w="12240" w:h="15840"/>
+			<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+			<w:cols w:space="720"/>
+			<w:docGrid w:linePitch="360"/>
+		</w:sectPr>
+	</w:body>
+</w:document>
