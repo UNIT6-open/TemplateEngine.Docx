@@ -99,7 +99,10 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DocumentWithSingleTableWrongFilled.xml" />
+    <None Include="Resources\DocumentWithFieldInTableHeaderFilled.xml" />
     <Content Include="Resources\DocumentWithSingleFieldWrongFilled.xml" />
+    <None Include="Resources\TemplateWithFieldInTableHeader.xml" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
