@@ -328,5 +328,46 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
+		[TestMethod]
+		public void FillingOneTableWithMergedVerticallyRows()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithMergedVerticallyRows);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithMergedVerticallyRowsFilled);
+
+			var valuesToFill = new Content
+			{
+				Tables = new List<TableContent>
+                {
+                    new TableContent 
+                    {
+                        Name = "Team Members",
+                        Rows = new List<TableRowContent>
+                        {
+                            new TableRowContent
+                            {
+                                Fields = new List<FieldContent>
+                                    {
+                                        new FieldContent { Name = "Name", Value = "Eric" }
+                                    }
+                            },
+                            new TableRowContent
+                            {
+                                 Fields = new List<FieldContent>
+                                    {
+                                        new FieldContent { Name = "Name", Value = "Bob" }                                     
+                                    }
+                            },
+                        }
+                    }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
     }
 }

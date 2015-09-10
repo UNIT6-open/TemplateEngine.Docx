@@ -20,6 +20,7 @@ namespace TemplateEngine.Docx
         public static XName tbl = w + "tbl";
         public static XName tr = w + "tr";
         public static XName tc = w + "tc";
+        public static XName tcPr = w + "tcPr";
         public static XName p = w + "p";
         public static XName r = w + "r";
         public static XName t = w + "t";
@@ -29,5 +30,6 @@ namespace TemplateEngine.Docx
         public static XName color = w + "color";
         public static XName sz = w + "sz";
         public static XName szCs = w + "szCs";
+        public static XName vMerge = w + "vMerge";
     }
 }
