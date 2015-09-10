@@ -22,6 +22,8 @@
 					<w:r w:rsidR="006B7D91">
 						<w:t>09.06.2013</w:t>
 					</w:r>
+					<w:proofErr w:type="spellStart" />
+					<w:proofErr w:type="spellEnd" />
 				</w:sdtContent>
 			</w:sdt>
 			<w:bookmarkStart w:id="0" w:name="_GoBack" />

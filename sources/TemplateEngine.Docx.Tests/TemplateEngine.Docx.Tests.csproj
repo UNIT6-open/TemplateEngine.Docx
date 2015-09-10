@@ -99,6 +99,9 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DocumentWithSingleListFilledAndRemovedCC.xml" />
+    <None Include="Resources\TemplateWithSingleList.xml" />
+    <None Include="Resources\DocumentWithSingleListFilled.xml" />
     <None Include="Resources\DocumentWithSingleTableWithMergedVerticallyRowsFilled.xml" />
     <None Include="Resources\TemplateWithSingleTableWithMergedVerticallyRows.xml" />
     <None Include="Resources\TemplateWithSingleTableWithAdjacentRows.xml" />

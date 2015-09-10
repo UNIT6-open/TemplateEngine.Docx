@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace TemplateEngine.Docx
@@ -6,7 +7,7 @@ namespace TemplateEngine.Docx
 	static class XElementExtensions
 	{
 		// Set content control value th the new value
-		public static void ReplaceContentControlWithNewValue(this XElement sdt, string newValue, bool isNeedToRemoveContentControls)
+		public static void ReplaceContentControlWithNewValue(this XElement sdt, string newValue)
 		{
 
 			var sdtContentElement = sdt.Element(W.sdtContent);
@@ -34,18 +35,29 @@ namespace TemplateEngine.Docx
 
 					var contentReplacementElement = new XElement(firstContentElementWithText);
 					
-					sdtContentElement.Descendants().Remove();
-					sdtContentElement.Add(contentReplacementElement);
-					
-					if (isNeedToRemoveContentControls)
-					{
-						// Remove the content control, and replace it with its contents.
-						var replacementElement =
-							new XElement(sdtContentElement.Elements().First());
-						sdt.ReplaceWith(replacementElement);
-					}
+					sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText).Remove();
+
+					firstContentElementWithText.AddAfterSelf(contentReplacementElement);
+					firstContentElementWithText.Remove();
 				}
 			}
+		}
+
+		public static IEnumerable<XElement> RemoveContentControl(this XElement sdt)
+		{
+
+			var sdtContentElement = sdt.Element(W.sdtContent);
+			if (sdtContentElement == null)
+			{
+				sdt.Remove();
+				return null;
+			}
+
+			// Remove the content control, and replace it with its contents.
+			var replacementElements = new List<XElement>(sdt.Element(W.sdtContent).Elements());
+
+			sdt.ReplaceWith(replacementElements);
+			return replacementElements;
 		}
 	}
 }

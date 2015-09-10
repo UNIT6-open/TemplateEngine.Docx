@@ -7,12 +7,12 @@ namespace TemplateEngine.Docx
 {
 	internal class TableProcessor
 	{
-		private readonly XDocument _document;
+		private readonly XElement _tableContentControl;
 		private bool _isNeedToRemoveContentControls;
 
-		internal TableProcessor(XDocument document)
+		internal TableProcessor(XElement tableContentControl)
 		{
-			_document = document;
+			_tableContentControl = tableContentControl;
 		}
 
 		internal TableProcessor SetRemoveContentControls(bool isNeedToRemove)
@@ -27,11 +27,10 @@ namespace TemplateEngine.Docx
 
 			// Find the content control with Table Name
 			var listName = table.Name;
-			var tableContentControl = FindTableContentControl(listName);
-
+			
 			// If there isn't a table with that name, add an error to the error string,
 			// and continue with next table.
-			if (tableContentControl == null)
+			if (_tableContentControl == null)
 			{
 				errors.Add(String.Format("Table Content Control '{0}' not found.",
 					listName));
@@ -40,7 +39,7 @@ namespace TemplateEngine.Docx
 			}
 
 			// If the table doesn't contain content controls in cells, then error and continue with next table.
-			var cellContentControl = tableContentControl
+			var cellContentControl = _tableContentControl
 				.Descendants(W.sdt)
 				.FirstOrDefault();
 			if (cellContentControl == null)
@@ -53,7 +52,7 @@ namespace TemplateEngine.Docx
 
 			var fieldNames = table.FieldNames.ToList();
 
-			var prototypeRows = GetPrototype(tableContentControl, fieldNames);
+			var prototypeRows = GetPrototype(_tableContentControl, fieldNames);
 
 			//Select content controls tag names
 			var contentControlTagNames = prototypeRows
@@ -112,7 +111,9 @@ namespace TemplateEngine.Docx
 					}
 
 					// Set content control value th the new value
-					sdt.ReplaceContentControlWithNewValue(newValueElement.Value, _isNeedToRemoveContentControls);
+					sdt.ReplaceContentControlWithNewValue(newValueElement.Value);
+					if (_isNeedToRemoveContentControls)
+						sdt.RemoveContentControl();
 				}
 
 				// Add the newRow to the list of rows that will be placed in the newly
@@ -125,9 +126,9 @@ namespace TemplateEngine.Docx
 			if (_isNeedToRemoveContentControls)
 			{
 				// Remove the content control for the table and replace it with its contents.
-				XElement tableElement = prototypeRows.Ancestors(W.tbl).First();
+				var tableElement = prototypeRows.Ancestors(W.tbl).First();
 				var tableClone = new XElement(tableElement);
-				tableContentControl.ReplaceWith(tableClone);
+				_tableContentControl.ReplaceWith(tableClone);
 			}
 
 			// Remove the prototype row and add all of the newly constructed rows.
@@ -137,15 +138,6 @@ namespace TemplateEngine.Docx
 			}
 			return errors;
 		}
-
-		private XElement FindTableContentControl(string listName)
-		{
-			return _document.Root
-				.Element(W.body)
-				.Elements(W.sdt)
-				.FirstOrDefault(sdt => listName == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
-		}
-
 
 		// Determine the elements that contains the content controls with specified names.
 		// This is the prototype for the rows that the code will generate from data.
@@ -232,6 +224,8 @@ namespace TemplateEngine.Docx
 						}
 					}
 				}
+				else if (lastRowReached)
+					break;
 			}
 
 

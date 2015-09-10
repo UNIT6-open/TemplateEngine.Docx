@@ -368,6 +368,66 @@ namespace TemplateEngine.Docx.Tests
 			var documentXml = template.Document.ToString();
 
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}		
+		
+		[TestMethod]
+		public void FillingOneListAndPreserveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilled);
+
+			var valuesToFill = new Content
+			{
+				Lists = new List<ListContent>
+                {
+                    new ListContent 
+                    {
+                        Name = "Food Items",
+                        Items = new List<FieldContent>
+                        {                   
+                             new FieldContent { Name = "Category", Value = "Fruit" },
+                             new FieldContent { Name = "Category", Value = "Vegetables" }   
+                        }
+                    }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}		
+		[TestMethod]
+		public void FillingOneListAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilledAndRemovedCC);
+
+			var valuesToFill = new Content
+			{
+				Lists = new List<ListContent>
+                {
+                    new ListContent 
+                    {
+                        Name = "Food Items",
+                        Items = new List<FieldContent>
+                        {                   
+                             new FieldContent { Name = "Category", Value = "Fruit" },
+                             new FieldContent { Name = "Category", Value = "Vegetables" }   
+                        }
+                    }
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
     }
 }
