@@ -414,8 +414,8 @@ namespace TemplateEngine.Docx.Tests
                         Name = "Food Items",
                         Items = new List<FieldContent>
                         {                   
-                             new FieldContent { Name = "Category", Value = "Fruit" },
-                             new FieldContent { Name = "Category", Value = "Vegetables" }   
+                              new FieldContent { Name = "Category", Value = "Fruit" },
+                              new FieldContent { Name = "Category", Value = "Vegetables" }   
                         }
                     }
                 }
@@ -424,6 +424,102 @@ namespace TemplateEngine.Docx.Tests
 			var template = new TemplateProcessor(templateDocument)
 				.SetRemoveContentControls(true)
 				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}		
+		[TestMethod]
+		public void FillingOneNestedListAndPreserveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFilled);
+
+			var valuesToFill = new Content
+			{
+				Lists = new List<ListContent>
+               {
+	               new ListContent("Document", 
+					   new FieldContent ("Header", "Introduction"),
+					   new ListItemContent
+					   {
+						   Name = "Header",Value = "Chapter 1 - The new start screen", 
+						   NestedFields= new []
+						   {
+								new ListItemContent
+								{
+									Name = "Subheader", Value ="What's new in Windows 8?",	
+									NestedFields = new List<FieldContent>
+									{
+										new FieldContent("Paragraph", "Chapter content")
+									}
+								},
+								new FieldContent("Subheader", "Starting Windows 8")
+													
+						   }
+					   },
+					   new ListItemContent
+					   {
+						   Name = "Header",Value = "Chapter 2 - The traditional Desktop", 
+						   NestedFields= new []
+						   {
+								new FieldContent("Subheader","Browsing the File Explorer"),
+								new FieldContent("Subheader","Getting the Lowdown on Folders and Libraries")
+						   }
+					   })					  	 					  
+               }
+
+			};
+
+			var template = new TemplateProcessor(templateDocument).FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
+		[TestMethod]
+		public void FillingOneNestedListAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFilledAndRemovedCC);
+
+			var valuesToFill = new Content
+			{
+				Lists = new List<ListContent>
+               {
+	               new ListContent("Document", 
+					   new FieldContent ("Header", "Introduction"),
+					   new ListItemContent
+					   {
+						   Name = "Header",Value = "Chapter 1 - The new start screen", 
+						   NestedFields= new []
+						   {
+								new ListItemContent
+								{
+									Name = "Subheader", Value ="What's new in Windows 8?",	
+									NestedFields = new List<FieldContent>
+									{
+										new FieldContent("Paragraph", "Chapter content")
+									}
+								},
+								new FieldContent("Subheader", "Starting Windows 8")
+													
+						   }
+					   },
+					   new ListItemContent
+					   {
+						   Name = "Header",Value = "Chapter 2 - The traditional Desktop", 
+						   NestedFields= new []
+						   {
+								new FieldContent("Subheader","Browsing the File Explorer"),
+								new FieldContent("Subheader","Getting the Lowdown on Folders and Libraries")
+						   }
+					   })					  	 					  
+               }
+
+			};
+
+			var template = new TemplateProcessor(templateDocument).SetRemoveContentControls(true).FillContent(valuesToFill);
 
 			var documentXml = template.Document.ToString();
 

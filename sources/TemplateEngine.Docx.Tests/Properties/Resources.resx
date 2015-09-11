@@ -139,6 +139,12 @@
   <data name="DocumentWithSingleListFilledAndRemovedCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleListFilledAndRemovedCC.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
+  <data name="DocumentWithSingleNestedListFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DocumentWithSingleNestedListFilledAndRemovedCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFilledAndRemovedCC.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
   <data name="DocumentWithSingleTableFilledWithTwoRows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleTableFilledWithTwoRows.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -165,6 +171,9 @@
   </data>
   <data name="TemplateWithSingleList" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleNestedList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleNestedList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
   <data name="TemplateWithSingleTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleTable.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>

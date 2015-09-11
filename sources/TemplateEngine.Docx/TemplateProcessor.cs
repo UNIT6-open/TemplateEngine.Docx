@@ -13,7 +13,7 @@ namespace TemplateEngine.Docx
     {
         public readonly XDocument Document;
         private readonly WordprocessingDocument _wordDocument;
-	    private bool _isNeedToRemoveContentControls = false;
+	    private bool _isNeedToRemoveContentControls;
 
         public TemplateProcessor(string fileName)
         {
@@ -59,96 +59,16 @@ namespace TemplateEngine.Docx
 
         public TemplateProcessor FillContent(Content content)
         {
-
-            var fillFieldsErrors = FillFields(content);          
-            var fillTablesErrors = FillTables(content);
-            var fillListsErrors = FillLists(content);
-
-	        var errors = fillFieldsErrors.Concat(fillTablesErrors).Concat(fillListsErrors).ToList();
+			var errors =
+		        new ContentProcessor(Document.Root.Element(W.body)).SetRemoveContentControls(_isNeedToRemoveContentControls)
+			        .FillContent(content);
 
             AddErrors(errors);
 
             return this;
         }
 
-	    // Filling a tables
-		private IEnumerable<string> FillTables(Content content)
-		{
-			var errors = new List<string>();
-
-			if (content.Tables == null) return errors;
-
-			
-			foreach (var table in content.Tables)
-			{
-				var contentControl = FindContentControl(table.Name);
-				errors.AddRange(new TableProcessor(contentControl).SetRemoveContentControls(_isNeedToRemoveContentControls).FillTableContent(table));
-			}
-
-			return errors;
-		}
-		// Filling a lists
-		private IEnumerable<string> FillLists(Content content)
-		{
-			var errors = new List<string>();
-
-			if (content.Lists == null) return errors;
-
-			
-			foreach (var table in content.Lists)
-			{
-				var contentControl = FindContentControl(table.Name);
-				errors.AddRange(new ListProcessor(contentControl).SetRemoveContentControls(_isNeedToRemoveContentControls).FillListContent(table));
-			}
-
-			return errors;
-		}
-
-		// Filling a fields
-		private IEnumerable<string> FillFields(Content content)
-	    {
-		    var errors = new List<string>();
-		    
-
-		    if (content.Fields != null)
-		    {
-			    foreach (var field in content.Fields)
-			    {
-				    var fieldsContentControl = Document.Root
-					    .Element(W.body)
-					    .Descendants(W.sdt)
-					    .Where(sdt => field.Name == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value)
-					    .ToList();
-
-				    // If there isn't a field with that name, add an error to the error string,
-				    // and continue with next field.
-				    if (!fieldsContentControl.Any())
-				    {
-					    errors.Add(String.Format("Field Content Control '{0}' not found.",
-						    field.Name));
-					    continue;
-				    }
-
-				    // Set content control value to the new value
-				    foreach (var fieldContentControl in fieldsContentControl)
-				    {
-					    fieldContentControl.ReplaceContentControlWithNewValue(field.Value);
-					    if (_isNeedToRemoveContentControls)
-						    fieldContentControl.RemoveContentControl();
-				    }
-			    }
-		    }
-		    return errors;
-	    }
-
-		private XElement FindContentControl(string tagName)
-		{
-			return Document.Root
-				.Element(W.body)
-				.Elements(W.sdt)
-				.FirstOrDefault(sdt => tagName == sdt.Element(W.sdtPr).Element(W.tag).Attribute(W.val).Value);
-		}
-
+	  
 	    // Add any errors as red text on yellow at the beginning of the document.
 	    private void AddErrors(List<string> errors)
 	    {
@@ -176,7 +96,5 @@ namespace TemplateEngine.Docx
 
             _wordDocument.Dispose();
         }
-
-	 
     }
 }
