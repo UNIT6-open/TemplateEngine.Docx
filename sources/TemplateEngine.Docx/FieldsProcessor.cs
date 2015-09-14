@@ -32,6 +32,13 @@ namespace TemplateEngine.Docx
 
 			}
 
+			if (field.Content != null)
+			{
+				errors.AddRange(new ContentProcessor(_fieldContentControl.Element(W.sdtContent)).SetRemoveContentControls(_isNeedToRemoveContentControls)
+					.FillContent(field.Content));
+			}
+
+
 			_fieldContentControl.ReplaceContentControlWithNewValue(field.Value);
 			if (_isNeedToRemoveContentControls)
 				_fieldContentControl.RemoveContentControl();

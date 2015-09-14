@@ -73,7 +73,7 @@ namespace TemplateEngine.Docx
 				errors.Add(e.Message);
 				return errors;
 			}
-			prototypeItems.Last().AddAfterSelf(newItems);
+			//prototypeItems.Last().AddAfterSelf(newItems);
 
 			// Remove the prototype row and add all of the newly constructed rows.
 			prototypeItems.Remove();
@@ -143,6 +143,7 @@ namespace TemplateEngine.Docx
 
 			var newRows = new List<XElement>();
 			var prototypeItemsCopy = prototypeItems.ToList();
+			var parent = prototypeItems.First().Parent;
 
 			// If there are items without content control, add them to output.
 			foreach (var xElement in prototypeItemsCopy)
@@ -173,10 +174,11 @@ namespace TemplateEngine.Docx
 
 				// Create new item from the prototype.
 				var newItemEntry = new XElement(currentLevelPrototype);
+				
+				
+				parent.Add(newItemEntry);
+				new FieldsProcessor(newItemEntry).SetRemoveContentControls(_isNeedToRemoveContentControls).FillFieldsContent(contentItem);
 
-				// Replace item's content control value with the new value.
-				var std = newItemEntry.DescendantsAndSelf(W.sdt).First();
-				std.ReplaceContentControlWithNewValue(contentItem.Value);
 				newRows.Add(newItemEntry);
 				
 				// If there are nested items fill prototype for them.

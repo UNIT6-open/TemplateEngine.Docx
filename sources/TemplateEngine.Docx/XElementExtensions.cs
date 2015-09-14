@@ -29,7 +29,7 @@ namespace TemplateEngine.Docx
 					//remove all text elements with its ancestors from the first contentElement
 					var firstElementAncestors = firstTextElement.Ancestors();
 					foreach (
-						var descendantsWithText in firstContentElementWithText.Descendants().Where(d => d.Descendants(W.t).Any()).ToList()
+						var descendantsWithText in sdtContentElement.Elements().Where(d => d.Descendants(W.t).Any() && d.Name != W.sdt).ToList()
 						)
 					{
 						descendantsWithText.AncestorsAndSelf().Where(a => !firstElementAncestors.Contains(a)).Remove();
@@ -37,8 +37,8 @@ namespace TemplateEngine.Docx
 
 					var contentReplacementElement = new XElement(firstContentElementWithText);
 
-					sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText).Remove();
-
+					/*sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText && d.Name != W.sdt).Remove();
+*/
 					firstContentElementWithText.AddAfterSelf(contentReplacementElement);
 					firstContentElementWithText.Remove();
 				}
