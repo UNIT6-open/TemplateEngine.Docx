@@ -16,30 +16,47 @@ namespace TemplateEngine.Docx
 			{
 				var firstContentElementWithText =
 					sdtContentElement
-					.Descendants().FirstOrDefault(d=>d.Descendants(W.t).Any());
+						.Descendants().FirstOrDefault(d => d.Descendants(W.t).Any());
 
 				if (firstContentElementWithText != null)
 				{
 					var firstTextElement = firstContentElementWithText
 						.Descendants(W.t)
 						.First();
-					
+
 					firstTextElement.Value = newValue;
 
 					//remove all text elements with its ancestors from the first contentElement
 					var firstElementAncestors = firstTextElement.Ancestors();
-					foreach (var descendantsWithText in firstContentElementWithText.Descendants().Where(d => d.Descendants(W.t).Any()).ToList())
+					foreach (
+						var descendantsWithText in firstContentElementWithText.Descendants().Where(d => d.Descendants(W.t).Any()).ToList()
+						)
 					{
 						descendantsWithText.AncestorsAndSelf().Where(a => !firstElementAncestors.Contains(a)).Remove();
 					}
 
 					var contentReplacementElement = new XElement(firstContentElementWithText);
-					
+
 					sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText).Remove();
 
 					firstContentElementWithText.AddAfterSelf(contentReplacementElement);
 					firstContentElementWithText.Remove();
 				}
+				else
+				{
+					if (sdtContentElement.Elements(W.p).Any())
+					{
+						sdtContentElement.Element(W.p).Add(new XElement(W.r, new XElement(W.t, newValue)));
+					}
+					else
+					{
+						sdtContentElement.Add(new XElement(W.p), new XElement(W.r, new XElement(W.t, newValue)));
+					}
+				}
+			}
+			else
+			{
+				sdt.Add(new XElement(W.sdtContent, new XElement(W.p), new XElement(W.r, new XElement(W.t, newValue))));
 			}
 		}
 

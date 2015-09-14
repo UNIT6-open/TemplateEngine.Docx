@@ -123,19 +123,22 @@ namespace TemplateEngine.Docx
 
 			prototypeRows.Last().AddAfterSelf(newRows);
 
+			// Remove the prototype rows
+			prototypeRows.Remove();
+
 			if (_isNeedToRemoveContentControls)
 			{
 				// Remove the content control for the table and replace it with its contents.
-				var tableElement = prototypeRows.Ancestors(W.tbl).First();
-				var tableClone = new XElement(tableElement);
-				_tableContentControl.ReplaceWith(tableClone);
+				var tableElement = _tableContentControl;
+			
+				foreach (var xElement in tableElement.AncestorsAndSelf(W.sdt))
+				{
+					xElement.RemoveContentControl();
+				}
+
 			}
 
-			// Remove the prototype row and add all of the newly constructed rows.
-			foreach (var newRow in prototypeRows)
-			{
-				newRow.Remove();
-			}
+			
 			return errors;
 		}
 
