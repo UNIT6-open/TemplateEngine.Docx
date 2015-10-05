@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 wp14">
+	<w:body>
+		<w:sdt>
+			<w:sdtPr>
+				<w:rPr>
+					<w:b w:val="0"/>
+					<w:bCs w:val="0"/>
+					<w:color w:val="auto"/>
+					<w:lang w:val="ru-RU"/>
+				</w:rPr>
+				<w:alias w:val="Team Members"/>
+				<w:tag w:val="Team Members"/>
+				<w:id w:val="-1223666249"/>
+				<w:placeholder>
+					<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+				</w:placeholder>
+			</w:sdtPr>
+			<w:sdtEndPr/>
+			<w:sdtContent>
+				<w:tbl>
+					<w:tblPr>
+						<w:tblStyle w:val="-41"/>
+						<w:tblW w:w="0" w:type="auto"/>
+						<w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+					</w:tblPr>
+					<w:tblGrid>
+						<w:gridCol w:w="4788"/>
+						<w:gridCol w:w="4788"/>
+					</w:tblGrid>
+					<w:tr w:rsidR="00C43419" w:rsidRPr="00D83956" w:rsidTr="00C43419">
+						<w:trPr>
+							<w:cnfStyle w:val="100000000000" w:firstRow="1" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+						</w:trPr>
+						<w:tc>
+							<w:tcPr>
+								<w:cnfStyle w:val="001000000000" w:firstRow="0" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00C43419" w:rsidRPr="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419">
+								<w:pPr>
+									<w:pStyle w:val="aa"/>
+									<w:ind w:left="0"/>
+								</w:pPr>
+								<w:r>
+									<w:t>Name</w:t>
+								</w:r>
+							</w:p>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:p w:rsidR="00C43419" w:rsidRPr="00D83956" w:rsidRDefault="000C4944" w:rsidP="00D83956">
+								<w:pPr>
+									<w:pStyle w:val="aa"/>
+									<w:ind w:left="0"/>
+									<w:cnfStyle w:val="100000000000" w:firstRow="1" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+									<w:rPr>
+										<w:lang w:val="ru-RU"/>
+									</w:rPr>
+								</w:pPr>
+								<w:r>
+									<w:t>Role</w:t>
+								</w:r>
+							</w:p>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00C43419" w:rsidTr="00C43419">
+						<w:trPr>
+							<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+						</w:trPr>
+						<w:tc>
+							<w:tcPr>
+								<w:cnfStyle w:val="001000000000" w:firstRow="0" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Container"/>
+									<w:tag w:val="Container"/>
+									<w:id w:val="-347787914"/>
+									<w:placeholder>
+										<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+									</w:placeholder>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:sdt>
+										<w:sdtPr>
+											<w:alias w:val="Name"/>
+											<w:tag w:val="Name"/>
+											<w:id w:val="1677227052"/>
+											<w:placeholder>
+												<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+											</w:placeholder>
+										</w:sdtPr>
+										<w:sdtEndPr/>
+										<w:sdtContent>
+											<w:p w:rsidR="000C4944" w:rsidRPr="00F45A98" w:rsidRDefault="004F2666" w:rsidP="00F45A98">
+												<w:pPr>
+													<w:pStyle w:val="aa"/>
+													<w:numPr>
+														<w:ilvl w:val="0"/>
+														<w:numId w:val="4"/>
+													</w:numPr>
+													<w:rPr>
+														<w:lang w:val="ru-RU"/>
+													</w:rPr>
+												</w:pPr>
+												<w:r>
+													<w:t>John</w:t>
+												</w:r>
+											</w:p>
+											<w:bookmarkStart w:id="0" w:name="_GoBack" w:displacedByCustomXml="next"/>
+											<w:bookmarkEnd w:id="0" w:displacedByCustomXml="next"/>
+										</w:sdtContent>
+									</w:sdt>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Team Member Role"/>
+									<w:tag w:val="Role"/>
+									<w:id w:val="751007292"/>
+									<w:placeholder>
+										<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+									</w:placeholder>
+									<w:text/>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:p w:rsidR="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419">
+										<w:pPr>
+											<w:pStyle w:val="aa"/>
+											<w:ind w:left="0"/>
+											<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+											<w:rPr>
+												<w:lang w:val="ru-RU"/>
+											</w:rPr>
+										</w:pPr>
+										<w:r>
+											<w:t>Tester</w:t>
+										</w:r>
+									</w:p>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00C43419" w:rsidTr="00C43419">
+						<w:trPr>
+							<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+						</w:trPr>
+						<w:tc>
+							<w:tcPr>
+								<w:cnfStyle w:val="001000000000" w:firstRow="0" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Container"/>
+									<w:tag w:val="Container"/>
+									<w:id w:val="-347787914"/>
+									<w:placeholder>
+										<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+									</w:placeholder>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:sdt>
+										<w:sdtPr>
+											<w:alias w:val="Name"/>
+											<w:tag w:val="Name"/>
+											<w:id w:val="1677227052"/>
+											<w:placeholder>
+												<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+											</w:placeholder>
+										</w:sdtPr>
+										<w:sdtEndPr/>
+										<w:sdtContent>
+											<w:p w:rsidR="000C4944" w:rsidRPr="00F45A98" w:rsidRDefault="004F2666" w:rsidP="00F45A98">
+												<w:pPr>
+													<w:pStyle w:val="aa"/>
+													<w:numPr>
+														<w:ilvl w:val="0"/>
+														<w:numId w:val="6"/>
+													</w:numPr>
+													<w:rPr>
+														<w:lang w:val="ru-RU"/>
+													</w:rPr>
+												</w:pPr>
+												<w:r>
+													<w:t>John</w:t>
+												</w:r>
+											</w:p>
+											<w:bookmarkStart w:id="0" w:name="_GoBack" w:displacedByCustomXml="next"/>
+											<w:bookmarkEnd w:id="0" w:displacedByCustomXml="next"/>
+										</w:sdtContent>
+									</w:sdt>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Team Member Role"/>
+									<w:tag w:val="Role"/>
+									<w:id w:val="751007292"/>
+									<w:placeholder>
+										<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+									</w:placeholder>
+									<w:text/>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:p w:rsidR="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419">
+										<w:pPr>
+											<w:pStyle w:val="aa"/>
+											<w:ind w:left="0"/>
+											<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+											<w:rPr>
+												<w:lang w:val="ru-RU"/>
+											</w:rPr>
+										</w:pPr>
+										<w:r>
+											<w:t>Tester</w:t>
+										</w:r>
+									</w:p>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00C43419" w:rsidTr="00C43419">
+						<w:trPr>
+							<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+						</w:trPr>
+						<w:tc>
+							<w:tcPr>
+								<w:cnfStyle w:val="001000000000" w:firstRow="0" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Container"/>
+									<w:tag w:val="Container"/>
+									<w:id w:val="-347787914"/>
+									<w:placeholder>
+										<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+									</w:placeholder>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:sdt>
+										<w:sdtPr>
+											<w:alias w:val="Name"/>
+											<w:tag w:val="Name"/>
+											<w:id w:val="1677227052"/>
+											<w:placeholder>
+												<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+											</w:placeholder>
+										</w:sdtPr>
+										<w:sdtEndPr/>
+										<w:sdtContent>
+											<w:p w:rsidR="000C4944" w:rsidRPr="00F45A98" w:rsidRDefault="004F2666" w:rsidP="00F45A98">
+												<w:pPr>
+													<w:pStyle w:val="aa"/>
+													<w:numPr>
+														<w:ilvl w:val="0"/>
+														<w:numId w:val="7"/>
+													</w:numPr>
+													<w:rPr>
+														<w:lang w:val="ru-RU"/>
+													</w:rPr>
+												</w:pPr>
+												<w:r>
+													<w:t>John</w:t>
+												</w:r>
+											</w:p>
+											<w:bookmarkStart w:id="0" w:name="_GoBack" w:displacedByCustomXml="next"/>
+											<w:bookmarkEnd w:id="0" w:displacedByCustomXml="next"/>
+										</w:sdtContent>
+									</w:sdt>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Team Member Role"/>
+									<w:tag w:val="Role"/>
+									<w:id w:val="751007292"/>
+									<w:placeholder>
+										<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+									</w:placeholder>
+									<w:text/>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:p w:rsidR="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419">
+										<w:pPr>
+											<w:pStyle w:val="aa"/>
+											<w:ind w:left="0"/>
+											<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+											<w:rPr>
+												<w:lang w:val="ru-RU"/>
+											</w:rPr>
+										</w:pPr>
+										<w:r>
+											<w:t>Tester</w:t>
+										</w:r>
+									</w:p>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+					</w:tr>
+					<w:tr w:rsidR="00C43419" w:rsidTr="00C43419">
+						<w:trPr>
+							<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+						</w:trPr>
+						<w:tc>
+							<w:tcPr>
+								<w:cnfStyle w:val="001000000000" w:firstRow="0" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="0" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Container"/>
+									<w:tag w:val="Container"/>
+									<w:id w:val="-347787914"/>
+									<w:placeholder>
+										<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+									</w:placeholder>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:sdt>
+										<w:sdtPr>
+											<w:alias w:val="Name"/>
+											<w:tag w:val="Name"/>
+											<w:id w:val="1677227052"/>
+											<w:placeholder>
+												<w:docPart w:val="54F67D21639E4490A7B3B1CF80060083"/>
+											</w:placeholder>
+										</w:sdtPr>
+										<w:sdtEndPr/>
+										<w:sdtContent>
+											<w:p w:rsidR="000C4944" w:rsidRPr="00F45A98" w:rsidRDefault="004F2666" w:rsidP="00F45A98">
+												<w:pPr>
+													<w:pStyle w:val="aa"/>
+													<w:numPr>
+														<w:ilvl w:val="0"/>
+														<w:numId w:val="8"/>
+													</w:numPr>
+													<w:rPr>
+														<w:lang w:val="ru-RU"/>
+													</w:rPr>
+												</w:pPr>
+												<w:r>
+													<w:t>John</w:t>
+												</w:r>
+											</w:p>
+											<w:bookmarkStart w:id="0" w:name="_GoBack" w:displacedByCustomXml="next"/>
+											<w:bookmarkEnd w:id="0" w:displacedByCustomXml="next"/>
+										</w:sdtContent>
+									</w:sdt>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+						<w:tc>
+							<w:tcPr>
+								<w:tcW w:w="4788" w:type="dxa"/>
+							</w:tcPr>
+							<w:sdt>
+								<w:sdtPr>
+									<w:alias w:val="Team Member Role"/>
+									<w:tag w:val="Role"/>
+									<w:id w:val="751007292"/>
+									<w:placeholder>
+										<w:docPart w:val="DefaultPlaceholder_1081868574"/>
+									</w:placeholder>
+									<w:text/>
+								</w:sdtPr>
+								<w:sdtEndPr/>
+								<w:sdtContent>
+									<w:p w:rsidR="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419">
+										<w:pPr>
+											<w:pStyle w:val="aa"/>
+											<w:ind w:left="0"/>
+											<w:cnfStyle w:val="000000100000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:oddVBand="0" w:evenVBand="0" w:oddHBand="1" w:evenHBand="0" w:firstRowFirstColumn="0" w:firstRowLastColumn="0" w:lastRowFirstColumn="0" w:lastRowLastColumn="0"/>
+											<w:rPr>
+												<w:lang w:val="ru-RU"/>
+											</w:rPr>
+										</w:pPr>
+										<w:r>
+											<w:t>Tester</w:t>
+										</w:r>
+									</w:p>
+								</w:sdtContent>
+							</w:sdt>
+						</w:tc>
+					</w:tr>
+				</w:tbl>
+			</w:sdtContent>
+		</w:sdt>
+		<w:p w:rsidR="00C43419" w:rsidRDefault="00C43419" w:rsidP="00C43419"/>
+		<w:sectPr w:rsidR="00C43419" w:rsidSect="006E2549">
+			<w:pgSz w:w="12240" w:h="15840"/>
+			<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/>
+			<w:cols w:space="720"/>
+			<w:docGrid w:linePitch="360"/>
+		</w:sectPr>
+	</w:body>
+</w:document>

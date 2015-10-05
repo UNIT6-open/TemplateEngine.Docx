@@ -2,23 +2,22 @@
 
 namespace TemplateEngine.Docx
 {
-    public class TableRowContent
+    public class TableRowContent:Container
     {
         public TableRowContent()
         {
             
         }
 
-        public TableRowContent(IEnumerable<FieldContent> fields)
-        {
-            Fields = fields;
-        }
+		public TableRowContent(params IContentItem[] contentItems)
+			: base(contentItems)
+		{
+			
+		}
 
-        public TableRowContent(params FieldContent[] fields)
-        {
-            Fields = fields;
-        }
-
-        public IEnumerable<FieldContent> Fields { get; set; }
+	    public TableRowContent(List<FieldContent> fields)
+	    {
+		    Fields = fields;
+	    }
     }
 }

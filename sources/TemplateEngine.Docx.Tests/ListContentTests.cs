@@ -19,7 +19,7 @@ namespace TemplateEngine.Docx.Tests
 		[TestMethod]
 		public void ListContentConstructorWithNameAndEnumerableFieldContent_FillsNameAndItems()
 		{
-			var listContent = new ListContent("Name", new List<FieldContent>());
+			var listContent = new ListContent("Name", new List<ListItemContent>());
 
 			Assert.IsNotNull(listContent.Items);
 			Assert.AreEqual("Name", listContent.Name);
@@ -28,7 +28,7 @@ namespace TemplateEngine.Docx.Tests
 		[TestMethod]
 		public void ListContentConstructorWithNameAndItems_FillsNameAndItems()
 		{
-			var listContent = new ListContent("Name", new ListItemContent(), new FieldContent());
+			var listContent = new ListContent("Name", new ListItemContent(), new ListItemContent());
 
 			Assert.AreEqual(2, listContent.Items.Count());
 			Assert.AreEqual("Name", listContent.Name);
@@ -47,12 +47,12 @@ namespace TemplateEngine.Docx.Tests
 		public void ListContentGetFieldnames()
 		{
 			var listContent = new ListContent("Name", 
-				new ListItemContent("Header", "value", 
-					new FieldContent("Subheader", "value")),
 				new ListItemContent("Header", "value",
-					new FieldContent("Subheader", "value"),
-					new ListItemContent("Subheader", "value2", 
-						new FieldContent("Subsubheader", "value"))));
+					new ListItemContent("Subheader", "value")),
+				new ListItemContent("Header", "value",
+					new ListItemContent("Subheader", "value"),
+					new ListItemContent("Subheader", "value2",
+						new ListItemContent("Subsubheader", "value"))));
 
 			Assert.IsNotNull(listContent.Items);
 			Assert.AreEqual("Name", listContent.Name);
@@ -60,6 +60,39 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual("Header", listContent.FieldNames.ToArray()[0]);
 			Assert.AreEqual("Subheader", listContent.FieldNames.ToArray()[1]);
 			Assert.AreEqual("Subsubheader", listContent.FieldNames.ToArray()[2]);
-		}		
+		}
+
+		[TestMethod]
+		public void ListContentFluentConstructorWithNameAndItems_FillsNameAndItems()
+		{
+			var listContent = ListContent.Create("Name", new ListItemContent(), new ListItemContent());
+
+			Assert.AreEqual(2, listContent.Items.Count());
+			Assert.AreEqual("Name", listContent.Name);
+		}
+
+		[TestMethod]
+		public void ListContentFluentConstructorWithNameAndEnumerableListItemContent_FillsNameAndItems()
+		{
+			var listContent = ListContent.Create("Name", new List<ListItemContent>());
+
+			Assert.IsNotNull(listContent.Items);
+			Assert.AreEqual("Name", listContent.Name);
+		}
+
+
+		[TestMethod]
+		public void ListContentFluentAddItem_FillsNameAndItems()
+		{
+			var listContent = ListContent.Create("Name", new List<ListItemContent>())
+				.AddItem(ListItemContent.Create("ItemName", "Name"));
+			
+			Assert.IsNotNull(listContent.Items);
+			Assert.AreEqual("Name", listContent.Name);
+			Assert.AreEqual(listContent.Items.Count, 1);
+			Assert.AreEqual(listContent.Items.First().Fields.Count, 1);
+			Assert.AreEqual(listContent.Items.First().Fields.First().Name, "ItemName");
+			Assert.AreEqual(listContent.Items.First().Fields.First().Value, "Name");
+		}
 	}
 }

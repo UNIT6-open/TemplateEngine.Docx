@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using TemplateEngine.Docx;
+﻿using System.IO;
 
 namespace TemplateEngine.Docx.Example
 {
@@ -9,57 +6,25 @@ namespace TemplateEngine.Docx.Example
     {
         static void Main(string[] args)
         {
-            var valuesToFill = new Content
-            {
-                Lists = new List<ListContent>
-				{
-					new ListContent("Team List", 
-						new FieldContent("Team", "First team", 
-							new Content
-							{
-								Tables = new List<TableContent>
-								{
-									new TableContent
-									(
-										"Team Members",
-										new TableRowContent
-										(
-											new FieldContent("Name", "Eric"),
-											new FieldContent("Role", "Program Manager")
-										),
-										new TableRowContent
-										(
-											new FieldContent("Name", "Bob"),
-											new FieldContent("Role", "Developer")
-										)
-									)
-								}
-							}), 
-						new FieldContent("Team", "Second team", 
-							new Content
-							{
-								Tables = new List<TableContent>
-								{
-									new TableContent
-									(
-										"Team Members",
-										new TableRowContent
-										(
-											new FieldContent("Name", "Mark"),
-											new FieldContent("Role", "Team Leed")
-										),
-										new TableRowContent
-										(
-											new FieldContent("Name", "David"),
-											new FieldContent("Role", "Developer")
-										)
-									)
-								}
-							}))
-				},
-                
-            };
-
+			var valuesToFill = new Content(
+				new TableContent("Products")
+				.AddRow(
+					new FieldContent("Category", "Fruits"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Orange")
+							.AddNestedItem(new ListItemContent("Color", "Orange")))
+						.AddItem(new ListItemContent("Item", "Apple")
+							.AddNestedItem(new ListItemContent("Color", "Green"))
+							.AddNestedItem(new ListItemContent("Color", "Red"))))					
+				.AddRow(
+					new FieldContent("Category", "Vegetables"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Tomato")
+							.AddNestedItem(new ListItemContent("Color", "Yellow"))
+							.AddNestedItem(new ListItemContent("Color", "Red")))
+						.AddItem(new ListItemContent("Item", "Cabbage"))));
+				
+							
             File.Delete("OutputDocument.docx");
             File.Copy("InputTemplate.docx", "OutputDocument.docx");
 

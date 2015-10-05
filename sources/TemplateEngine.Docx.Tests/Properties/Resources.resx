@@ -133,17 +133,14 @@
   <data name="DocumentWithSingleFieldWrongFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleFieldWrongFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="DocumentWithSingleListFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleListFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  <data name="DocumentWithSingleNestedListFIlled_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFIlled_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="DocumentWithSingleListFilledAndRemovedCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleListFilledAndRemovedCC.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  <data name="DocumentWithSingleNestedListFIlled_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFIlled_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="DocumentWithSingleNestedListFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleNestedListFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
-  </data>
-  <data name="DocumentWithSingleNestedListFilledAndRemovedCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleNestedListFilledAndRemovedCC.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  <data name="DocumentWithSingleNestedListFIlled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFIlled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="DocumentWithSingleTableFilledWithTwoRows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleTableFilledWithTwoRows.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
@@ -169,12 +166,6 @@
   <data name="TemplateWithSingleFieldWithSeveralTextEntries" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleFieldWithSeveralTextEntries.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
-  <data name="TemplateWithSingleList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TemplateWithSingleList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
-  </data>
-  <data name="TemplateWithSingleNestedList" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\TemplateWithSingleNestedList.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
-  </data>
   <data name="TemplateWithSingleTable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleTable.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
   </data>
@@ -183,5 +174,68 @@
   </data>
   <data name="TemplateWithSingleTableWithMergedVerticallyRows" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithSingleTableWithMergedVerticallyRows.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleNestedList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleNestedList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleNestedList_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleNestedList_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithSingleNestedList_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleNestedList_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleNestedListFilledAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFilledAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleNestedListFilledAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFilledAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleNestedListFilledAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleNestedListFilledAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilled_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilled_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilled_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilled_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithSingleList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleList_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleList_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithSingleList_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleList_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilledAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilledAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilledAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilledAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListFilledAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListFilledAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithNestedListInsideTable_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithNestedListInsideTable_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithNestedListInsideTable_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithNestedListInsideTable_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithNestedListInsideTable_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithNestedListInsideTable_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithNestedListInsideTableAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTableAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithNestedListInsideTableAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTableAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithNestedListInsideTableAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTableAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
+using TemplateEngine.Docx.Processors;
 
 
 namespace TemplateEngine.Docx
@@ -12,6 +13,8 @@ namespace TemplateEngine.Docx
     public class TemplateProcessor : IDisposable
     {
         public readonly XDocument Document;
+		public readonly XDocument NumberingPart;
+		public readonly XDocument StylesPart;
         private readonly WordprocessingDocument _wordDocument;
 	    private bool _isNeedToRemoveContentControls;
 
@@ -19,20 +22,23 @@ namespace TemplateEngine.Docx
         {
             _wordDocument = WordprocessingDocument.Open(fileName, true);
 			
-            var xdoc = _wordDocument.MainDocumentPart.Annotation<XDocument>();
-            if (xdoc == null)
-            {
-                using (var str = _wordDocument.MainDocumentPart.GetStream())
-                using (var streamReader = new StreamReader(str))
-                using (var xr = XmlReader.Create(streamReader))
-                    xdoc = XDocument.Load(xr);
-
-                _wordDocument.MainDocumentPart.AddAnnotation(xdoc);
-            }
-            
-            Document = xdoc;
+			Document = LoadPart(_wordDocument.MainDocumentPart);
+	        NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
+	        StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
         }
 
+	    private XDocument LoadPart(OpenXmlPart source)
+	    {
+			var part = source.Annotation<XDocument>();
+		    if (part != null) return part;
+
+		    using (var str = source.GetStream())
+		    using (var streamReader = new StreamReader(str))
+		    using (var xr = XmlReader.Create(streamReader))
+			    part = XDocument.Load(xr);
+
+		    return part;
+	    }
 	    public TemplateProcessor SetRemoveContentControls(bool isNeedToRemove)
 	    {
 		    _isNeedToRemoveContentControls = isNeedToRemove;
@@ -49,28 +55,41 @@ namespace TemplateEngine.Docx
                 Document.Save(xw);
             }
 
-            _wordDocument.Close();
+
+			if (NumberingPart == null) return;
+
+			// Serialize the XDocument object back to the package.
+			using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create, FileAccess.Write)))
+			{
+				NumberingPart.Save(xw);
+			}
+
+			_wordDocument.Close();
         }
 
-        public TemplateProcessor(XDocument templateSource)
+        public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
         {
             Document = templateSource;
+			StylesPart = stylesPart;
+			NumberingPart = numberingPart;
         }
 
         public TemplateProcessor FillContent(Content content)
         {
-			var errors =
-		        new ContentProcessor(Document.Root.Element(W.body)).SetRemoveContentControls(_isNeedToRemoveContentControls)
-			        .FillContent(content);
+			var processResult =
+		        new ContentProcessor(
+					new ProcessContext(Document, NumberingPart, StylesPart))
+					.SetRemoveContentControls(_isNeedToRemoveContentControls)
+			        .FillContent(Document.Root.Element(W.body), content);
 
-            AddErrors(errors);
+            AddErrors(processResult.Errors);
 
             return this;
         }
 
 	  
 	    // Add any errors as red text on yellow at the beginning of the document.
-	    private void AddErrors(List<string> errors)
+	    private void AddErrors(IList<string> errors)
 	    {
 		    if (errors.Any())
 			    Document.Root

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -14,9 +15,13 @@ namespace TemplateEngine.Docx
 
 			if (sdtContentElement != null)
 			{
-				var firstContentElementWithText =
-					sdtContentElement
-						.Descendants().FirstOrDefault(d => d.Descendants(W.t).Any());
+				var elementsWithText = sdtContentElement.Elements()
+					.Where(e => 
+						e.DescendantsAndSelf(W.t).Any() &&
+						!e.DescendantsAndSelf(W.sdt).Any())						
+					.ToList();
+				
+				var firstContentElementWithText = elementsWithText.FirstOrDefault(d => d.DescendantsAndSelf(W.t).Any());
 
 				if (firstContentElementWithText != null)
 				{
@@ -27,18 +32,20 @@ namespace TemplateEngine.Docx
 					firstTextElement.Value = newValue;
 
 					//remove all text elements with its ancestors from the first contentElement
-					var firstElementAncestors = firstTextElement.Ancestors();
-					foreach (
-						var descendantsWithText in sdtContentElement.Elements().Where(d => d.Descendants(W.t).Any() && d.Name != W.sdt).ToList()
-						)
+					var firstElementAncestors = firstTextElement.AncestorsAndSelf().ToList();
+					
+					foreach (var descendants in elementsWithText.DescendantsAndSelf().ToList())
 					{
-						descendantsWithText.AncestorsAndSelf().Where(a => !firstElementAncestors.Contains(a)).Remove();
+						if (!firstElementAncestors.Contains(descendants) && descendants.DescendantsAndSelf(W.t).Any())
+						{
+							descendants.Remove();
+						}
+						//descendants.AncestorsAndSelf().Where(a => !firstElementAncestors.Contains(a)).Remove();
 					}
 
 					var contentReplacementElement = new XElement(firstContentElementWithText);
-
-					/*sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText && d.Name != W.sdt).Remove();
-*/
+					
+				/*	sdtContentElement.Descendants().Where(d => d.Descendants(W.t).Any() && d != firstContentElementWithText && d.Name != W.sdt).Remove();*/
 					firstContentElementWithText.AddAfterSelf(contentReplacementElement);
 					firstContentElementWithText.Remove();
 				}
@@ -60,21 +67,69 @@ namespace TemplateEngine.Docx
 			}
 		}
 
-		public static IEnumerable<XElement> RemoveContentControl(this XElement sdt)
+		public static void RemoveContentControl(this XElement sdt)
 		{
 
 			var sdtContentElement = sdt.Element(W.sdtContent);
 			if (sdtContentElement == null)
 			{
 				sdt.Remove();
-				return null;
+				return;
 			}
 
+			var parent = new XElement("parent");
+			if (sdt.Parent == null)
+			{
+				//add newElement to fake parent for remove content control
+				parent.Add(sdt);
+			}
 			// Remove the content control, and replace it with its contents.
-			var replacementElements = new List<XElement>(sdt.Element(W.sdtContent).Elements());
+			sdt.ReplaceWith(sdtContentElement.Elements());
 
-			sdt.ReplaceWith(replacementElements);
-			return replacementElements;
+			if (sdt.Parent == parent)
+			{
+				sdt.Remove();
+			}
+		}
+		public static IEnumerable<XElement> FirstLevelDescendantsAndSelf(this XElement element, XName name)
+		{
+			var allDescendantsAndSelf = element
+				//content controls
+				.DescendantsAndSelf(name).ToList();
+
+
+			return allDescendantsAndSelf
+				.Where(d => !d.Ancestors().Any(allDescendantsAndSelf.Contains));
+		}
+
+		public static IEnumerable<XElement> FirstLevelDescendantsAndSelf(this IEnumerable<XElement> element, XName name)
+		{
+			var allDescendantsAndSelf = element
+				//content controls
+				.DescendantsAndSelf(name).ToList();
+
+
+			return allDescendantsAndSelf
+				.Where(d => !d.Ancestors().Any(allDescendantsAndSelf.Contains));
+		}
+
+
+		public static string SdtTagName(this XElement sdt)
+		{
+			if (sdt.Name != W.sdt) return null;
+
+			try
+			{
+				return sdt
+					.Element(W.sdtPr)
+					.Element(W.tag)
+					.Attribute(W.val)
+					.Value;
+			}
+			catch (Exception)
+			{
+				return null;
+			}
 		}
 	}
 }

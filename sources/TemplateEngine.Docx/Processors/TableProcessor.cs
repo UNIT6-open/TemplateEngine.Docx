@@ -3,56 +3,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace TemplateEngine.Docx
+namespace TemplateEngine.Docx.Processors
 {
-	internal class TableProcessor
+	internal class TableProcessor : IProcessor
 	{
-		private readonly XElement _tableContentControl;
 		private bool _isNeedToRemoveContentControls;
 
-		internal TableProcessor(XElement tableContentControl)
+		private readonly ProcessContext _context;
+		private ProcessResult _processResult;
+		public TableProcessor(ProcessContext context)
 		{
-			_tableContentControl = tableContentControl;
+			_context = context;
 		}
-
-		internal TableProcessor SetRemoveContentControls(bool isNeedToRemove)
+		public IProcessor SetRemoveContentControls(bool isNeedToRemove)
 		{
 			_isNeedToRemoveContentControls = isNeedToRemove;
 			return this;
 		}
 
-		internal IEnumerable<string> FillTableContent(TableContent table)
+		public ProcessResult FillContent(XElement contentControl, IContentItem item)
 		{
-			var errors = new List<string>();
+			if (!(item is TableContent)) return ProcessResult.NotHandledResult;
+
+			_processResult = new ProcessResult();
+			var table = item as TableContent;
 
 			// Find the content control with Table Name
 			var listName = table.Name;
 			
 			// If there isn't a table with that name, add an error to the error string,
 			// and continue with next table.
-			if (_tableContentControl == null)
+			if (contentControl == null)
 			{
-				errors.Add(String.Format("Table Content Control '{0}' not found.",
+				_processResult.Errors.Add(String.Format("Table Content Control '{0}' not found.",
 					listName));
 
-				return errors;
+				return _processResult;
 			}
 
 			// If the table doesn't contain content controls in cells, then error and continue with next table.
-			var cellContentControl = _tableContentControl
+			var cellContentControl = contentControl
 				.Descendants(W.sdt)
 				.FirstOrDefault();
 			if (cellContentControl == null)
 			{
-				errors.Add(String.Format(
+				_processResult.Errors.Add(String.Format(
 					"Table Content Control '{0}' doesn't contain content controls in cells.",
 					listName));
-				return errors;
+				return _processResult;
 			}
 
 			var fieldNames = table.FieldNames.ToList();
 
-			var prototypeRows = GetPrototype(_tableContentControl, fieldNames);
+			var prototypeRows = GetPrototype(contentControl, fieldNames);
 
 			//Select content controls tag names
 			var contentControlTagNames = prototypeRows
@@ -67,11 +70,11 @@ namespace TemplateEngine.Docx
 			//If there are not content controls with the one of specified field name we need to add the warning
 			if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
 			{
-				errors.Add(String.Format(
+				_processResult.Errors.Add(String.Format(
 					"Table Content Control '{0}' doesn't contain rows with cell content controls {1}.",
 					listName,
 					string.Join(", ", fieldNames.Select(fn => string.Format("'{0}'", fn)))));
-				return errors;
+				return _processResult;
 			}
 
 
@@ -86,7 +89,7 @@ namespace TemplateEngine.Docx
 
 				// Create new rows that will contain the data that was passed in to this
 				// method in the XML tree.
-				foreach (var sdt in newRowsEntry.Descendants(W.sdt).ToList())
+				foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
 				{
 					// Get fieldName from the content control tag.
 					string fieldName = sdt
@@ -95,11 +98,21 @@ namespace TemplateEngine.Docx
 						.Attribute(W.val)
 						.Value;
 
-					// Get the new value out of contentControlValues.
+					var content = row.GetContentItem(fieldName);
+
+					var processResult = new ContentProcessor(_context)
+						.SetRemoveContentControls(_isNeedToRemoveContentControls)
+						.FillContent(sdt, content);
+
+					if (!processResult.Success)
+						_processResult.Errors.AddRange(processResult.Errors);
+					
+					/*// Get the new value out of contentControlValues.
 					var newValueElement = row
 						.Fields
-						.Where(f => f.Name == fieldName)
-						.FirstOrDefault();
+						.Where(f=>f is FieldContent)
+						.FirstOrDefault(f => 
+							(f as FieldContent).Name == fieldName);
 
 					// Generate error message if the new value doesn't exist.
 					if (newValueElement == null)
@@ -111,9 +124,9 @@ namespace TemplateEngine.Docx
 					}
 
 					// Set content control value th the new value
-					sdt.ReplaceContentControlWithNewValue(newValueElement.Value);
+					sdt.ReplaceContentControlWithNewValue((newValueElement as FieldContent).Value);
 					if (_isNeedToRemoveContentControls)
-						sdt.RemoveContentControl();
+						sdt.RemoveContentControl();*/
 				}
 
 				// Add the newRow to the list of rows that will be placed in the newly
@@ -129,7 +142,7 @@ namespace TemplateEngine.Docx
 			if (_isNeedToRemoveContentControls)
 			{
 				// Remove the content control for the table and replace it with its contents.
-				var tableElement = _tableContentControl;
+				var tableElement = contentControl;
 			
 				foreach (var xElement in tableElement.AncestorsAndSelf(W.sdt))
 				{
@@ -139,7 +152,7 @@ namespace TemplateEngine.Docx
 			}
 
 			
-			return errors;
+			return _processResult;
 		}
 
 		// Determine the elements that contains the content controls with specified names.

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TemplateEngine.Docx.Tests.Properties;
@@ -285,10 +286,7 @@ namespace TemplateEngine.Docx.Tests
 			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithAdjacentRows);
 			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithAdjacentRowsFilled);
 
-			var valuesToFill = new Content
-			{
-				Tables = new List<TableContent>
-                {
+			var valuesToFill = new Content(
                     new TableContent 
                     {
                         Name = "Team Members",
@@ -318,8 +316,7 @@ namespace TemplateEngine.Docx.Tests
                             },
                         }
                     }
-                }
-			};
+                );
 
 			var template = new TemplateProcessor(templateDocument)
 				.FillContent(valuesToFill);
@@ -334,34 +331,11 @@ namespace TemplateEngine.Docx.Tests
 			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithMergedVerticallyRows);
 			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithMergedVerticallyRowsFilled);
 
-			var valuesToFill = new Content
-			{
-				Tables = new List<TableContent>
-                {
-                    new TableContent 
-                    {
-                        Name = "Team Members",
-                        Rows = new List<TableRowContent>
-                        {
-                            new TableRowContent
-                            {
-                                Fields = new List<FieldContent>
-                                    {
-                                        new FieldContent { Name = "Name", Value = "Eric" }
-                                    }
-                            },
-                            new TableRowContent
-                            {
-                                 Fields = new List<FieldContent>
-                                    {
-                                        new FieldContent { Name = "Name", Value = "Bob" }                                     
-                                    }
-                            },
-                        }
-                    }
-                }
-			};
-
+			var valuesToFill = new Content(
+				new TableContent("Team Members")
+					.AddRow(new FieldContent ("Name", "Eric"))
+					.AddRow(new FieldContent("Name", "Bob")));
+			
 			var template = new TemplateProcessor(templateDocument)
 				.FillContent(valuesToFill);
 
@@ -373,8 +347,13 @@ namespace TemplateEngine.Docx.Tests
 		[TestMethod]
 		public void FillingOneListAndPreserveContentControl()
 		{
-			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList);
-			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilled);
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithSingleList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithSingleList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilled_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithSingleListFilled_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithSingleListFilled_numbering);
 
 			var valuesToFill = new Content
 			{
@@ -383,27 +362,32 @@ namespace TemplateEngine.Docx.Tests
                     new ListContent 
                     {
                         Name = "Food Items",
-                        Items = new List<FieldContent>
+                        Items = new List<ListItemContent>
                         {                   
-                             new FieldContent { Name = "Category", Value = "Fruit" },
-                             new FieldContent { Name = "Category", Value = "Vegetables" }   
+                             new ListItemContent ("Category", "Fruit"),
+                             new ListItemContent ("Category", "Vegetables")
                         }
                     }
                 }
 			};
 
-			var template = new TemplateProcessor(templateDocument)
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
 				.FillContent(valuesToFill);
 
-			var documentXml = template.Document.ToString();
-
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
 		}		
 		[TestMethod]
 		public void FillingOneListAndRemoveContentControl()
 		{
-			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList);
-			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilledAndRemovedCC);
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithSingleList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithSingleList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListFilledAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithSingleListFilledAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithSingleListFilledAndRemovedCC_numbering);
 
 			var valuesToFill = new Content
 			{
@@ -412,118 +396,135 @@ namespace TemplateEngine.Docx.Tests
                     new ListContent 
                     {
                         Name = "Food Items",
-                        Items = new List<FieldContent>
+                       Items = new List<ListItemContent>
                         {                   
-                              new FieldContent { Name = "Category", Value = "Fruit" },
-                              new FieldContent { Name = "Category", Value = "Vegetables" }   
+                             new ListItemContent ("Category", "Fruit"),
+                             new ListItemContent ("Category", "Vegetables")
                         }
                     }
                 }
 			};
 
-			var template = new TemplateProcessor(templateDocument)
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
 				.SetRemoveContentControls(true)
 				.FillContent(valuesToFill);
 
-			var documentXml = template.Document.ToString();
-
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
 		}		
 		[TestMethod]
 		public void FillingOneNestedListAndPreserveContentControl()
 		{
-			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList);
-			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFilled);
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithSingleNestedList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithSingleNestedList_numbering);
 
-			var valuesToFill = new Content
-			{
-				Lists = new List<ListContent>
-               {
-	               new ListContent("Document", 
-					   new FieldContent ("Header", "Introduction"),
-					   new ListItemContent
-					   {
-						   Name = "Header",Value = "Chapter 1 - The new start screen", 
-						   NestedFields= new []
-						   {
-								new ListItemContent
-								{
-									Name = "Subheader", Value ="What's new in Windows 8?",	
-									NestedFields = new List<FieldContent>
-									{
-										new FieldContent("Paragraph", "Chapter content")
-									}
-								},
-								new FieldContent("Subheader", "Starting Windows 8")
-													
-						   }
-					   },
-					   new ListItemContent
-					   {
-						   Name = "Header",Value = "Chapter 2 - The traditional Desktop", 
-						   NestedFields= new []
-						   {
-								new FieldContent("Subheader","Browsing the File Explorer"),
-								new FieldContent("Subheader","Getting the Lowdown on Folders and Libraries")
-						   }
-					   })					  	 					  
-               }
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFIlled_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithSingleNestedListFIlled_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithSingleNestedListFIlled_numbering);
 
-			};
+			var valuesToFill = new Content(
+				ListContent.Create("Document",
+					ListItemContent.Create("Header", "Introduction"), 
 
-			var template = new TemplateProcessor(templateDocument).FillContent(valuesToFill);
+					ListItemContent.Create("Header", "Chapter 1 - The new start screen")
+						.AddField("Header text", "Header 2 paragraph text")
+						.AddNestedItem(ListItemContent.Create("Subheader", "What's new in Windows 8?")
+							.AddField("Subheader text", "Subheader 2.1 paragraph text"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Starting Windows 8")),
 
-			var documentXml = template.Document.ToString();
+					ListItemContent.Create("Header", "Chapter 2 - The traditional Desktop")
+						.AddNestedItem(ListItemContent.Create("Subheader", "Browsing the File Explorer"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Getting the Lowdown on Folders and Libraries"))));
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
 		}
 		[TestMethod]
 		public void FillingOneNestedListAndRemoveContentControl()
 		{
-			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList);
-			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFilledAndRemovedCC);
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleNestedList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithSingleNestedList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithSingleNestedList_numbering);
 
-			var valuesToFill = new Content
-			{
-				Lists = new List<ListContent>
-               {
-	               new ListContent("Document", 
-					   new FieldContent ("Header", "Introduction"),
-					   new ListItemContent
-					   {
-						   Name = "Header",Value = "Chapter 1 - The new start screen", 
-						   NestedFields= new []
-						   {
-								new ListItemContent
-								{
-									Name = "Subheader", Value ="What's new in Windows 8?",	
-									NestedFields = new List<FieldContent>
-									{
-										new FieldContent("Paragraph", "Chapter content")
-									}
-								},
-								new FieldContent("Subheader", "Starting Windows 8")
-													
-						   }
-					   },
-					   new ListItemContent
-					   {
-						   Name = "Header",Value = "Chapter 2 - The traditional Desktop", 
-						   NestedFields= new []
-						   {
-								new FieldContent("Subheader","Browsing the File Explorer"),
-								new FieldContent("Subheader","Getting the Lowdown on Folders and Libraries")
-						   }
-					   })					  	 					  
-               }
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleNestedListFilledAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithSingleNestedListFilledAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithSingleNestedListFilledAndRemovedCC_numbering);
 
-			};
+			var valuesToFill = new Content(
+				ListContent.Create("Document")
+					.AddItem(ListItemContent.Create("Header", "Introduction"))
 
-			var template = new TemplateProcessor(templateDocument).SetRemoveContentControls(true).FillContent(valuesToFill);
+					.AddItem(ListItemContent.Create("Header", "Chapter 1 - The new start screen")
+						.AddField("Header text", "Header 2 paragraph text")
+						.AddNestedItem(ListItemContent.Create("Subheader", "What's new in Windows 8?")
+							.AddField("Subheader text", "Subheader 2.1 paragraph text"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Starting Windows 8")))
 
-			var documentXml = template.Document.ToString();
+					.AddItem(ListItemContent.Create("Header", "Chapter 2 - The traditional Desktop")
+						.AddNestedItem(ListItemContent.Create("Subheader", "Browsing the File Explorer"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Getting the Lowdown on Folders and Libraries"))));
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
 		}
+
+		[TestMethod]
+		public void FillingOneNestedListInsideTableAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithNestedListInsideTableAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithNestedListInsideTableAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithNestedListInsideTableAndRemovedCC_numbering);
+
+			var valuesToFill = new Content(
+				new TableContent("Products")
+				.AddRow(
+					new FieldContent("Category", "Fruits"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Orange")
+							.AddNestedItem(new ListItemContent("Color", "Orange")))
+						.AddItem(new ListItemContent("Item", "Apple")
+							.AddNestedItem(new ListItemContent("Color", "Green"))
+							.AddNestedItem(new ListItemContent("Color", "Red"))))
+				.AddRow(
+					new FieldContent("Category", "Vegetables"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Tomato")
+							.AddNestedItem(new ListItemContent("Color", "Yellow"))
+							.AddNestedItem(new ListItemContent("Color", "Red")))
+						.AddItem(new ListItemContent("Item", "Cabbage"))));
+
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+	    private string RemoveNsid(string source)
+	    {
+			const string nsidRegexp = "nsid w:val=\"[0-9a-fA-F]+\"";
+			return Regex.Replace(source, nsidRegexp, "");
+	    }
     }
 }

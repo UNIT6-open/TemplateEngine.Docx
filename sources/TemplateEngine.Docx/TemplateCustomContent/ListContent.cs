@@ -1,13 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using DocumentFormat.OpenXml.Office.CustomUI;
 
 namespace TemplateEngine.Docx
 {
-	public class ListContent
+	public class ListContent:IContentItem
 	{
-		private IEnumerable<FieldContent> _items;
+		public string Name { get; set; }
 
+		public ICollection<ListItemContent> Items { get; set; }
+
+		public IEnumerable<string> FieldNames
+		{
+			get
+			{
+				return Items == null ? new List<string>() : GetFieldNames(Items);
+			}
+		}
+
+
+		#region ctors
 		public ListContent()
         {
             
@@ -18,68 +31,74 @@ namespace TemplateEngine.Docx
             Name = name;
         }
 
-		public ListContent(string name, IEnumerable<FieldContent> items)
+		public ListContent(string name, IEnumerable<ListItemContent> items)
             : this(name)
         {
-            Items = items;
+            Items = items.ToList();
         }
 
-		public ListContent(string name, params FieldContent[] items)
+		public ListContent(string name, params ListItemContent[] items)
             : this(name)
         {
-            Items = items;
+			Items = items.ToList();
         }
-	
-        public string Name { get; set; }
 
-		public IEnumerable<FieldContent> Items
+		#endregion
+
+		#region fluent
+
+		public static ListContent Create(string name, params ListItemContent[] items)
+        {
+			return new ListContent(name, items);
+        }
+		public static ListContent Create(string name, IEnumerable<ListItemContent> items)
+        {
+			return new ListContent(name, items);
+        }
+
+		public ListContent AddItem(ListItemContent item)
 		{
-			get { return _items; }
-			set
-			{
-				if (value != null && value.Where(i => i != null).Select(i => i.Name).Distinct().Count() > 1)
-				{
-					throw new Exception(string.Format("Items in the same level must have same names."));
-				}
-				_items = value;
-			}
+			if (Items == null) Items = new Collection<ListItemContent>();
+			Items.Add(item);
+			return this;
 		}
 
-		public IEnumerable<string> FieldNames
-		{
-			get
-			{
-				return Items == null ? new List<string>() : GetFieldNames(Items);
-			}
-		}
 
-		private List<string> GetFieldNames(IEnumerable<FieldContent> items)
+		#endregion
+
+		#region IContentItem implementation
+		private List<string> GetFieldNames(IEnumerable<ListItemContent> items)
 		{
 			var result = new List<string>();
 			if (items == null) return null;
 
 			foreach (var item in items)
 			{
-				if (item != null && !result.Contains(item.Name))
-					result.Add(item.Name);
-
-				if (item is ListItemContent)
+				if (item != null)
 				{
-					var listItem = item as ListItemContent;
-					if (listItem.NestedFields != null)
+					foreach (var fieldName in item.FieldNames.Where(fieldName => !result.Contains(fieldName)))
 					{
-						var nestedFieldNames = GetFieldNames(listItem.NestedFields);
-						foreach (var nestedFieldName in nestedFieldNames)
+						result.Add(fieldName);
+					}
+
+					if (item.NestedFields != null)
+					{
+						var listItem = item as ListItemContent;
+						if (listItem.NestedFields != null)
 						{
-							if (!result.Contains(nestedFieldName))
-								result.Add(nestedFieldName);
+							var nestedFieldNames = GetFieldNames(listItem.NestedFields);
+							foreach (var nestedFieldName in nestedFieldNames)
+							{
+								if (!result.Contains(nestedFieldName))
+									result.Add(nestedFieldName);
+							}
 						}
 					}
+
 				}
-
-
 			}			
 			return result;
-		}	
+		}
+		#endregion
 	}
 }

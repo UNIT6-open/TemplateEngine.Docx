@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TemplateEngine.Docx.Tests
@@ -32,6 +30,33 @@ namespace TemplateEngine.Docx.Tests
             var tableContent = new TableContent("Name", new TableRowContent(), new TableRowContent());
 
             Assert.AreEqual(2, tableContent.Rows.Count());
+            Assert.AreEqual("Name", tableContent.Name);
+        }
+
+		[TestMethod]
+		public void TableContentFluentConstructorWithNameAndEnumerable_FillsNameAndRows()
+		{
+			var tableContent = TableContent.Create("Name", new List<TableRowContent>());
+
+			Assert.IsNotNull(tableContent.Rows);
+			Assert.AreEqual("Name", tableContent.Name);
+		}
+
+        [TestMethod]
+        public void TableContentFluentConstructorWithNameAndRows_FillsNameAndRows()
+        {
+            var tableContent = TableContent.Create("Name", new TableRowContent(), new TableRowContent());
+
+            Assert.AreEqual(2, tableContent.Rows.Count());
+            Assert.AreEqual("Name", tableContent.Name);
+        }
+        [TestMethod]
+        public void TableAddRowFluent_AddsRow()
+        {
+            var tableContent = TableContent.Create("Name")
+				.AddRow(new FieldContent());
+
+            Assert.AreEqual(1, tableContent.Rows.Count());
             Assert.AreEqual("Name", tableContent.Name);
         }
     }

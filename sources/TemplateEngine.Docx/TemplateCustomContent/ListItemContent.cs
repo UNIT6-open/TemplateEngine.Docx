@@ -1,30 +1,73 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace TemplateEngine.Docx
 {
-	public class ListItemContent:FieldContent
+	public class ListItemContent:Container
 	{
-		public ListItemContent()
+		public ICollection<ListItemContent> NestedFields { get; set; }
+
+		#region ctors
+		public ListItemContent(params IContentItem[] contentItems):base(contentItems)
         {
             
         }
 
-		public ListItemContent(string name, string value) : base(name, value)
+		public ListItemContent(IEnumerable<ListItemContent> nestedfields, params IContentItem[] contentItems)
+			: base(contentItems)
 		{
-		}
-		public ListItemContent(string name, string value, IEnumerable<FieldContent> nestedfields)
-			: base(name, value)
-		{
-			NestedFields = nestedfields;
+			NestedFields = nestedfields.ToList();
 		}
 
-		public ListItemContent(string name, string value, params FieldContent[] nestedfields)
-			: base(name, value)
-        {
-			NestedFields = nestedfields;
-        }
+		public ListItemContent(string name, string value)
+		{
+			Fields = new List<FieldContent> {new FieldContent {Name = name, Value = value}};
+			NestedFields = new List<ListItemContent>();
+		}
+		
+		public ListItemContent(string name, string value, IEnumerable<ListItemContent> nestedfields)
+		{
+			Fields = new List<FieldContent>{new FieldContent{Name = name, Value = value}};
+			NestedFields = nestedfields.ToList();
+		}
 
+		public ListItemContent(string name, string value, params ListItemContent[] nestedfields)
+		{
+			Fields = new List<FieldContent> {new FieldContent {Name = name, Value = value}};
+			NestedFields = nestedfields.ToList();
 
-		public IEnumerable<FieldContent> NestedFields { get; set; }
+		}
+
+		#endregion
+
+		#region fluent
+
+		public static ListItemContent Create(string name, string value, params ListItemContent[] nestedfields)
+		{
+			return new ListItemContent(name, value, nestedfields);
+		}
+
+		public static ListItemContent Create(string name, string value, List<ListItemContent> nestedfields)
+		{
+			return new ListItemContent(name, value, nestedfields);
+		}
+		public ListItemContent AddField(string name, string value)
+		{
+			if (Fields == null) Fields = new List<FieldContent>();
+
+			Fields.Add(new FieldContent(name, value));
+			return this;
+		}
+
+		public ListItemContent AddNestedItem(ListItemContent nestedItem)
+		{
+			if (NestedFields == null) NestedFields = new List<ListItemContent>();
+
+			NestedFields.Add(nestedItem);
+			return this;
+		}
+
+		#endregion
+
 	}
 }

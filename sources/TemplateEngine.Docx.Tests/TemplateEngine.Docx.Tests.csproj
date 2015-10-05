@@ -101,12 +101,27 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DocumentWithSingleNestedListFilledAndRemovedCC.xml" />
-    <None Include="Resources\DocumentWithSingleNestedListFilled.xml" />
-    <None Include="Resources\TemplateWithSingleNestedList.xml" />
-    <None Include="Resources\DocumentWithSingleListFilledAndRemovedCC.xml" />
-    <None Include="Resources\TemplateWithSingleList.xml" />
-    <None Include="Resources\DocumentWithSingleListFilled.xml" />
+    <None Include="Resources\TemplateWithNestedListInsideTable_styles.xml" />
+    <None Include="Resources\TemplateWithNestedListInsideTable_numbering.xml" />
+    <None Include="Resources\TemplateWithNestedListInsideTable_document.xml" />
+    <None Include="Resources\DocumentWithSingleListFilledAndRemovedCC_styles.xml" />
+    <None Include="Resources\DocumentWithSingleListFilledAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithSingleListFilledAndRemovedCC_document.xml" />
+    <None Include="Resources\TemplateWithSingleList_styles.xml" />
+    <None Include="Resources\TemplateWithSingleList_numbering.xml" />
+    <None Include="Resources\TemplateWithSingleList_document.xml" />
+    <None Include="Resources\DocumentWithSingleListFilled_styles.xml" />
+    <None Include="Resources\DocumentWithSingleListFilled_numbering.xml" />
+    <None Include="Resources\DocumentWithSingleListFilled_document.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFilledAndRemovedCC_styles.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFilledAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFilledAndRemovedCC_document.xml" />
+    <None Include="Resources\TemplateWithSingleNestedList_styles.xml" />
+    <None Include="Resources\TemplateWithSingleNestedList_numbering.xml" />
+    <None Include="Resources\TemplateWithSingleNestedList_document.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFIlled_styles.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFIlled_numbering.xml" />
+    <None Include="Resources\DocumentWithSingleNestedListFIlled_document.xml" />
     <None Include="Resources\DocumentWithSingleTableWithMergedVerticallyRowsFilled.xml" />
     <None Include="Resources\TemplateWithSingleTableWithMergedVerticallyRows.xml" />
     <None Include="Resources\TemplateWithSingleTableWithAdjacentRows.xml" />
@@ -115,6 +130,9 @@
     <None Include="Resources\DocumentWithSingleTableWrongFilled.xml" />
     <None Include="Resources\DocumentWithFieldInTableHeaderFilled.xml" />
     <None Include="Resources\DocumentWithSingleFieldWithSeveralTextEntriesFilled.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_document.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_styles.xml" />
     <Content Include="Resources\DocumentWithSingleFieldWrongFilled.xml" />
     <None Include="Resources\TemplateWithFieldInTableHeader.xml" />
   </ItemGroup>
