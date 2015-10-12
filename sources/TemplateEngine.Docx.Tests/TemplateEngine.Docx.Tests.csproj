@@ -101,6 +101,18 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DocumentWithSingleListWrongFilled_styles.xml" />
+    <None Include="Resources\DocumentWithSingleListWrongFilled_numbering.xml" />
+    <None Include="Resources\DocumentWithSingleListWrongFilled_document.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_styles.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilled_styles.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilled_numbering.xml" />
+    <None Include="Resources\TemplateWithTwoTablesWithListsInside_styles.xml" />
+    <None Include="Resources\TemplateWithTwoTablesWithListsInside_numbering.xml" />
+    <None Include="Resources\TemplateWithTwoTablesWithListsInside_document.xml" />
+    <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilled_document.xml" />
     <None Include="Resources\DocumentWithSingleFieldWrongFilledWithoutErrorsNotifications.xml" />
     <None Include="Resources\TemplateWithFieldAndListInsideNestedList_styles.xml" />
     <None Include="Resources\TemplateWithFieldAndListInsideNestedList_numbering.xml" />

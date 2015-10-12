@@ -100,13 +100,15 @@ namespace TemplateEngine.Docx.Processors
 
 					var content = row.GetContentItem(fieldName);
 
-					var processResult = new ContentProcessor(_context)
-						.SetRemoveContentControls(_isNeedToRemoveContentControls)
-						.FillContent(sdt, content);
+					if (content != null)
+					{
+						var processResult = new ContentProcessor(_context)
+							.SetRemoveContentControls(_isNeedToRemoveContentControls)
+							.FillContent(sdt, content);
 
-					if (!processResult.Success)
-						_processResult.Errors.AddRange(processResult.Errors);
-					
+						if (!processResult.Success)
+							_processResult.Errors.AddRange(processResult.Errors);
+					}
 					/*// Get the new value out of contentControlValues.
 					var newValueElement = row
 						.Fields

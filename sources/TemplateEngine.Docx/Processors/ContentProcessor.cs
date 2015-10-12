@@ -82,9 +82,12 @@ namespace TemplateEngine.Docx.Processors
 				{
 					var processor = _processors.OfType<FieldsProcessor>().FirstOrDefault();
 					if (processor != null)
+					{
 						processor.FillContent(innerContentControl, fieldContentControl);
+						processedItems.Add(fieldContentControl);
+					}
 				}
-				processedItems.Add(fieldContentControl);
+				
 			}
 
 			return processedItems;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -278,22 +279,26 @@ namespace TemplateEngine.Docx.Processors
 						continue;
 					}
 
-					var sdt = newElement.DescendantsAndSelf(W.sdt).First();
-					var fieldContent = contentItem.GetContentItem(sdt.SdtTagName());
-					if (fieldContent == null)
+					foreach (var sdt in newElement.FirstLevelDescendantsAndSelf(W.sdt).ToList())
 					{
-						_processResult.Errors.Add(string.Format("Field content for field '{0}' not found", sdt.SdtTagName()));
-					}
-					else
-					{
+						var fieldContent = contentItem.GetContentItem(sdt.SdtTagName());
+						if (fieldContent == null)
+						{
+							_processResult.Errors.Add(string.Format("Field content for field '{0}' not found", sdt.SdtTagName()));
+							continue;
+						}
+						
 						var processResult = new ContentProcessor(_context)
 							.SetRemoveContentControls(_isNeedToRemoveContentControls)
 							.FillContent(sdt, fieldContent);
 
 						if (!processResult.Success)
 							_processResult.Errors.AddRange(processResult.Errors);
+						
+						
 					}
 					newRows.Add(newElement);
+					
 				}
 				
 				// If there are nested items fill prototype for them.

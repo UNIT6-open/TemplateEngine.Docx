@@ -97,9 +97,14 @@ namespace TemplateEngine.Docx
 				//content controls
 				.DescendantsAndSelf(name).ToList();
 
-
+			foreach (var xElement in allDescendantsAndSelf)
+			{
+				var ancestors = xElement.Ancestors(name);
+				var inter = ancestors.Intersect(allDescendantsAndSelf);
+				var count = inter.Count();
+			}
 			return allDescendantsAndSelf
-				.Where(d => !d.Ancestors().Any(allDescendantsAndSelf.Contains));
+				.Where(d => !(d.Ancestors(name).Intersect(allDescendantsAndSelf)).Any());
 		}
 
 		public static IEnumerable<XElement> FirstLevelDescendantsAndSelf(this IEnumerable<XElement> element, XName name)

@@ -304,4 +304,40 @@
   <data name="DocumentWithSingleFieldWrongFilledWithoutErrorsNotifications" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleFieldWrongFilledWithoutErrorsNotifications.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilled_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilled_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithTwoTablesWithListsInside_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTwoTablesWithListsInside_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilled_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilled_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithTwoTablesWithListsInside_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTwoTablesWithListsInside_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithTwoTablesWithListsInside_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTwoTablesWithListsInside_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DocumentWithSingleListWrongFilled_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListWrongFilled_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="DocumentWithSingleListWrongFilled_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListWrongFilled_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleListWrongFilled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleListWrongFilled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

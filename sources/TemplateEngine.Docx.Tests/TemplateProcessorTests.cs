@@ -436,7 +436,47 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
 			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
 			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
-		}		
+		}
+
+		[TestMethod]
+		public void FillingOneListWithWrongValues_WillNoticeWithWarning()
+		{
+
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithSingleList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithSingleList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleListWrongFilled_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithSingleListWrongFilled_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithSingleListWrongFilled_numbering);
+
+			var valuesToFill = new Content
+			{
+				Lists = new List<ListContent>
+                {
+                    new ListContent 
+                    {
+                        Name = "Food Items",
+						Items = new List<ListItemContent>
+                        {                   
+                             new ListItemContent ("WrongListItem", "Fruit")
+                        }
+                    }
+                }
+			};
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(expectedNumbering.ToString(), filledDocument.NumberingPart.ToString());
+		}
+
+
+
+
 		[TestMethod]
 		public void FillingOneNestedListAndPreserveContentControl()
 		{
@@ -738,6 +778,97 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
 		}
 
+		[TestMethod]
+		public void FillingTwoTablesWithListsInsideAndPreverseContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilled_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilled_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilled_numbering);
+
+			var valuesToFill = new Content(
+			  new TableContent("Peoples")
+				  .AddRow(
+					  new FieldContent("Name", "Eric"),
+					  new FieldContent("Age", "34"),
+					  new ListContent("Childs")
+						  .AddItem(new ListItemContent("ChildName", "Robbie"))
+						  .AddItem(new ListItemContent("ChildName", "Trisha")))
+				  .AddRow(
+					  new FieldContent("Name", "Poll"),
+					  new FieldContent("Age", "40"),
+					  new ListContent("Childs")
+						  .AddItem(new ListItemContent("ChildName", "Ann"))
+						  .AddItem(new ListItemContent("ChildName", "Richard"))),
+			  new TableContent("Team Members")
+				  .AddRow(
+					  new FieldContent("Name", "Eric"),
+					  new ListContent("Roles")
+						  .AddItem(new ListItemContent("Role", "Developer"))
+						  .AddItem(new ListItemContent("Role", "Tester")))
+				  .AddRow(
+					  new FieldContent("Name", "Poll"),
+					  new ListContent("Roles")
+						  .AddItem(new ListItemContent("Role", "Admin"))
+						  .AddItem(new ListItemContent("Role", "Developer"))));
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+		[TestMethod]
+		public void FillingTwoTablesWithListsInsideAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithTwoTablesWithListsInside_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_numbering);
+
+			var valuesToFill = new Content(
+			  new TableContent("Peoples")
+				  .AddRow(
+					  new FieldContent("Name", "Eric"),
+					  new FieldContent("Age", "34"),
+					  new ListContent("Childs")
+						  .AddItem(new ListItemContent("ChildName", "Robbie"))
+						  .AddItem(new ListItemContent("ChildName", "Trisha")))
+				  .AddRow(
+					  new FieldContent("Name", "Poll"),
+					  new FieldContent("Age", "40"),
+					  new ListContent("Childs")
+						  .AddItem(new ListItemContent("ChildName", "Ann"))
+						  .AddItem(new ListItemContent("ChildName", "Richard"))),
+			  new TableContent("Team Members")
+				  .AddRow(
+					  new FieldContent("Name", "Eric"),
+					  new ListContent("Roles")
+						  .AddItem(new ListItemContent("Role", "Developer"))
+						  .AddItem(new ListItemContent("Role", "Tester")))
+				  .AddRow(
+					  new FieldContent("Name", "Poll"),
+					  new ListContent("Roles")
+						  .AddItem(new ListItemContent("Role", "Admin"))
+						  .AddItem(new ListItemContent("Role", "Developer"))));
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
 
 	    private string RemoveNsid(string source)
 	    {
