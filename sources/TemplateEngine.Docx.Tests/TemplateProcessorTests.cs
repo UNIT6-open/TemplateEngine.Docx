@@ -521,6 +521,200 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
 		}
 
+		[TestMethod]
+		public void FillingOneNestedListInsideTableAndPreserveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithNestedListInsideTable_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithNestedListInsideTable_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithNestedListInsideTable_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithNestedListInsideTable_numbering);
+
+			var valuesToFill = new Content(
+				new TableContent("Products")
+				.AddRow(
+					new FieldContent("Category", "Fruits"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Orange")
+							.AddNestedItem(new ListItemContent("Color", "Orange")))
+						.AddItem(new ListItemContent("Item", "Apple")
+							.AddNestedItem(new ListItemContent("Color", "Green"))
+							.AddNestedItem(new ListItemContent("Color", "Red"))))
+				.AddRow(
+					new FieldContent("Category", "Vegetables"),
+					new ListContent("Items")
+						.AddItem(new ListItemContent("Item", "Tomato")
+							.AddNestedItem(new ListItemContent("Color", "Yellow"))
+							.AddNestedItem(new ListItemContent("Color", "Red")))
+						.AddItem(new ListItemContent("Item", "Cabbage"))));
+
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+		[TestMethod]
+		public void FillingOneTableInsideListAndPreserveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithTableInsideList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithTableInsideList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithTableInsideList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithTableInsideList_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithTableInsideList_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithTableInsideList_numbering);
+
+			var valuesToFill = new Content(
+				new ListContent("Products")
+					.AddItem(new ListItemContent("Category", "Fruits")
+						.AddTable(TableContent.Create("Items")
+							.AddRow(new FieldContent("Name", "Orange"), new FieldContent("Count", "10"))
+							.AddRow(new FieldContent("Name", "Apple"), new FieldContent("Count", "15"))))
+					.AddItem(new ListItemContent("Category", "Vegetables")
+						.AddTable(TableContent.Create("Items")
+							.AddRow(new FieldContent("Name", "Tomato"), new FieldContent("Count", "8"))
+							.AddRow(new FieldContent("Name", "Cabbage"), new FieldContent("Count", "17")))));
+
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+		[TestMethod]
+		public void FillingOneTableInsideListAndRemovedContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithTableInsideList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithTableInsideList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithTableInsideList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithTableInsideListAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithTableInsideListAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithTableInsideListAndRemovedCC_numbering);
+
+			var valuesToFill = new Content(
+				new ListContent("Products")
+					.AddItem(new ListItemContent("Category", "Fruits")
+						.AddTable(TableContent.Create("Items")
+							.AddRow(new FieldContent("Name", "Orange"), new FieldContent("Count", "10"))
+							.AddRow(new FieldContent("Name", "Apple"), new FieldContent("Count", "15"))))
+					.AddItem(new ListItemContent("Category", "Vegetables")
+						.AddTable(TableContent.Create("Items")
+							.AddRow(new FieldContent("Name", "Tomato"), new FieldContent("Count", "8"))
+							.AddRow(new FieldContent("Name", "Cabbage"), new FieldContent("Count", "17")))));
+
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+		[TestMethod]
+		public void FillingOneListAndFieldInsideNestedListAndPreserveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilled_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilled_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilled_numbering);
+
+			var valuesToFill = new Content(
+				   new ListContent("Document")
+					   .AddItem(new ListItemContent("Header", "First classification")
+						   .AddNestedItem(new ListItemContent("Subheader", "Food classification")
+							   .AddField("Paragraph", "Text about food classification")
+							   .AddList(
+								   ListContent.Create("Products")
+									   .AddItem(new ListItemContent("Category", "Fruits")
+										   .AddNestedItem(new ListItemContent("Name", "Apple"))
+										   .AddNestedItem(new ListItemContent("Name", "Orange")))
+									   .AddItem(new ListItemContent("Category", "Vegetables")
+										   .AddNestedItem(new ListItemContent("Name", "Tomato"))
+										   .AddNestedItem(new ListItemContent("Name", "Cabbage"))))))
+					   .AddItem(new ListItemContent("Header", "Second classification")
+						   .AddNestedItem(new ListItemContent("Subheader", "Animals classification")
+							   .AddField("Paragraph", "Text about animal classification")
+							   .AddList(
+								   ListContent.Create("Products")
+									   .AddItem(new ListItemContent("Category", "Vertebrate")
+										   .AddNestedItem(new ListItemContent("Name", "Fish"))
+										   .AddNestedItem(new ListItemContent("Name", "Mammal")))
+									   .AddItem(new ListItemContent("Category", "Invertebrate")
+										   .AddNestedItem(new ListItemContent("Name", "Crustacean"))
+										   .AddNestedItem(new ListItemContent("Name", "Insect")))))));
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+
+		[TestMethod]
+		public void FillingOneListAndFieldInsideNestedListAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_document);
+			var templateStyles = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_styles);
+			var templateNumbering = XDocument.Parse(Resources.TemplateWithFieldAndListInsideNestedList_numbering);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_document);
+			var expectedStyles = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_styles);
+			var expectedNumbering = XDocument.Parse(Resources.DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_numbering);
+
+			var valuesToFill = new Content(
+				   new ListContent("Document")
+					   .AddItem(new ListItemContent("Header", "First classification")
+						   .AddNestedItem(new ListItemContent("Subheader", "Food classification")
+							   .AddField("Paragraph", "Text about food classification")
+							   .AddList(
+								   ListContent.Create("Products")
+									   .AddItem(new ListItemContent("Category", "Fruits")
+										   .AddNestedItem(new ListItemContent("Name", "Apple"))
+										   .AddNestedItem(new ListItemContent("Name", "Orange")))
+									   .AddItem(new ListItemContent("Category", "Vegetables")
+										   .AddNestedItem(new ListItemContent("Name", "Tomato"))
+										   .AddNestedItem(new ListItemContent("Name", "Cabbage"))))))
+					   .AddItem(new ListItemContent("Header", "Second classification")
+						   .AddNestedItem(new ListItemContent("Subheader", "Animals classification")
+							   .AddField("Paragraph", "Text about animal classification")
+							   .AddList(
+								   ListContent.Create("Products")
+									   .AddItem(new ListItemContent("Category", "Vertebrate")
+										   .AddNestedItem(new ListItemContent("Name", "Fish"))
+										   .AddNestedItem(new ListItemContent("Name", "Mammal")))
+									   .AddItem(new ListItemContent("Category", "Invertebrate")
+										   .AddNestedItem(new ListItemContent("Name", "Crustacean"))
+										   .AddNestedItem(new ListItemContent("Name", "Insect")))))));
+
+			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+			Assert.AreEqual(expectedStyles.ToString(), filledDocument.StylesPart.ToString());
+			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
+		}
+
+
 	    private string RemoveNsid(string source)
 	    {
 			const string nsidRegexp = "nsid w:val=\"[0-9a-fA-F]+\"";

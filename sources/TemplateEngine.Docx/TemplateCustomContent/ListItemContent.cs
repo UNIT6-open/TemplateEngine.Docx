@@ -59,6 +59,21 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
+		public ListItemContent AddTable(TableContent table)
+		{
+			if (Tables == null) Tables = new List<TableContent>();
+
+			Tables.Add(table);
+			return this;
+		}
+		public ListItemContent AddList(ListContent list)
+		{
+			if (Lists == null) Lists = new List<ListContent>();
+
+			Lists.Add(list);
+			return this;
+		}
+
 		public ListItemContent AddNestedItem(ListItemContent nestedItem)
 		{
 			if (NestedFields == null) NestedFields = new List<ListItemContent>();

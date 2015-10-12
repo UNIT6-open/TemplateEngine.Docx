@@ -44,7 +44,7 @@ namespace TemplateEngine.Docx.Processors
 					.Elements()
 					.ToList();
 
-				var tagsInPrototype = listItems
+				var tagsInPrototype = listItems.DescendantsAndSelf(W.sdt)
 					.Select(sdt => sdt.SdtTagName());
 
 				// If any field not found return empty list.

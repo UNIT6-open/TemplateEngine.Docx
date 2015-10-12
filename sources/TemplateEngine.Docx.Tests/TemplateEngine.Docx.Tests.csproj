@@ -101,6 +101,18 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TemplateWithFieldAndListInsideNestedList_styles.xml" />
+    <None Include="Resources\TemplateWithFieldAndListInsideNestedList_numbering.xml" />
+    <None Include="Resources\TemplateWithFieldAndListInsideNestedList_document.xml" />
+    <None Include="Resources\DocumentWithTableInsideListAndRemovedCC_styles.xml" />
+    <None Include="Resources\DocumentWithTableInsideListAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithTableInsideListAndRemovedCC_document.xml" />
+    <None Include="Resources\TemplateWithTableInsideList_styles.xml" />
+    <None Include="Resources\TemplateWithTableInsideList_numbering.xml" />
+    <None Include="Resources\TemplateWithTableInsideList_document.xml" />
+    <None Include="Resources\DocumentWithTableInsideList_styles.xml" />
+    <None Include="Resources\DocumentWithTableInsideList_numbering.xml" />
+    <None Include="Resources\DocumentWithTableInsideList_document.xml" />
     <None Include="Resources\TemplateWithNestedListInsideTable_styles.xml" />
     <None Include="Resources\TemplateWithNestedListInsideTable_numbering.xml" />
     <None Include="Resources\TemplateWithNestedListInsideTable_document.xml" />
@@ -133,6 +145,15 @@
     <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_document.xml" />
     <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_numbering.xml" />
     <None Include="Resources\DocumentWithNestedListInsideTableAndRemovedCC_styles.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTable_document.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTable_numbering.xml" />
+    <None Include="Resources\DocumentWithNestedListInsideTable_styles.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilled_document.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilled_numbering.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilled_styles.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_document.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_numbering.xml" />
+    <None Include="Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_styles.xml" />
     <Content Include="Resources\DocumentWithSingleFieldWrongFilled.xml" />
     <None Include="Resources\TemplateWithFieldInTableHeader.xml" />
   </ItemGroup>

@@ -238,4 +238,67 @@
   <data name="DocumentWithNestedListInsideTableAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithNestedListInsideTableAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="DocumentWithNestedListInsideTable_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTable_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithNestedListInsideTable_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTable_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithNestedListInsideTable_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithNestedListInsideTable_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideList_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideList_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideList_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideList_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithTableInsideList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTableInsideList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithTableInsideList_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTableInsideList_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithTableInsideList_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithTableInsideList_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideListAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideListAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideListAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideListAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithTableInsideListAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithTableInsideListAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilled_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilled_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilled_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilled_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithFieldAndListInsideNestedList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithFieldAndListInsideNestedList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithFieldAndListInsideNestedList_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithFieldAndListInsideNestedList_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
+  <data name="TemplateWithFieldAndListInsideNestedList_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithFieldAndListInsideNestedList_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_numbering" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_numbering.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>
