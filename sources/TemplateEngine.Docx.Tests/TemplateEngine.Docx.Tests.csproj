@@ -101,6 +101,7 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DocumentWithSingleFieldWrongFilledWithoutErrorsNotifications.xml" />
     <None Include="Resources\TemplateWithFieldAndListInsideNestedList_styles.xml" />
     <None Include="Resources\TemplateWithFieldAndListInsideNestedList_numbering.xml" />
     <None Include="Resources\TemplateWithFieldAndListInsideNestedList_document.xml" />

@@ -17,15 +17,27 @@ namespace TemplateEngine.Docx
 		public readonly XDocument StylesPart;
         private readonly WordprocessingDocument _wordDocument;
 	    private bool _isNeedToRemoveContentControls;
+	    private bool _isNeedToNoticeAboutErrors;
 
         public TemplateProcessor(string fileName)
         {
             _wordDocument = WordprocessingDocument.Open(fileName, true);
-			
+			_isNeedToNoticeAboutErrors = true;
+
 			Document = LoadPart(_wordDocument.MainDocumentPart);
 	        NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
 	        StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
+
         }
+
+		public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
+		{
+			_isNeedToNoticeAboutErrors = true;
+
+			Document = templateSource;
+			StylesPart = stylesPart;
+			NumberingPart = numberingPart;
+		}
 
 	    private XDocument LoadPart(OpenXmlPart source)
 	    {
@@ -42,6 +54,11 @@ namespace TemplateEngine.Docx
 	    public TemplateProcessor SetRemoveContentControls(bool isNeedToRemove)
 	    {
 		    _isNeedToRemoveContentControls = isNeedToRemove;
+		    return this;
+	    }
+	    public TemplateProcessor SetNoticeAboutErrors(bool isNeedToNotice)
+	    {
+			_isNeedToNoticeAboutErrors = isNeedToNotice;
 		    return this;
 	    }
 
@@ -67,14 +84,7 @@ namespace TemplateEngine.Docx
 			_wordDocument.Close();
         }
 
-        public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
-        {
-            Document = templateSource;
-			StylesPart = stylesPart;
-			NumberingPart = numberingPart;
-        }
-
-        public TemplateProcessor FillContent(Content content)
+		public TemplateProcessor FillContent(Content content)
         {
 			var processResult =
 		        new ContentProcessor(
@@ -82,7 +92,8 @@ namespace TemplateEngine.Docx
 					.SetRemoveContentControls(_isNeedToRemoveContentControls)
 			        .FillContent(Document.Root.Element(W.body), content);
 
-            AddErrors(processResult.Errors);
+			if (_isNeedToNoticeAboutErrors)
+				AddErrors(processResult.Errors);
 
             return this;
         }
