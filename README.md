@@ -17,10 +17,10 @@ You can get it with [NuGet package](https://nuget.org/packages/TemplateEngine.Do
 ### How to create template
 
 * Create Word document with prototype of content:  
-![document example](file:///D:/Desktop/TemplateEngineDocx/Table-Example.PNG)  
+![document example](http://unit6.ru/img/template-engine/Table-Example.PNG)  
 
 * Switch to developer ribbon tab. If you can't see it, go to settings of ribbon menu and enable developer tab:  
-![developer mode](file:///D:/Desktop/TemplateEngineDocx/Developer-Mode.PNG)
+![developer mode](http://unit6.ru/img/template-engine/Developer-Mode.PNG)
 
 * All data binds on content control tag value:  
 ![create content control](http://unit6.ru/img/template-engine/Create-Content-Control.PNG)
