@@ -76,13 +76,15 @@ namespace TemplateEngine.Docx.Example
             File.Copy("InputTemplate.docx", "OutputDocument.docx");
 		
 			var valuesToFill = new Content(
-		         new TableContent("Team Members Table")
+		        new TableContent("Team Members Table")
 			        .AddRow(
 				        new FieldContent("Name", "Eric"),
 				        new FieldContent("Role", "Program Manager"))
 			        .AddRow(
 				        new FieldContent("Name", "Bob"),
-				        new FieldContent("Role", "Developer")));
+				        new FieldContent("Role", "Developer")),
+
+		        new FieldContent("Count", "2"));
 		
 		    using(var outputDocument = new TemplateProcessor("OutputDocument.docx")
 				.SetRemoveContentControls(true))
