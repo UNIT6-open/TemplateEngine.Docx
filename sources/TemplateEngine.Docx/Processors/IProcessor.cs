@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace TemplateEngine.Docx.Processors
 {
@@ -6,6 +7,6 @@ namespace TemplateEngine.Docx.Processors
 	{
 
 		IProcessor SetRemoveContentControls(bool isNeedToRemove);
-		ProcessResult FillContent(XElement contentControl, IContentItem item);
+		ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items);
 	}
 }

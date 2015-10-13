@@ -870,6 +870,68 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(RemoveNsid(expectedNumbering.ToString()), RemoveNsid(filledDocument.NumberingPart.ToString()));
 		}
 
+		[TestMethod]
+		public void FillingTableWithTwoBlocksAndRemoveContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithTwoBlocks);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC);
+
+			var valuesToFill = new Content(
+						new TableContent("Team Members")
+								.AddRow(
+									new FieldContent("Name", "Eric"),
+									new FieldContent("Role", "Program Manager"))
+								.AddRow(
+									new FieldContent("Name", "Bob"),
+									new FieldContent("Role", "Developer")),
+
+								new TableContent("Team Members")
+								.AddRow(
+									new FieldContent("Statistics Role", "Program Manager"),
+									new FieldContent("Statistics Role Count", "1"))
+								.AddRow(
+									new FieldContent("Statistics Role", "Developer"),
+									new FieldContent("Statistics Role Count", "1")));
+
+			var filledDocument = new TemplateProcessor(templateDocument)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+		}
+
+		[TestMethod]
+		public void FillingTableWithTwoBlocksAndPreverseContentControl()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleTableWithTwoBlocks);
+
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleTableWithTwoBlocksFilled);
+
+			var valuesToFill = new Content(
+						new TableContent("Team Members")
+								.AddRow(
+									new FieldContent("Name", "Eric"),
+									new FieldContent("Role", "Program Manager"))
+								.AddRow(
+									new FieldContent("Name", "Bob"),
+									new FieldContent("Role", "Developer")),
+
+								new TableContent("Team Members")
+								.AddRow(
+									new FieldContent("Statistics Role", "Program Manager"),
+									new FieldContent("Statistics Role Count", "1"))
+								.AddRow(
+									new FieldContent("Statistics Role", "Developer"),
+									new FieldContent("Statistics Role Count", "1")));
+
+			var filledDocument = new TemplateProcessor(templateDocument)
+				.SetRemoveContentControls(false)
+				.FillContent(valuesToFill);
+
+			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
+		}
+
 	    private string RemoveNsid(string source)
 	    {
 			const string nsidRegexp = "nsid w:val=\"[0-9a-fA-F]+\"";

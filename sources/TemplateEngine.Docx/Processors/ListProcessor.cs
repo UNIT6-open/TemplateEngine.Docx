@@ -181,11 +181,34 @@ namespace TemplateEngine.Docx.Processors
 			return this;
 		}
 
-		public ProcessResult FillContent(XElement contentControl, IContentItem item)
+		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			if (!(item is ListContent)) return ProcessResult.NotHandledResult;
-
 			_processResult = new ProcessResult();
+
+			foreach (var contentItem in items)
+			{
+				FillContent(contentControl, contentItem);
+			}
+			if (_processResult.Success && _isNeedToRemoveContentControls)
+			{
+				foreach (var sdt in contentControl.Descendants(W.sdt).ToList())
+				{
+					// Remove the content control, and replace it with its contents.
+					sdt.RemoveContentControl();
+				}
+				contentControl.RemoveContentControl();
+			}
+			return _processResult;
+		}
+
+		private void FillContent(XElement contentControl, IContentItem item)
+		{
+			if (!(item is ListContent))
+			{
+				_processResult = ProcessResult.NotHandledResult;
+				return;
+			}
+
 			var list = item as ListContent;
 
 			var listName = list.Name;
@@ -196,7 +219,7 @@ namespace TemplateEngine.Docx.Processors
 				_processResult.Errors.Add(String.Format("List Content Control '{0}' not found.",
 					listName));
 
-				return _processResult;
+				return;
 			}
 
 			// If the list doesn't contain content controls in items, then error.
@@ -209,7 +232,7 @@ namespace TemplateEngine.Docx.Processors
 				_processResult.Errors.Add(String.Format(
 					"List Content Control '{0}' doesn't contain content controls in items.",
 					listName));
-				return _processResult;
+				return;
 			}
 
 			var fieldNames = list.FieldNames.ToList();
@@ -223,7 +246,7 @@ namespace TemplateEngine.Docx.Processors
 					"List Content Control '{0}' doesn't contain items with content controls {1}.",
 					listName,
 					string.Join(", ", fieldNames)));
-				return _processResult;
+				return;
 			}
 
 			new NumberingAccessor(_context.NumberingPart, _context.LastNumIds)
@@ -236,16 +259,6 @@ namespace TemplateEngine.Docx.Processors
 			prototype.PrototypeItems.Last().AddAfterSelf(newRows);
 			prototype.PrototypeItems.Remove();
 
-			if (_isNeedToRemoveContentControls)
-			{
-				foreach (var sdt in contentControl.Descendants(W.sdt).ToList())
-				{
-					// Remove the content control, and replace it with its contents.
-					sdt.RemoveContentControl();										
-				}
-				contentControl.RemoveContentControl();
-			}
-			return _processResult;
 		}
 
 		// Fills prototype with values recursive.

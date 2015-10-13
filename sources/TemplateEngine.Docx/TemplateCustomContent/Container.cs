@@ -54,5 +54,27 @@ namespace TemplateEngine.Docx
 			}
 		}
 
+		protected Container AddField(string name, string value)
+		{
+			if (Fields == null) Fields = new List<FieldContent>();
+
+			Fields.Add(new FieldContent(name, value));
+			return this;
+		}
+
+		protected Container AddTable(TableContent table)
+		{
+			if (Tables == null) Tables = new List<TableContent>();
+
+			Tables.Add(table);
+			return this;
+		}
+		protected Container AddList(ListContent list)
+		{
+			if (Lists == null) Lists = new List<ListContent>();
+
+			Lists.Add(list);
+			return this;
+		}
 	}
 }

@@ -33,14 +33,14 @@ namespace TemplateEngine.Docx.Processors
 		public ProcessResult FillContent(XElement content, IEnumerable<IContentItem> data)
 		{
 			var errors = new List<string>();
-			var processedItems = new List<IContentItem>();
+			var processedItems = new List<string>();
 			data = data.ToList();
 
-			foreach (var item in data)
+			foreach (var contentItems in data.GroupBy(d=>d.Name))
 			{
-				if (processedItems.Contains(item)) continue;
+				if (processedItems.Contains(contentItems.Key)) continue;
 
-				var contentControls = FindContentControls(content, item.Name).ToList();
+				var contentControls = FindContentControls(content, contentItems.Key).ToList();
 
 				//Need to get error message from processor.
 				if (!contentControls.Any())
@@ -48,17 +48,23 @@ namespace TemplateEngine.Docx.Processors
 
 				foreach (var xElement in contentControls)
 				{
-					if (item is TableContent && xElement != null)					
-						processedItems.AddRange(ProcessTableFields(data.OfType<FieldContent>(), xElement));						
-					
+					if (contentItems.Any())
+					{
+						foreach (var contentItem in contentItems)
+						{
+							if (contentItem is TableContent && xElement != null)
+								processedItems.AddRange(ProcessTableFields(data.OfType<FieldContent>(), xElement));
+						}
+					}
+
 					foreach (var processor in _processors)
 					{
-						var result = processor.FillContent(xElement, item);
+						var result = processor.FillContent(xElement, contentItems);
 						if (result.Handled && !result.Success)
 							errors.AddRange(result.Errors);
 					}
 				}
-				processedItems.Add(item);
+				processedItems.Add(contentItems.Key);
 			}
 
 			return errors.Any()
@@ -72,7 +78,7 @@ namespace TemplateEngine.Docx.Processors
 		/// <param name="data">Possible fields</param>
 		/// <param name="xElement">Table content control</param>
 		/// <returns>List of content items that were processed</returns>
-		private IEnumerable<IContentItem> ProcessTableFields(IEnumerable<FieldContent> fields, XElement xElement)
+		private IEnumerable<string> ProcessTableFields(IEnumerable<FieldContent> fields, XElement xElement)
 		{
 			var processedItems = new List<IContentItem>();
 			foreach (var fieldContentControl in fields)
@@ -90,7 +96,7 @@ namespace TemplateEngine.Docx.Processors
 				
 			}
 
-			return processedItems;
+			return processedItems.Select(i=>i.Name).Distinct();
 		}
 
 		public ProcessResult FillContent(XElement content, Content data)

@@ -62,7 +62,12 @@ namespace TemplateEngine.Docx
 			Items.Add(item);
 			return this;
 		}
-
+		public ListContent AddItem(params IContentItem[] contentItems)
+		{
+			if (Items == null) Items = new Collection<ListItemContent>();
+			Items.Add(new ListItemContent(contentItems));
+			return this;
+		}
 
 		#endregion
 

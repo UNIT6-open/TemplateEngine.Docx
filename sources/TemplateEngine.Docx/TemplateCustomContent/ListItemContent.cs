@@ -51,27 +51,18 @@ namespace TemplateEngine.Docx
 		{
 			return new ListItemContent(name, value, nestedfields);
 		}
-		public ListItemContent AddField(string name, string value)
+		public new ListItemContent AddField(string name, string value)
 		{
-			if (Fields == null) Fields = new List<FieldContent>();
-
-			Fields.Add(new FieldContent(name, value));
-			return this;
+			return (ListItemContent)base.AddField(name, value);
 		}
 
-		public ListItemContent AddTable(TableContent table)
+		public new ListItemContent AddTable(TableContent table)
 		{
-			if (Tables == null) Tables = new List<TableContent>();
-
-			Tables.Add(table);
-			return this;
+			return (ListItemContent)base.AddTable(table);
 		}
-		public ListItemContent AddList(ListContent list)
+		public new ListItemContent AddList(ListContent list)
 		{
-			if (Lists == null) Lists = new List<ListContent>();
-
-			Lists.Add(list);
-			return this;
+			return (ListItemContent)base.AddList(list);
 		}
 
 		public ListItemContent AddNestedItem(ListItemContent nestedItem)
@@ -79,6 +70,14 @@ namespace TemplateEngine.Docx
 			if (NestedFields == null) NestedFields = new List<ListItemContent>();
 
 			NestedFields.Add(nestedItem);
+			return this;
+		}
+
+		public ListItemContent AddNestedItem(IContentItem nestedItem)
+		{
+			if (NestedFields == null) NestedFields = new List<ListItemContent>();
+
+			NestedFields.Add(new ListItemContent(nestedItem));
 			return this;
 		}
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace TemplateEngine.Docx.Processors
@@ -6,6 +7,7 @@ namespace TemplateEngine.Docx.Processors
 	internal class FieldsProcessor:IProcessor
 	{
 		private readonly ProcessContext _context;
+		private ProcessResult _processResult;
 		public FieldsProcessor(ProcessContext context)
 		{
 			_context = context;
@@ -19,29 +21,42 @@ namespace TemplateEngine.Docx.Processors
 			return this;
 		}
 
-		public ProcessResult FillContent(XElement contentControl, IContentItem item)
+		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			if (!(item is FieldContent)) return ProcessResult.NotHandledResult;
+			_processResult = new ProcessResult();
 
-			var processResult = new ProcessResult();
+			foreach (var contentItem in items)
+			{
+				FillContent(contentControl, contentItem);
+			}
+
+
+			if (_processResult.Success && _isNeedToRemoveContentControls)
+				contentControl.RemoveContentControl();
+
+			return _processResult;
+		}
+
+		public void FillContent(XElement contentControl, IContentItem item)
+		{
+			if (!(item is FieldContent))
+			{
+				_processResult = ProcessResult.NotHandledResult;
+				return;
+			}
+
 			var field = item as FieldContent;
 
 			// If there isn't a field with that name, add an error to the error string,
 			// and continue with next field.
 			if (contentControl == null)
 			{
-				processResult.Errors.Add(String.Format("Field Content Control '{0}' not found.",
+				_processResult.Errors.Add(String.Format("Field Content Control '{0}' not found.",
 					field.Name));
-				return processResult;
+				return;
 			}
 			contentControl.ReplaceContentControlWithNewValue(field.Value);
 
-
-			if (_isNeedToRemoveContentControls)
-				contentControl.RemoveContentControl();
-
-
-			return processResult;
 		}
 	}
 }

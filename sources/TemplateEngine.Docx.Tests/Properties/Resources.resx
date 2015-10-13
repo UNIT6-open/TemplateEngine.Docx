@@ -340,4 +340,13 @@
   <data name="DocumentWithSingleListWrongFilled_styles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleListWrongFilled_styles.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="DocumentWithSingleTableWithTwoBlocksFilled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleTableWithTwoBlocksFilled.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithSingleTableWithTwoBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithSingleTableWithTwoBlocks.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;windows-1251</value>
+  </data>
 </root>

@@ -101,6 +101,9 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TemplateWithSingleTableWithTwoBlocks.xml" />
+    <None Include="Resources\DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC.xml" />
+    <None Include="Resources\DocumentWithSingleTableWithTwoBlocksFilled.xml" />
     <None Include="Resources\DocumentWithSingleListWrongFilled_styles.xml" />
     <None Include="Resources\DocumentWithSingleListWrongFilled_numbering.xml" />
     <None Include="Resources\DocumentWithSingleListWrongFilled_document.xml" />
