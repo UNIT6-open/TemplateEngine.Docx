@@ -48,14 +48,9 @@ namespace TemplateEngine.Docx.Processors
 
 				foreach (var xElement in contentControls)
 				{
-					if (contentItems.Any())
-					{
-						foreach (var contentItem in contentItems)
-						{
-							if (contentItem is TableContent && xElement != null)
-								processedItems.AddRange(ProcessTableFields(data.OfType<FieldContent>(), xElement));
-						}
-					}
+					if (contentItems.Any(item => item is TableContent) && xElement != null)								
+						processedItems.AddRange(ProcessTableFields(data.OfType<FieldContent>(), xElement));
+					
 
 					foreach (var processor in _processors)
 					{
@@ -75,7 +70,7 @@ namespace TemplateEngine.Docx.Processors
 		/// <summary>
 		/// Processes table data that should not be duplicated
 		/// </summary>
-		/// <param name="data">Possible fields</param>
+		/// <param name="fields">Possible fields</param>
 		/// <param name="xElement">Table content control</param>
 		/// <returns>List of content items that were processed</returns>
 		private IEnumerable<string> ProcessTableFields(IEnumerable<FieldContent> fields, XElement xElement)
@@ -92,8 +87,7 @@ namespace TemplateEngine.Docx.Processors
 						processor.FillContent(innerContentControl, fieldContentControl);
 						processedItems.Add(fieldContentControl);
 					}
-				}
-				
+				}				
 			}
 
 			return processedItems.Select(i=>i.Name).Distinct();
@@ -114,11 +108,7 @@ namespace TemplateEngine.Docx.Processors
 				//top level content controls
 				.FirstLevelDescendantsAndSelf(W.sdt)
 				//with specified tagName
-				.Where(sdt => tagName == sdt
-					.Element(W.sdtPr)
-					.Element(W.tag)
-					.Attribute(W.val)
-					.Value);
+				.Where(sdt => tagName == sdt.SdtTagName());
 		}
 	}
 }

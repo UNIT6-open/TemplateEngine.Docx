@@ -8,9 +8,8 @@ namespace TemplateEngine.Docx.Processors
 	internal class TableProcessor : IProcessor
 	{
 		private bool _isNeedToRemoveContentControls;
-
 		private readonly ProcessContext _context;
-		private ProcessResult _processResult;
+
 		public TableProcessor(ProcessContext context)
 		{
 			_context = context;
@@ -23,25 +22,31 @@ namespace TemplateEngine.Docx.Processors
 		
 		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			_processResult = new ProcessResult();
+			var processResult = new ProcessResult();
+			var handled = false;
+			
 			foreach (var contentItem in items)
 			{
-				FillContent(contentControl, contentItem);
+				var itemProcessResult = FillContent(contentControl, contentItem);
+				if (!itemProcessResult.Handled) continue;
+
+				handled = true;
+				if (!itemProcessResult.Success)
+					processResult.Errors.AddRange(itemProcessResult.Errors);
 			}
-			if (_processResult.Success && _isNeedToRemoveContentControls)
+
+			if (!handled) return ProcessResult.NotHandledResult;
+
+			if (processResult.Success && _isNeedToRemoveContentControls)
 			{
 				// Remove the content control for the table and replace it with its contents.
-				var tableElement = contentControl;
-			
-				foreach (var xElement in tableElement.AncestorsAndSelf(W.sdt))
+				foreach (var xElement in contentControl.AncestorsAndSelf(W.sdt))
 				{
 					xElement.RemoveContentControl();
 				}
-
 			}
 
-			
-			return _processResult;
+			return processResult;
 		}
 
 		/// <summary>
@@ -49,27 +54,26 @@ namespace TemplateEngine.Docx.Processors
 		/// </summary>
 		/// <param name="contentControl">Content control</param>
 		/// <param name="item">Content item</param>
-		private void FillContent(XElement contentControl, IContentItem item)
+		private ProcessResult FillContent(XContainer contentControl, IContentItem item)
 		{
 			if (!(item is TableContent))
-			{
-				_processResult = ProcessResult.NotHandledResult;
-				return;
-			}
+				return ProcessResult.NotHandledResult;
+			
+			var processResult = new ProcessResult();
 
 			var table = item as TableContent;
 
 			// Find the content control with Table Name
-			var listName = table.Name;
+			var tableName = table.Name;
 
 			// If there isn't a table with that name, add an error to the error string,
 			// and continue with next table.
 			if (contentControl == null)
 			{
-				_processResult.Errors.Add(String.Format("Table Content Control '{0}' not found.",
-					listName));
+				processResult.Errors.Add(String.Format("Table Content Control '{0}' not found.",
+					tableName));
 
-				return;
+				return processResult;
 			}
 
 			// If the table doesn't contain content controls in cells, then error and continue with next table.
@@ -78,10 +82,10 @@ namespace TemplateEngine.Docx.Processors
 				.FirstOrDefault();
 			if (cellContentControl == null)
 			{
-				_processResult.Errors.Add(String.Format(
+				processResult.Errors.Add(String.Format(
 					"Table Content Control '{0}' doesn't contain content controls in cells.",
-					listName));
-				return;
+					tableName));
+				return processResult;
 			}
 
 			var fieldNames = table.FieldNames.ToList();
@@ -91,21 +95,18 @@ namespace TemplateEngine.Docx.Processors
 			//Select content controls tag names
 			var contentControlTagNames = prototypeRows
 				.Descendants(W.sdt)
-				.Select(sdt =>
-					sdt.Element(W.sdtPr)
-						.Element(W.tag)
-						.Attribute(W.val).Value)
+				.Select(sdt => sdt.SdtTagName())
 				.Where(fieldNames.Contains);
 
 
 			//If there are not content controls with the one of specified field name we need to add the warning
 			if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
 			{
-				_processResult.Errors.Add(String.Format(
+				processResult.Errors.Add(String.Format(
 					"Table Content Control '{0}' doesn't contain rows with cell content controls {1}.",
-					listName,
+					tableName,
 					string.Join(", ", fieldNames.Select(fn => string.Format("'{0}'", fn)))));
-				return;
+				return processResult;
 			}
 
 
@@ -123,22 +124,18 @@ namespace TemplateEngine.Docx.Processors
 				foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
 				{
 					// Get fieldName from the content control tag.
-					string fieldName = sdt
-						.Element(W.sdtPr)
-						.Element(W.tag)
-						.Attribute(W.val)
-						.Value;
+					var fieldName = sdt.SdtTagName();
 
 					var content = row.GetContentItem(fieldName);
 
 					if (content != null)
 					{
-						var processResult = new ContentProcessor(_context)
+						var contentProcessResult = new ContentProcessor(_context)
 							.SetRemoveContentControls(_isNeedToRemoveContentControls)
 							.FillContent(sdt, content);
 
-						if (!processResult.Success)
-							_processResult.Errors.AddRange(processResult.Errors);
+						if (!contentProcessResult.Success)
+							processResult.Errors.AddRange(processResult.Errors);
 					}
 				}
 
@@ -151,6 +148,8 @@ namespace TemplateEngine.Docx.Processors
 
 			// Remove the prototype rows
 			prototypeRows.Remove();
+
+			return processResult;
 		}
 
 		// Determine the elements that contains the content controls with specified names.
@@ -163,9 +162,7 @@ namespace TemplateEngine.Docx.Processors
 					tr.Descendants(W.sdt)
 						.Any(sdt =>
 							fieldNames.Contains(
-								sdt.Element(W.sdtPr)
-									.Element(W.tag)
-									.Attribute(W.val).Value)))
+								sdt.SdtTagName())))
 				.ToList();
 
 

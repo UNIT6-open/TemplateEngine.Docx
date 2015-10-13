@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO.Packaging;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -8,6 +7,14 @@ namespace TemplateEngine.Docx.Processors
 {
 	internal class ListProcessor:IProcessor
 	{
+		private bool _isNeedToRemoveContentControls;
+		private readonly ProcessContext _context;
+	
+
+		private class PropagationProcessResult : ProcessResult
+		{
+			internal IEnumerable<XElement> Result { get; set; }
+		}
 		/// <summary>
 		/// Entire list prototype, includes all list levels.
 		/// </summary>
@@ -166,11 +173,6 @@ namespace TemplateEngine.Docx.Processors
 			}
 		}
 
-
-		private bool _isNeedToRemoveContentControls;
-
-		private readonly ProcessContext _context;
-		private ProcessResult _processResult;
 		public ListProcessor(ProcessContext context)
 		{
 			_context = context;
@@ -183,13 +185,22 @@ namespace TemplateEngine.Docx.Processors
 
 		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			_processResult = new ProcessResult();
+			var processResult = new ProcessResult();
+			var handled = false;
 
 			foreach (var contentItem in items)
 			{
-				FillContent(contentControl, contentItem);
+				var itemProcessResult = FillContent(contentControl, contentItem);
+				if (!itemProcessResult.Handled) continue;
+
+				handled = true;
+				if (!itemProcessResult.Success)
+					processResult.Errors.AddRange(itemProcessResult.Errors);
 			}
-			if (_processResult.Success && _isNeedToRemoveContentControls)
+
+			if (!handled) return ProcessResult.NotHandledResult;
+
+			if (processResult.Success && _isNeedToRemoveContentControls)
 			{
 				foreach (var sdt in contentControl.Descendants(W.sdt).ToList())
 				{
@@ -198,15 +209,15 @@ namespace TemplateEngine.Docx.Processors
 				}
 				contentControl.RemoveContentControl();
 			}
-			return _processResult;
+			return processResult;
 		}
 
-		private void FillContent(XElement contentControl, IContentItem item)
+		private ProcessResult FillContent(XElement contentControl, IContentItem item)
 		{
+			var processResult = new ProcessResult();
 			if (!(item is ListContent))
 			{
-				_processResult = ProcessResult.NotHandledResult;
-				return;
+				return ProcessResult.NotHandledResult;
 			}
 
 			var list = item as ListContent;
@@ -216,10 +227,10 @@ namespace TemplateEngine.Docx.Processors
 			// If there isn't a list with that name, add an error to the error string.
 			if (contentControl == null)
 			{
-				_processResult.Errors.Add(String.Format("List Content Control '{0}' not found.",
+				processResult.Errors.Add(String.Format("List Content Control '{0}' not found.",
 					listName));
 
-				return;
+				return processResult;
 			}
 
 			// If the list doesn't contain content controls in items, then error.
@@ -229,10 +240,10 @@ namespace TemplateEngine.Docx.Processors
 
 			if (itemsContentControl == null)
 			{
-				_processResult.Errors.Add(String.Format(
+				processResult.Errors.Add(String.Format(
 					"List Content Control '{0}' doesn't contain content controls in items.",
 					listName));
-				return;
+				return processResult;
 			}
 
 			var fieldNames = list.FieldNames.ToList();
@@ -242,29 +253,35 @@ namespace TemplateEngine.Docx.Processors
 
 			if (!prototype.IsValid)
 			{
-				_processResult.Errors.Add(String.Format(
+				processResult.Errors.Add(String.Format(
 					"List Content Control '{0}' doesn't contain items with content controls {1}.",
 					listName,
 					string.Join(", ", fieldNames)));
-				return;
+				return processResult;
 			}
 
 			new NumberingAccessor(_context.NumberingPart, _context.LastNumIds)
 					.ResetNumbering(prototype.PrototypeItems);
 
 			// Propagates a prototype.
-			var newRows = PropagatePrototype(prototype, list.Items);
+			var propagationResult = PropagatePrototype(prototype, list.Items);
 
+			if (!propagationResult.Success)
+			{
+				processResult.Errors.AddRange(propagationResult.Errors);
+			}
 			// Remove the prototype row and add all of the newly constructed rows.
-			prototype.PrototypeItems.Last().AddAfterSelf(newRows);
+			prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
 			prototype.PrototypeItems.Remove();
 
+			return processResult;
 		}
 
 		// Fills prototype with values recursive.
-		private IEnumerable<XElement> PropagatePrototype(Prototype prototype, 
+		private PropagationProcessResult PropagatePrototype(Prototype prototype, 
 			IEnumerable<ListItemContent> content)
 		{
+			var processResult = new PropagationProcessResult();
 			var newRows = new List<XElement>();
 
 			foreach (var contentItem in content)
@@ -273,7 +290,7 @@ namespace TemplateEngine.Docx.Processors
 				
 				if (currentLevelPrototype == null || !currentLevelPrototype.IsValid)
 				{
-					_processResult.Errors.Add(
+					processResult.Errors.Add(
 						string.Format("Prototype for list item '{0}' not found", 
 						string.Join(", ", contentItem.FieldNames)));
 
@@ -297,16 +314,16 @@ namespace TemplateEngine.Docx.Processors
 						var fieldContent = contentItem.GetContentItem(sdt.SdtTagName());
 						if (fieldContent == null)
 						{
-							_processResult.Errors.Add(string.Format("Field content for field '{0}' not found", sdt.SdtTagName()));
+							processResult.Errors.Add(string.Format("Field content for field '{0}' not found", sdt.SdtTagName()));
 							continue;
 						}
 						
-						var processResult = new ContentProcessor(_context)
+						var contentProcessResult = new ContentProcessor(_context)
 							.SetRemoveContentControls(_isNeedToRemoveContentControls)
 							.FillContent(sdt, fieldContent);
 
-						if (!processResult.Success)
-							_processResult.Errors.AddRange(processResult.Errors);
+						if (!contentProcessResult.Success)
+							processResult.Errors.AddRange(processResult.Errors);
 						
 						
 					}
@@ -321,11 +338,11 @@ namespace TemplateEngine.Docx.Processors
 						prototype.Exclude(currentLevelPrototype), 
 						contentItem.NestedFields);
 
-					newRows.AddRange(filledNestedFields);					
+					newRows.AddRange(filledNestedFields.Result);					
 				}		
 			}
-			return newRows;
-
+			processResult.Result = newRows;
+			return processResult;
 		}
 	}
 }

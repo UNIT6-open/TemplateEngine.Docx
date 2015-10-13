@@ -801,8 +801,8 @@ namespace TemplateEngine.Docx.Tests
 					  new FieldContent("Name", "Poll"),
 					  new FieldContent("Age", "40"),
 					  new ListContent("Childs")
-						  .AddItem(new ListItemContent("ChildName", "Ann"))
-						  .AddItem(new ListItemContent("ChildName", "Richard"))),
+						  .AddItem(new FieldContent("ChildName", "Ann"))
+						  .AddItem(new FieldContent("ChildName", "Richard"))),
 			  new TableContent("Team Members")
 				  .AddRow(
 					  new FieldContent("Name", "Eric"),
@@ -812,8 +812,8 @@ namespace TemplateEngine.Docx.Tests
 				  .AddRow(
 					  new FieldContent("Name", "Poll"),
 					  new ListContent("Roles")
-						  .AddItem(new ListItemContent("Role", "Admin"))
-						  .AddItem(new ListItemContent("Role", "Developer"))));
+						  .AddItem(new FieldContent("Role", "Admin"))
+						  .AddItem(new FieldContent("Role", "Developer"))));
 
 			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
 				.SetRemoveContentControls(false)
@@ -841,25 +841,25 @@ namespace TemplateEngine.Docx.Tests
 					  new FieldContent("Name", "Eric"),
 					  new FieldContent("Age", "34"),
 					  new ListContent("Childs")
-						  .AddItem(new ListItemContent("ChildName", "Robbie"))
-						  .AddItem(new ListItemContent("ChildName", "Trisha")))
+						  .AddItem(new FieldContent("ChildName", "Robbie"))
+						  .AddItem(new FieldContent("ChildName", "Trisha")))
 				  .AddRow(
 					  new FieldContent("Name", "Poll"),
 					  new FieldContent("Age", "40"),
 					  new ListContent("Childs")
-						  .AddItem(new ListItemContent("ChildName", "Ann"))
-						  .AddItem(new ListItemContent("ChildName", "Richard"))),
+						  .AddItem(new FieldContent("ChildName", "Ann"))
+						  .AddItem(new FieldContent("ChildName", "Richard"))),
 			  new TableContent("Team Members")
 				  .AddRow(
 					  new FieldContent("Name", "Eric"),
 					  new ListContent("Roles")
-						  .AddItem(new ListItemContent("Role", "Developer"))
-						  .AddItem(new ListItemContent("Role", "Tester")))
+						  .AddItem(new FieldContent("Role", "Developer"))
+						  .AddItem(new FieldContent("Role", "Tester")))
 				  .AddRow(
 					  new FieldContent("Name", "Poll"),
 					  new ListContent("Roles")
-						  .AddItem(new ListItemContent("Role", "Admin"))
-						  .AddItem(new ListItemContent("Role", "Developer"))));
+						  .AddItem(new FieldContent("Role", "Admin"))
+						  .AddItem(new FieldContent("Role", "Developer"))));
 
 			var filledDocument = new TemplateProcessor(templateDocument, templateStyles, templateNumbering)
 				.SetRemoveContentControls(true)
