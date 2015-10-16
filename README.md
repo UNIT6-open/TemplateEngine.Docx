@@ -12,7 +12,7 @@ You can get it with [NuGet package](https://nuget.org/packages/TemplateEngine.Do
 
 ## Example of usage
 
-[Here](https://bitbucket.org/unit6ru/templateengine/src/a3d49e1a2840b4c04939761901b50f2b8e6dc4ac/sources/TemplateEngine.Docx.Example?at=master) is source code of sample usage.
+[Here](https://github.com/UNIT6-open/TemplateEngine.Docx/tree/master/sources/TemplateEngine.Docx.Example?at=master) is source code of sample usage.
 
 ### How to create template
 
