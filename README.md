@@ -417,4 +417,4 @@ namespace TemplateEngine.Docx.Example
 
 Have fun!
 
-![yandex counter](//mc.yandex.ru/watch/9260296)
+![yandex counter](https://mc.yandex.ru/watch/9260296)
