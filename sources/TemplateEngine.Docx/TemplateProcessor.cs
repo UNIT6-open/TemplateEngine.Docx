@@ -41,6 +41,8 @@ namespace TemplateEngine.Docx
 
 	    private XDocument LoadPart(OpenXmlPart source)
 	    {
+		    if (source == null) return null;
+
 			var part = source.Annotation<XDocument>();
 		    if (part != null) return part;
 
