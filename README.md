@@ -30,8 +30,7 @@ You can get it with [NuGet package](https://nuget.org/packages/TemplateEngine.Do
 
 ![docx template](http://unit6.ru/img/template-engine/Fill-Field.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -61,8 +60,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling table](http://unit6.ru/img/template-engine/Fill-Table.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -100,8 +98,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling list](http://unit6.ru/img/template-engine/Fill-List.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -137,8 +134,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling nested list](http://unit6.ru/img/template-engine/Fill-Nested-List.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -175,8 +171,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling list inside table](http://unit6.ru/img/template-engine/Fill-List-Inside-Table.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -219,8 +214,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling table inside list](http://unit6.ru/img/template-engine/Fill-Table-Inside-List.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -270,8 +264,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling table with several blocks](http://unit6.ru/img/template-engine/Fill-Table-With-Several-Blocks.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -320,8 +313,7 @@ namespace TemplateEngine.Docx.Example
 
 ![filling table with merged rows](http://unit6.ru/img/template-engine/Fill-Table-With-Merged-Rows.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
@@ -368,8 +360,7 @@ namespace TemplateEngine.Docx.Example
 
 ![table with merged columns](http://unit6.ru/img/template-engine/Fill-Table-With-Merged-Columns.PNG)
 
-```
-#!CSharp
+```cs
 using System;
 using System.IO;
 
