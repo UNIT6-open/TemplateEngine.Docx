@@ -73,17 +73,17 @@ namespace TemplateEngine.Docx
             {
                 Document.Save(xw);
             }
-
-
-			if (NumberingPart == null) return;
-
-			// Serialize the XDocument object back to the package.
-			using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create, FileAccess.Write)))
-			{
-				NumberingPart.Save(xw);
-			}
-
-			_wordDocument.Close();
+			
+	        if (NumberingPart != null)
+	        {
+				// Serialize the XDocument object back to the package.
+		        using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create,
+					        FileAccess.Write)))
+		        {
+			        NumberingPart.Save(xw);
+		        }
+	        }
+	        _wordDocument.Close();
         }
 
 		public TemplateProcessor FillContent(Content content)
