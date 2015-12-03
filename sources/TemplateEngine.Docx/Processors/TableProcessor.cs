@@ -106,7 +106,6 @@ namespace TemplateEngine.Docx.Processors
 					"Table Content Control '{0}' doesn't contain rows with cell content controls {1}.",
 					tableName,
 					string.Join(", ", fieldNames.Select(fn => string.Format("'{0}'", fn)))));
-				return processResult;
 			}
 
 
