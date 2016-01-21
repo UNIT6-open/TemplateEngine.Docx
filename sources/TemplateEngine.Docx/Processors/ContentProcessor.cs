@@ -16,7 +16,8 @@ namespace TemplateEngine.Docx.Processors
 			{
 				new FieldsProcessor(context),
 				new TableProcessor(context),
-				new ListProcessor(context)			
+				new ListProcessor(context),
+                new ImagesProcessor(context)
 			};
 		}
 

@@ -25,7 +25,11 @@ namespace TemplateEngine.Docx
 			{
 				yield return fieldContent;
 			}
-		}
+            foreach (var imageContent in Images)
+            {
+                yield return imageContent;
+            }
+        }
 
 		IEnumerator IEnumerable.GetEnumerator()
 		{

@@ -11,22 +11,22 @@ using TemplateEngine.Docx.Processors;
 namespace TemplateEngine.Docx
 {
     public class TemplateProcessor : IDisposable
-    {
+    {       
         public readonly XDocument Document;
 		public readonly XDocument NumberingPart;
 		public readonly XDocument StylesPart;
-        private readonly WordprocessingDocument _wordDocument;
+        private readonly WordprocessingDocument WordDocument;
 	    private bool _isNeedToRemoveContentControls;
 	    private bool _isNeedToNoticeAboutErrors;
 
         public TemplateProcessor(string fileName)
         {
-            _wordDocument = WordprocessingDocument.Open(fileName, true);
+            WordDocument = WordprocessingDocument.Open(fileName, true);
 			_isNeedToNoticeAboutErrors = true;
 
-			Document = LoadPart(_wordDocument.MainDocumentPart);
-	        NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
-	        StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
+			Document = LoadPart(WordDocument.MainDocumentPart);
+	        NumberingPart = LoadPart(WordDocument.MainDocumentPart.NumberingDefinitionsPart);
+	        StylesPart = LoadPart(WordDocument.MainDocumentPart.StyleDefinitionsPart);
 
         }
 
@@ -69,7 +69,7 @@ namespace TemplateEngine.Docx
             if (Document == null) return;
 
             // Serialize the XDocument object back to the package.
-            using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetStream (FileMode.Create, FileAccess.Write)))
+            using (var xw = XmlWriter.Create(WordDocument.MainDocumentPart.GetStream (FileMode.Create, FileAccess.Write)))
             {
                 Document.Save(xw);
             }
@@ -77,20 +77,20 @@ namespace TemplateEngine.Docx
 	        if (NumberingPart != null)
 	        {
 				// Serialize the XDocument object back to the package.
-		        using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create,
+		        using (var xw = XmlWriter.Create(WordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create,
 					        FileAccess.Write)))
 		        {
 			        NumberingPart.Save(xw);
 		        }
 	        }
-	        _wordDocument.Close();
+	        WordDocument.Close();
         }
 
 		public TemplateProcessor FillContent(Content content)
         {
 			var processResult =
 		        new ContentProcessor(
-					new ProcessContext(Document, NumberingPart, StylesPart))
+					new ProcessContext(WordDocument, Document, NumberingPart, StylesPart))
 					.SetRemoveContentControls(_isNeedToRemoveContentControls)
 			        .FillContent(Document.Root.Element(W.body), content);
 
@@ -124,9 +124,9 @@ namespace TemplateEngine.Docx
 
 	    public void Dispose()
         {
-            if (_wordDocument == null) return;
+            if (WordDocument == null) return;
 
-            _wordDocument.Dispose();
+            WordDocument.Dispose();
         }
     }
 }
