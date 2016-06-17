@@ -17,6 +17,7 @@ namespace TemplateEngine.Docx.Processors
             WordDocument = wordDocument;
             LastNumIds = new Dictionary<int, int>();
 			MainPart = mainPart;
+			StylesPart = stylesPart;
 			NumberingPart = numberingPart;          
 		}
 	}
