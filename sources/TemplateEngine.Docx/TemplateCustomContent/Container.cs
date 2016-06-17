@@ -11,7 +11,8 @@ namespace TemplateEngine.Docx
 				Lists = contentItems.OfType<ListContent>().ToList();
 				Tables = contentItems.OfType<TableContent>().ToList();
 				Fields = contentItems.OfType<FieldContent>().ToList();
-			}
+                Images = contentItems.OfType<ImageContent>().ToList();
+            }
 		}
 
 		private IEnumerable<IContentItem> All
@@ -22,16 +23,18 @@ namespace TemplateEngine.Docx
 				if (Tables != null) result = result.Concat(Tables).ToList();
 				if (Lists != null) result = result.Concat(Lists).ToList();
 				if (Fields != null) result = result.Concat(Fields).ToList();
+                if (Images != null) result = result.Concat(Images).ToList();
 
-				return result;
+                return result;
 			}
 		}
 
 		public ICollection<TableContent> Tables { get; set; }
 		public ICollection<ListContent> Lists { get; set; }
 		public ICollection<FieldContent> Fields { get; set; }
+        public ICollection<ImageContent> Images { get; set; }
 
-		public IContentItem GetContentItem(string name)
+        public IContentItem GetContentItem(string name)
 		{
 			var allFields = All.ToList();
 			if (allFields.Any(t => t.Name == name)) 
@@ -76,5 +79,12 @@ namespace TemplateEngine.Docx
 			Lists.Add(list);
 			return this;
 		}
-	}
+        protected Container AddImage(ImageContent image)
+        {
+            if (Images == null) Images = new List<ImageContent>();
+
+            Images.Add(image);
+            return this;
+        }
+    }
 }

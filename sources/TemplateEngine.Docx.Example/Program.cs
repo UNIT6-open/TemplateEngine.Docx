@@ -136,7 +136,9 @@ namespace TemplateEngine.Docx.Example
 						new FieldContent("Name", "Ann"),
 						new FieldContent("Role", "Developer"),
 						new FieldContent("Age", "34"),
-						new FieldContent("Projects", "Project two")));
+						new FieldContent("Projects", "Project two")),
+                new ImageContent("photo", File.ReadAllBytes("Tesla.jpg"))
+            );
 
             using(var outputDocument = new TemplateProcessor("OutputDocument.docx")
 				.SetRemoveContentControls(true))
