@@ -6,19 +6,18 @@ namespace TemplateEngine.Docx.Processors
 {
 	internal class ProcessContext
 	{
-        internal WordprocessingDocument WordDocument { get; private set; }
+		internal WordDocumentContainer Document { get; private set; }
+       // internal WordprocessingDocument WordDocument { get; private set; }
         internal Dictionary<int, int> LastNumIds { get; private set; }
-		internal XDocument MainPart { get; private set; }
+/*		internal XDocument MainPart { get; private set; }
 		internal XDocument NumberingPart { get; private set; }
-		internal XDocument StylesPart { get; private set; }
+		internal XDocument StylesPart { get; private set; }*/
 
-		internal ProcessContext(WordprocessingDocument wordDocument, XDocument mainPart, XDocument numberingPart, XDocument stylesPart)
+		internal ProcessContext(WordDocumentContainer document)
 		{
-            WordDocument = wordDocument;
+			Document = document;
             LastNumIds = new Dictionary<int, int>();
-			MainPart = mainPart;
-			StylesPart = stylesPart;
-			NumberingPart = numberingPart;          
+			        
 		}
 	}
 }

@@ -71,6 +71,7 @@
     <Compile Include="TemplateProcessor.cs" />
     <Compile Include="A.cs" />
     <Compile Include="W.cs" />
+    <Compile Include="WordDocumentContainer.cs" />
     <Compile Include="XElementExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

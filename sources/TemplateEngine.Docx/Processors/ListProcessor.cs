@@ -113,7 +113,7 @@ namespace TemplateEngine.Docx.Processors
 						var paragraph = prototypeItem.DescendantsAndSelf(W.p).FirstOrDefault();
 						if (paragraph != null &&
 							ListItemRetriever.RetrieveListItem(
-							context.NumberingPart, context.StylesPart, paragraph)
+							context.Document.NumberingPart, context.Document.StylesPart, paragraph)
 							.IsListItem)
 							numberingElementReached = true;
 						else
@@ -260,7 +260,7 @@ namespace TemplateEngine.Docx.Processors
 				return processResult;
 			}
 
-			new NumberingAccessor(_context.NumberingPart, _context.LastNumIds)
+			new NumberingAccessor(_context.Document.NumberingPart, _context.LastNumIds)
 					.ResetNumbering(prototype.PrototypeItems);
 
 			// Propagates a prototype.

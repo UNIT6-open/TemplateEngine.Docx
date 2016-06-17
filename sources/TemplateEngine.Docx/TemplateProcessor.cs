@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
 using TemplateEngine.Docx.Processors;
@@ -11,23 +10,21 @@ using TemplateEngine.Docx.Processors;
 namespace TemplateEngine.Docx
 {
     public class TemplateProcessor : IDisposable
-    {       
-        public readonly XDocument Document;
-		public readonly XDocument NumberingPart;
-		public readonly XDocument StylesPart;
-        private readonly WordprocessingDocument WordDocument;
+    {
+	    private readonly WordDocumentContainer _wordDocument;
 	    private bool _isNeedToRemoveContentControls;
 	    private bool _isNeedToNoticeAboutErrors;
 
-        private TemplateProcessor(WordprocessingDocument wordDocument)
+	    public XDocument Document { get { return _wordDocument.MainDocumentPart; } }
+
+	    public XDocument NumberingPart { get { return _wordDocument.NumberingPart; } }
+
+	    public XDocument StylesPart { get { return _wordDocument.StylesPart; } }
+
+	    private TemplateProcessor(WordprocessingDocument wordDocument)
         {
-            WordDocument = wordDocument;
-
-            _isNeedToNoticeAboutErrors = true;
-            Document = LoadPart(WordDocument.MainDocumentPart);
-            NumberingPart = LoadPart(WordDocument.MainDocumentPart.NumberingDefinitionsPart);
-            StylesPart = LoadPart(WordDocument.MainDocumentPart.StyleDefinitionsPart);
-
+            _wordDocument = new WordDocumentContainer(wordDocument);
+			_isNeedToNoticeAboutErrors = true;
         }
 
         public TemplateProcessor(string fileName) : this(WordprocessingDocument.Open(fileName, true))
@@ -41,64 +38,26 @@ namespace TemplateEngine.Docx
         public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
 		{
 			_isNeedToNoticeAboutErrors = true;
-
-			Document = templateSource;
-			StylesPart = stylesPart;
-			NumberingPart = numberingPart;
+			_wordDocument = new WordDocumentContainer(templateSource, stylesPart, numberingPart);
 		}
 
-	    private XDocument LoadPart(OpenXmlPart source)
-	    {
-		    if (source == null) return null;
-
-			var part = source.Annotation<XDocument>();
-		    if (part != null) return part;
-
-		    using (var str = source.GetStream())
-		    using (var streamReader = new StreamReader(str))
-		    using (var xr = XmlReader.Create(streamReader))
-			    part = XDocument.Load(xr);
-
-		    return part;
-	    }
 	    public TemplateProcessor SetRemoveContentControls(bool isNeedToRemove)
 	    {
 		    _isNeedToRemoveContentControls = isNeedToRemove;
 		    return this;
 	    }
+
 	    public TemplateProcessor SetNoticeAboutErrors(bool isNeedToNotice)
 	    {
 			_isNeedToNoticeAboutErrors = isNeedToNotice;
 		    return this;
 	    }
 
-        public void SaveChanges()
-        {
-            if (Document == null) return;
-
-            // Serialize the XDocument object back to the package.
-            using (var xw = XmlWriter.Create(WordDocument.MainDocumentPart.GetStream (FileMode.Create, FileAccess.Write)))
-            {
-                Document.Save(xw);
-            }
-			
-	        if (NumberingPart != null)
-	        {
-				// Serialize the XDocument object back to the package.
-		        using (var xw = XmlWriter.Create(WordDocument.MainDocumentPart.NumberingDefinitionsPart.GetStream(FileMode.Create,
-					        FileAccess.Write)))
-		        {
-			        NumberingPart.Save(xw);
-		        }
-	        }
-	        WordDocument.Close();
-        }
-
 		public TemplateProcessor FillContent(Content content)
         {
 			var processResult =
 		        new ContentProcessor(
-					new ProcessContext(WordDocument, Document, NumberingPart, StylesPart))
+					new ProcessContext(_wordDocument))
 					.SetRemoveContentControls(_isNeedToRemoveContentControls)
 			        .FillContent(Document.Root.Element(W.body), content);
 
@@ -107,9 +66,16 @@ namespace TemplateEngine.Docx
 
             return this;
         }
+		
+		public void SaveChanges()
+		{
+			_wordDocument.SaveChanges();
+		}
 
-	  
-	    // Add any errors as red text on yellow at the beginning of the document.
+		/// <summary>
+		/// Adds a list of errors as red text on yellow at the beginning of the document.
+		/// </summary>
+		/// <param name="errors">List of errors.</param>
 	    private void AddErrors(IList<string> errors)
 	    {
 		    if (errors.Any())
@@ -132,8 +98,8 @@ namespace TemplateEngine.Docx
 
 	    public void Dispose()
         {
-			if (WordDocument != null)
-				WordDocument.Dispose();
+			if (_wordDocument != null)
+				_wordDocument.Dispose();
         }
     }
 }

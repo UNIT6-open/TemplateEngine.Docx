@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.Packaging;
+﻿using DocumentFormat.OpenXml.Packaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -71,8 +70,16 @@ namespace TemplateEngine.Docx.Processors
 
             var imageId = blip.Attribute(R.embed).Value;
 
-            ImagePart imagePart = (ImagePart)_context.WordDocument.MainDocumentPart.GetPartById(imageId);
-            using (BinaryWriter writer = new BinaryWriter(imagePart.GetStream()))
+            var imagePart = (ImagePart)_context.Document.GetPartById(imageId);
+
+			if (imagePart == null)
+			{
+				_processResult.Errors.Add(String.Format("Image to replace for '{0}' not found.",
+				   field.Name));
+				return;
+			}
+
+            using (var writer = new BinaryWriter(imagePart.GetStream()))
             {
                 writer.Write(field.Binary);               
             }                           
