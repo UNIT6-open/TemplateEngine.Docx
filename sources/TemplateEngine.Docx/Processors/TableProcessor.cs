@@ -96,16 +96,22 @@ namespace TemplateEngine.Docx.Processors
 			var contentControlTagNames = prototypeRows
 				.Descendants(W.sdt)
 				.Select(sdt => sdt.SdtTagName())
-				.Where(fieldNames.Contains);
+				.Where(fieldNames.Contains)
+				.ToList();
 
 
 			//If there are not content controls with the one of specified field name we need to add the warning
 			if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
 			{
+				var invalidFileNames = fieldNames
+					.Where(fn => !contentControlTagNames.Contains(fn))
+					.ToList();
+
 				processResult.Errors.Add(String.Format(
-					"Table Content Control '{0}' doesn't contain rows with cell content controls {1}.",
+					"Table Content Control '{0}' doesn't contain rows with cell content {1} {2}.",
 					tableName,
-					string.Join(", ", fieldNames.Select(fn => string.Format("'{0}'", fn)))));
+					invalidFileNames.Count > 1 ? "controls" : "control",
+					string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn)))));
 			}
 
 
