@@ -132,7 +132,8 @@ namespace TemplateEngine.Docx
 
 	    public void Dispose()
         {
-	        _wordDocument?.Dispose();
+			if (_wordDocument != null)
+				_wordDocument.Dispose();
         }
     }
 }
