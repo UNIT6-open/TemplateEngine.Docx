@@ -19,18 +19,26 @@ namespace TemplateEngine.Docx
 	    private bool _isNeedToRemoveContentControls;
 	    private bool _isNeedToNoticeAboutErrors;
 
-        public TemplateProcessor(string fileName)
+        private TemplateProcessor(WordprocessingDocument wordDocument)
         {
-            _wordDocument = WordprocessingDocument.Open(fileName, true);
-			_isNeedToNoticeAboutErrors = true;
+            _wordDocument = wordDocument;
 
-			Document = LoadPart(_wordDocument.MainDocumentPart);
-	        NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
-	        StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
+            _isNeedToNoticeAboutErrors = true;
+            Document = LoadPart(_wordDocument.MainDocumentPart);
+            NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
+            StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
 
         }
 
-		public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
+        public TemplateProcessor(string fileName) : this(WordprocessingDocument.Open(fileName, true))
+        {
+        }
+
+        public TemplateProcessor(Stream stream) : this(WordprocessingDocument.Open(stream, true))
+        {
+        }
+
+        public TemplateProcessor(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
 		{
 			_isNeedToNoticeAboutErrors = true;
 
@@ -124,9 +132,8 @@ namespace TemplateEngine.Docx
 
 	    public void Dispose()
         {
-            if (_wordDocument == null) return;
-
-            _wordDocument.Dispose();
+			if (_wordDocument != null)
+				_wordDocument.Dispose();
         }
     }
 }
