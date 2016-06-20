@@ -72,17 +72,14 @@ namespace TemplateEngine.Docx.Processors
 
             var imagePart = (ImagePart)_context.Document.GetPartById(imageId);
 
-			if (imagePart == null)
+			if (imagePart != null)
 			{
-				_processResult.Errors.Add(String.Format("Image to replace for '{0}' not found.",
-				   field.Name));
-				return;
+				_context.Document.RemovePartById(imageId);
 			}
 
-            using (var writer = new BinaryWriter(imagePart.GetStream()))
-            {
-                writer.Write(field.Binary);               
-            }                           
+			var imagePartId = _context.Document.AddImagePart(field.Binary);
+
+			blip.Attribute(R.embed).SetValue(imagePartId);                    
         }
 	}
 }

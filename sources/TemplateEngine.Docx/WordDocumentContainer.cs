@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -13,6 +14,7 @@ namespace TemplateEngine.Docx
 		internal XDocument MainDocumentPart { get; private set; }
 		internal XDocument NumberingPart { get; private set; }
 		internal XDocument StylesPart { get; private set; }
+		internal IEnumerable<ImagePart> ImagesPart { get; private set; }
 
 		internal WordDocumentContainer(WordprocessingDocument wordDocument)
 		{
@@ -21,12 +23,16 @@ namespace TemplateEngine.Docx
 			MainDocumentPart = LoadPart(_wordDocument.MainDocumentPart);
 			NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
 			StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
+
+			ImagesPart = _wordDocument.MainDocumentPart.ImageParts;
+			
 		}
-		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
+		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null, IEnumerable<ImagePart> imagesPart = null)
 		{
 			MainDocumentPart = templateSource;
 			NumberingPart = numberingPart;
 			StylesPart = stylesPart;
+			ImagesPart = imagesPart;
 		}
 
 		internal OpenXmlPart GetPartById(string partIdentifier)
@@ -34,7 +40,39 @@ namespace TemplateEngine.Docx
 			if (_wordDocument == null)
 				return null;
 
-			return _wordDocument.MainDocumentPart.GetPartById(partIdentifier);
+			try
+			{
+				return _wordDocument.MainDocumentPart.GetPartById(partIdentifier);
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				return null;
+			}
+		}
+		internal void RemovePartById(string partIdentifier)
+		{
+			if (_wordDocument == null)
+				return;
+
+			var part = GetPartById(partIdentifier);
+			if (part != null)
+			{
+				_wordDocument.MainDocumentPart.DeletePart(part);
+			}
+		}
+		internal string AddImagePart(byte[] bytes)
+		{
+			if (_wordDocument == null)
+				return null;
+
+			var imagePart = _wordDocument.MainDocumentPart.AddImagePart(ImagePartType.Jpeg);
+
+			using (var stream = new MemoryStream(bytes))
+			{
+				imagePart.FeedData(stream);
+			}
+				
+			return _wordDocument.MainDocumentPart.GetIdOfPart(imagePart);
 		}
 
 		internal void SaveChanges()

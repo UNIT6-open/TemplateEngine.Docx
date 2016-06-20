@@ -36,6 +36,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -83,6 +87,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\TemplateEmpty.docx" />
+    <None Include="Resources\TemplateWithImagesInsideList.docx" />
+    <None Include="Resources\TemplateWithImagesInsideTable.docx" />
+    <None Include="Resources\TemplateWithSingleImage.docx" />
     <None Include="Resources\TemplateWithSingleTable.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +110,20 @@
     <None Include="Resources\DocumentWithSingleFieldAndRemovedCC.xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DocumentWithSingleImage.xml" />
+    <None Include="Resources\DocumentWithSingleImage_AndRemovedCC.xml" />
+    <None Include="Resources\DocumentWithSingleImageNotFoundError.xml" />
+    <Content Include="Edison.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Einstein.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\DocumentWithImagesInsideTable.xml" />
+    <None Include="Resources\DocumentWithImagesInsideListFilledAndRemovedCC.xml" />
+    <Content Include="Tesla.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\TemplateWithSingleTableWithTwoBlocks.xml" />
     <None Include="Resources\DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC.xml" />
     <None Include="Resources\DocumentWithSingleTableWithTwoBlocksFilled.xml" />

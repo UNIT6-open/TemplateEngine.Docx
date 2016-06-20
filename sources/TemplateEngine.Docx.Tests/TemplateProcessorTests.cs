@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -50,6 +53,7 @@ namespace TemplateEngine.Docx.Tests
 
             var documentXml = template.Document.ToString();
 
+            Assert.IsNotNull(expectedDocument.Document);
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
 
@@ -94,6 +98,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
+			Assert.IsNotNull(expectedDocument.Document);
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
 
@@ -116,6 +121,7 @@ namespace TemplateEngine.Docx.Tests
 
             var documentXml = template.Document.ToString();
 
+			Assert.IsNotNull(expectedDocument.Document);
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
 
@@ -139,7 +145,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 
         [TestMethod]
@@ -161,7 +167,7 @@ namespace TemplateEngine.Docx.Tests
 
             var documentXml = template.Document.ToString();
 
-            Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+            Assert.AreEqual(expectedDocument.ToString(), documentXml);
         }
 
 		[TestMethod]
@@ -184,7 +190,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 
 		[TestMethod]
@@ -232,7 +238,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 
 		[TestMethod]
@@ -278,7 +284,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 
 
@@ -301,7 +307,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 
 		[TestMethod]
@@ -347,7 +353,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}
 		[TestMethod]
 		public void FillingOneTableWithMergedVerticallyRows()
@@ -365,7 +371,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
-			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+			Assert.AreEqual(expectedDocument.ToString(), documentXml);
 		}		
 		
 		[TestMethod]
@@ -897,7 +903,7 @@ namespace TemplateEngine.Docx.Tests
 			var filledDocument = new TemplateProcessor(templateDocument)
 				.SetRemoveContentControls(true)
 				.FillContent(valuesToFill);
-
+			
 			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
 		}
 
@@ -932,10 +938,205 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
 		}
 
+		[TestMethod]
+		public void FillingSingleImageAndRemoveContentControl()
+		{
+			var templateDocumentDocx = Resources.TemplateWithSingleImage;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImage_AndRemovedCC); 
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+			byte[] resultImage;
+			using (var ms = new MemoryStream())
+			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+
+				resultImage = GetImageFromPart(processor, 0);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 1);
+			Assert.IsNotNull(resultImage);
+			Assert.IsTrue(resultImage.SequenceEqual(newFile));
+			
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
+		}
+
+		[TestMethod]
+		public void FillingSingleImageAndPreverseContentControl()
+		{
+			var templateDocumentDocx = Resources.TemplateWithSingleImage;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImage);
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+			byte[] resultImage;
+			using (var ms = new MemoryStream())
+			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+
+				resultImage = GetImageFromPart(processor, 0);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 1);
+			Assert.IsNotNull(resultImage);
+			Assert.IsTrue(resultImage.SequenceEqual(newFile));
+
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
+		}
+
+		[TestMethod]
+		public void FillingSingleImage_ImageContentControlNotFound_ShowError()
+		{
+			var templateDocumentDocx = Resources.TemplateEmpty;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImageNotFoundError);
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 0);
+		
+			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+		}
+
+		[TestMethod]
+		public void FillingImageInsideTable_CorrectFiledItems_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateWithImagesInsideTable;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithImagesInsideTable);
+
+			var valuesToFill = new Content(
+				new TableContent("Scientists")
+					.AddRow(new FieldContent("Name", "Nicola Tesla"),
+						new FieldContent("Born", new DateTime(1856, 7, 10).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+						new FieldContent("Info",
+							"Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"))
+					.AddRow(new FieldContent("Name", "Thomas Edison"),
+						new FieldContent("Born", new DateTime(1847, 2, 11).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+						new FieldContent("Info",
+							"American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."))
+					.AddRow(new FieldContent("Name", "Albert Einstein"),
+						new FieldContent("Born", new DateTime(1879, 3, 14).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+						new FieldContent("Info",
+							"German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation')."))
+				);
+
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream())
+			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(3, processor.ImagesPart.Count());
+
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
+		}
+
+		[TestMethod]
+		public void FillingImageInsideAList_CorrectFiledItems_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateWithImagesInsideList;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithImagesInsideListFilledAndRemovedCC);
+
+			var valuesToFill = new Content(
+			  new ListContent("Scientists")
+				  .AddItem(new FieldContent("Name", "Nicola Tesla"),
+					  new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+					  new FieldContent("Dates of life", string.Format("{0}-{1}",
+						  1856, 1943)),
+					  new FieldContent("Info",
+						  "Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"))
+				  .AddItem(new FieldContent("Name", "Thomas Edison"),
+					  new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+					  new FieldContent("Dates of life", string.Format("{0}-{1}",
+						  1847, 1931)),
+					  new FieldContent("Info",
+						  "American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."))
+				  .AddItem(new FieldContent("Name", "Albert Einstein"),
+					  new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+					  new FieldContent("Dates of life", string.Format("{0}-{1}",
+						  1879, 1955)),
+					  new FieldContent("Info",
+						  "German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation')."))
+		  );
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream())
+			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(3, processor.ImagesPart.Count());
+
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
+		}
+
+	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
+	    {
+		    byte[] resultImage = null;
+		    if (processor.ImagesPart.Any())
+		    {
+			    var stream = processor.ImagesPart.ToArray()[partIndex].GetStream();
+
+			    resultImage = new byte[stream.Length];
+			    using (var reader = new BinaryReader(processor.ImagesPart.First().GetStream()))
+			    {
+				    reader.Read(resultImage, 0, (int) stream.Length);
+			    }
+		    }
+		    return resultImage;
+	    }
+
 	    private string RemoveNsid(string source)
 	    {
 			const string nsidRegexp = "nsid w:val=\"[0-9a-fA-F]+\"";
 			return Regex.Replace(source, nsidRegexp, "");
+	    }
+	    private string RemoveRembed(string source)
+	    {
+			const string rembedRegexp = "r:embed=\"[0-9a-zA-Z]+\"";
+			return Regex.Replace(source, rembedRegexp, "");
 	    }
     }
 }
