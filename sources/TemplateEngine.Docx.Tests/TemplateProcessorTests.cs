@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -124,6 +125,36 @@ namespace TemplateEngine.Docx.Tests
 			Assert.IsNotNull(expectedDocument.Document);
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
+
+		[TestMethod]
+		public void FillingOneFieldWithValue_ValueContainsLineBreak_ShouldInsertLineBreakToResultDocument()
+		{
+			var templateDocument = XDocument.Parse(Resources.TemplateWithSingleField);
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleFieldFilledWithLinebreaks);
+
+			var dateTime = new DateTime(2013, 09, 06);
+			var valuesToFill = new Content
+			{
+				Fields = new List<FieldContent>
+                {
+                    new FieldContent { Name = "ReportDate",
+						Value = string.Format("{0}\r\n{1}\n{2}",
+						dateTime.ToString("d", CultureInfo.InvariantCulture), 
+						dateTime.ToString("D", CultureInfo.InvariantCulture),
+						dateTime.ToString("y", CultureInfo.InvariantCulture)) 
+					}
+                }
+			};
+
+			var template = new TemplateProcessor(templateDocument)
+				.SetRemoveContentControls(true)
+				.FillContent(valuesToFill);
+
+			var documentXml = template.Document.ToString();
+
+			Assert.IsNotNull(expectedDocument.Document);
+			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
+		}
 
 		[TestMethod]
 		public void FillingOneFieldWithValueAndRemoveContentControl()

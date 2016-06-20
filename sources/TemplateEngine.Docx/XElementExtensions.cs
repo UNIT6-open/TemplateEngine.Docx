@@ -65,6 +65,8 @@ namespace TemplateEngine.Docx
 			{
 				sdt.Add(new XElement(W.sdtContent, new XElement(W.p), new XElement(W.r, new XElement(W.t, newValue))));
 			}
+
+			ReplaceNewLinesWithBreaks(sdt);
 		}
 
 		public static void RemoveContentControl(this XElement sdt)
@@ -135,6 +137,25 @@ namespace TemplateEngine.Docx
 			{
 				return null;
 			}
-		}       
+		}
+
+		public static void ReplaceNewLinesWithBreaks(XElement xElem)
+		{
+			if (xElem == null) return;
+
+			var textWithBreaks = xElem.Descendants(W.t).Where(t => t.Value.Contains("\r\n"));
+			foreach (var textWithBreak in textWithBreaks)
+			{
+				var text = textWithBreak.Value;
+				var split = text.Replace("\r\n", "\n").Split(new[] { "\n" }, StringSplitOptions.None);
+				textWithBreak.Value = string.Empty;
+				foreach (var s in split)
+				{
+					textWithBreak.Add(new XElement(W.t, s));
+					textWithBreak.Add(new XElement(W.br));
+				}
+				textWithBreak.Descendants(W.br).Last().Remove();
+			}
+		}
 	}
 }
