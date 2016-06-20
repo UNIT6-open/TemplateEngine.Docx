@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -50,6 +52,7 @@ namespace TemplateEngine.Docx.Tests
 
             var documentXml = template.Document.ToString();
 
+            Assert.IsNotNull(expectedDocument.Document);
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
 
@@ -94,6 +97,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var documentXml = template.Document.ToString();
 
+			Assert.IsNotNull(expectedDocument.Document);
 			Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
 		}
 
@@ -116,6 +120,7 @@ namespace TemplateEngine.Docx.Tests
 
             var documentXml = template.Document.ToString();
 
+			Assert.IsNotNull(expectedDocument.Document);
             Assert.AreEqual(expectedDocument.Document.ToString(), documentXml);
         }
 
@@ -897,7 +902,7 @@ namespace TemplateEngine.Docx.Tests
 			var filledDocument = new TemplateProcessor(templateDocument)
 				.SetRemoveContentControls(true)
 				.FillContent(valuesToFill);
-
+			
 			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
 		}
 
@@ -931,6 +936,105 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.AreEqual(expectedDocument.ToString(), filledDocument.Document.ToString());
 		}
+
+		[TestMethod]
+		public void FillingSingleImageAndRemoveContentControl()
+		{
+			var templateDocumentDocx = Resources.TemplateWithSingleImage;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImage_AndRemovedCC); 
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+			byte[] resultImage;
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+
+				resultImage = GetImageFromPart(processor, 0);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 1);
+			Assert.IsNotNull(resultImage);
+			Assert.IsTrue(resultImage.SequenceEqual(newFile));
+			
+			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+		}
+
+		[TestMethod]
+		public void FillingSingleImageAndPreverseContentControl()
+		{
+			var templateDocumentDocx = Resources.TemplateWithSingleImage;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImage);
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+			byte[] resultImage;
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+
+				resultImage = GetImageFromPart(processor, 0);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 1);
+			Assert.IsNotNull(resultImage);
+			Assert.IsTrue(resultImage.SequenceEqual(newFile));
+
+			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+		}
+
+		[TestMethod]
+		public void FillingSingleImage_ImageContentControlNotFound_ShowError()
+		{
+			var templateDocumentDocx = Resources.TemplateEmpty;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImageNotFoundError);
+
+			var newFile = File.ReadAllBytes("Tesla.jpg");
+
+			var valuesToFill = new Content(
+						new ImageContent("TeslaPhoto", newFile));
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 0);
+		
+			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+		}
+
+	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
+	    {
+		    byte[] resultImage = null;
+		    if (processor.ImagesPart.Any())
+		    {
+			    var stream = processor.ImagesPart.ToArray()[partIndex].GetStream();
+
+			    resultImage = new byte[stream.Length];
+			    using (var reader = new BinaryReader(processor.ImagesPart.First().GetStream()))
+			    {
+				    reader.Read(resultImage, 0, (int) stream.Length);
+			    }
+		    }
+		    return resultImage;
+	    }
 
 	    private string RemoveNsid(string source)
 	    {

@@ -79,6 +79,7 @@ namespace TemplateEngine.Docx.Processors
 				return;
 			}
 
+			imagePart.GetStream().SetLength(0);
             using (var writer = new BinaryWriter(imagePart.GetStream()))
             {
                 writer.Write(field.Binary);               

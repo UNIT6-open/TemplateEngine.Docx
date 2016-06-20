@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
@@ -13,6 +14,7 @@ namespace TemplateEngine.Docx
 		internal XDocument MainDocumentPart { get; private set; }
 		internal XDocument NumberingPart { get; private set; }
 		internal XDocument StylesPart { get; private set; }
+		internal IEnumerable<ImagePart> ImagesPart { get; private set; }
 
 		internal WordDocumentContainer(WordprocessingDocument wordDocument)
 		{
@@ -21,12 +23,16 @@ namespace TemplateEngine.Docx
 			MainDocumentPart = LoadPart(_wordDocument.MainDocumentPart);
 			NumberingPart = LoadPart(_wordDocument.MainDocumentPart.NumberingDefinitionsPart);
 			StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
+
+			ImagesPart = _wordDocument.MainDocumentPart.ImageParts;
+			
 		}
-		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null)
+		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null, IEnumerable<ImagePart> imagesPart = null)
 		{
 			MainDocumentPart = templateSource;
 			NumberingPart = numberingPart;
 			StylesPart = stylesPart;
+			ImagesPart = imagesPart;
 		}
 
 		internal OpenXmlPart GetPartById(string partIdentifier)

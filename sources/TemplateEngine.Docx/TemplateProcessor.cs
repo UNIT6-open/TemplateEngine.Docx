@@ -21,6 +21,8 @@ namespace TemplateEngine.Docx
 
 	    public XDocument StylesPart { get { return _wordDocument.StylesPart; } }
 
+	    public IEnumerable<ImagePart> ImagesPart { get { return _wordDocument.ImagesPart; } }
+
 	    private TemplateProcessor(WordprocessingDocument wordDocument)
         {
             _wordDocument = new WordDocumentContainer(wordDocument);
