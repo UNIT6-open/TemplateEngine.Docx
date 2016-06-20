@@ -40,7 +40,39 @@ namespace TemplateEngine.Docx
 			if (_wordDocument == null)
 				return null;
 
-			return _wordDocument.MainDocumentPart.GetPartById(partIdentifier);
+			try
+			{
+				return _wordDocument.MainDocumentPart.GetPartById(partIdentifier);
+			}
+			catch (ArgumentOutOfRangeException)
+			{
+				return null;
+			}
+		}
+		internal void RemovePartById(string partIdentifier)
+		{
+			if (_wordDocument == null)
+				return;
+
+			var part = GetPartById(partIdentifier);
+			if (part != null)
+			{
+				_wordDocument.MainDocumentPart.DeletePart(part);
+			}
+		}
+		internal string AddImagePart(byte[] bytes)
+		{
+			if (_wordDocument == null)
+				return null;
+
+			var imagePart = _wordDocument.MainDocumentPart.AddImagePart(ImagePartType.Jpeg);
+
+			using (var stream = new MemoryStream(bytes))
+			{
+				imagePart.FeedData(stream);
+			}
+				
+			return _wordDocument.MainDocumentPart.GetIdOfPart(imagePart);
 		}
 
 		internal void SaveChanges()

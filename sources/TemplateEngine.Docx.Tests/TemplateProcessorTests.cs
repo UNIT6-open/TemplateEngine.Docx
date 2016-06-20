@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -950,8 +951,10 @@ namespace TemplateEngine.Docx.Tests
 
 			TemplateProcessor processor;
 			byte[] resultImage;
-			using (var ms = new MemoryStream(templateDocumentDocx))
+			using (var ms = new MemoryStream())
 			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
 				processor = new TemplateProcessor(ms)
 					.SetRemoveContentControls(true)
 					.FillContent(valuesToFill);
@@ -963,7 +966,8 @@ namespace TemplateEngine.Docx.Tests
 			Assert.IsNotNull(resultImage);
 			Assert.IsTrue(resultImage.SequenceEqual(newFile));
 			
-			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
 		}
 
 		[TestMethod]
@@ -979,8 +983,9 @@ namespace TemplateEngine.Docx.Tests
 
 			TemplateProcessor processor;
 			byte[] resultImage;
-			using (var ms = new MemoryStream(templateDocumentDocx))
+			using (var ms = new MemoryStream())
 			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
 				processor = new TemplateProcessor(ms)
 					.SetRemoveContentControls(false)
 					.FillContent(valuesToFill);
@@ -992,7 +997,8 @@ namespace TemplateEngine.Docx.Tests
 			Assert.IsNotNull(resultImage);
 			Assert.IsTrue(resultImage.SequenceEqual(newFile));
 
-			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
 		}
 
 		[TestMethod]
@@ -1020,6 +1026,47 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
 		}
 
+		[TestMethod]
+		public void FillingImageInsideTable_CorrectFiledItems_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateWithImagesInsideTable;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithImagesInsideTable);
+
+			var valuesToFill = new Content(
+				new TableContent("Scientists")
+					.AddRow(new FieldContent("Name", "Nicola Tesla"),
+						new FieldContent("Born", new DateTime(1856, 7, 10).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+						new FieldContent("Info",
+							"Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"))
+					.AddRow(new FieldContent("Name", "Thomas Edison"),
+						new FieldContent("Born", new DateTime(1847, 2, 11).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+						new FieldContent("Info",
+							"American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."))
+					.AddRow(new FieldContent("Name", "Albert Einstein"),
+						new FieldContent("Born", new DateTime(1879, 3, 14).ToShortDateString()),
+						new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+						new FieldContent("Info",
+							"German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation')."))
+				);
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream())
+			{
+				ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.ImagesPart.Count(), 3);
+
+			Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), 
+				RemoveRembed(processor.Document.ToString().Trim()));
+		}
+
 	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
 	    {
 		    byte[] resultImage = null;
@@ -1040,6 +1087,11 @@ namespace TemplateEngine.Docx.Tests
 	    {
 			const string nsidRegexp = "nsid w:val=\"[0-9a-fA-F]+\"";
 			return Regex.Replace(source, nsidRegexp, "");
+	    }
+	    private string RemoveRembed(string source)
+	    {
+			const string rembedRegexp = "r:embed=\"[0-9a-zA-Z]+\"";
+			return Regex.Replace(source, rembedRegexp, "");
 	    }
     }
 }
