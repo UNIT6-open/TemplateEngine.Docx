@@ -134,6 +134,16 @@ namespace TemplateEngine.Docx.Tests.Properties {
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
         ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
+        internal static string DocumentWithImagesInsideListFilledAndRemovedCC {
+            get {
+                return ResourceManager.GetString("DocumentWithImagesInsideListFilledAndRemovedCC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        /// </summary>
         internal static string DocumentWithImagesInsideTable {
             get {
                 return ResourceManager.GetString("DocumentWithImagesInsideTable", resourceCulture);
@@ -663,6 +673,16 @@ namespace TemplateEngine.Docx.Tests.Properties {
         internal static string TemplateWithFieldInTableHeader {
             get {
                 return ResourceManager.GetString("TemplateWithFieldInTableHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] TemplateWithImagesInsideList {
+            get {
+                object obj = ResourceManager.GetObject("TemplateWithImagesInsideList", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

@@ -89,6 +89,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\TemplateEmpty.docx" />
+    <None Include="Resources\TemplateWithImagesInsideList.docx" />
     <None Include="Resources\TemplateWithImagesInsideTable.docx" />
     <None Include="Resources\TemplateWithSingleImage.docx" />
     <None Include="Resources\TemplateWithSingleTable.xml" />
@@ -119,6 +120,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\DocumentWithImagesInsideTable.xml" />
+    <None Include="Resources\DocumentWithImagesInsideListFilledAndRemovedCC.xml" />
     <Content Include="Tesla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
