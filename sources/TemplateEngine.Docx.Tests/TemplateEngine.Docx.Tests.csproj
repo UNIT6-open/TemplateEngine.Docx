@@ -121,6 +121,7 @@
     </Content>
     <None Include="Resources\DocumentWithImagesInsideTable.xml" />
     <None Include="Resources\DocumentWithImagesInsideListFilledAndRemovedCC.xml" />
+    <None Include="Resources\DocumentWithSingleFieldFilledWithLinebreaks.xml" />
     <Content Include="Tesla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

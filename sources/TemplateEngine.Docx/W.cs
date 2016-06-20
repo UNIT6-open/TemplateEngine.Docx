@@ -48,5 +48,6 @@ namespace TemplateEngine.Docx
 		public static XName type = w + "type";
 		public static XName isLgl = w + "isLgl";
 		public static XName rStyle = w + "rStyle";
+		public static XName br = w + "br";
     }
 }
