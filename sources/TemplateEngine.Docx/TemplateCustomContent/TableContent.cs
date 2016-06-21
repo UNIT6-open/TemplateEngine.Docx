@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TemplateEngine.Docx
 {
-    public class TableContent:IContentItem
-	{
+    public class TableContent:IContentItem, IEquatable<TableContent>
+    {
 		public string Name { get; set; }
 		public ICollection<TableRowContent> Rows { get; set; }
 
@@ -40,7 +41,7 @@ namespace TemplateEngine.Docx
         }
 		#endregion
 
-		#region fluent
+		#region Fluent
 
 		public static TableContent Create(string name, params TableRowContent[] rows)
 		{
@@ -61,6 +62,31 @@ namespace TemplateEngine.Docx
 		}
 
 		#endregion
-		
-    }
+
+		#region Equals
+		public bool Equals(TableContent other)
+	    {
+			if (other == null) return false;
+
+			return Name.Equals(other.Name) &&
+			   Rows.SequenceEqual(other.Rows);
+	    }
+
+	    public bool Equals(IContentItem other)
+	    {
+		    if (!(other is TableContent)) return false;
+
+		    return Equals((TableContent) other);
+	    }
+
+	    public override int GetHashCode()
+		{
+			var hc = 0;
+			if (Rows != null)
+				hc = Rows.Aggregate(hc, (current, p) => current ^ p.GetHashCode());
+
+			return new { Name, hc }.GetHashCode();
+		}
+		#endregion
+	}
 }

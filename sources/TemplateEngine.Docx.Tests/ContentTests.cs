@@ -1,0 +1,181 @@
+﻿using System;
+using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
+
+namespace TemplateEngine.Docx.Tests
+{
+	[TestClass]
+	public class ContentTests
+	{
+		[TestMethod]
+		public void ContentSerializationTest_SerializeToJson_Success()
+		{
+			var valuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer")),
+				// Add nested list.	
+				new ListContent("Team Members Nested List")
+					.AddItem(new ListItemContent("Role", "Program Manager")
+						.AddNestedItem(new FieldContent("Name", "Eric"))
+						.AddNestedItem(new FieldContent("Name", "Ann")))
+					.AddItem(new ListItemContent("Role", "Developer")
+						.AddNestedItem(new FieldContent("Name", "Bob"))
+						.AddNestedItem(new FieldContent("Name", "Richard"))),
+				// Add image
+				new ImageContent("photo", new byte[]{1, 2, 3})
+				);
+
+
+			var serialized = JsonConvert.SerializeObject(valuesToFill);
+			
+			Trace.WriteLine(serialized);
+			Assert.AreEqual("{\"Tables\":[{\"Name\":\"Team Members Table\",\"Rows\":[{\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Eric\"},{\"Name\":\"Role\",\"Value\":\"Program Manager\"}],\"Images\":[]},{\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Bob\"},{\"Name\":\"Role\",\"Value\":\"Developer\"}],\"Images\":[]}],\"FieldNames\":[\"Name\",\"Role\"]}],\"Lists\":[{\"Name\":\"Team Members Nested List\",\"Items\":[{\"NestedFields\":[{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Eric\"}],\"Images\":[]},{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Ann\"}],\"Images\":[]}],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Role\",\"Value\":\"Program Manager\"}],\"Images\":[]},{\"NestedFields\":[{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Bob\"}],\"Images\":[]},{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Richard\"}],\"Images\":[]}],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Role\",\"Value\":\"Developer\"}],\"Images\":[]}],\"FieldNames\":[\"Role\",\"Name\"]}],\"Fields\":[{\"Name\":\"Report date\",\"Value\":\"01.01.2000\"}],\"Images\":[{\"Name\":\"photo\",\"Binary\":\"AQID\"}]}", serialized);
+
+		}
+
+		[TestMethod]
+		public void ContentDeserializationTest_DeserializeFromJson_Success()
+		{
+			var valuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer")),
+				// Add nested list.	
+				new ListContent("Team Members Nested List")
+					.AddItem(new ListItemContent("Role", "Program Manager")
+						.AddNestedItem(new FieldContent("Name", "Eric"))
+						.AddNestedItem(new FieldContent("Name", "Ann")))
+					.AddItem(new ListItemContent("Role", "Developer")
+						.AddNestedItem(new FieldContent("Name", "Bob"))
+						.AddNestedItem(new FieldContent("Name", "Richard"))),
+				// Add image
+				new ImageContent("photo", new byte[] { 1, 2, 3 })
+				);
+
+
+			const string serialized = "{\"Tables\":[{\"Name\":\"Team Members Table\",\"Rows\":[{\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Eric\"},{\"Name\":\"Role\",\"Value\":\"Program Manager\"}],\"Images\":[]},{\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Bob\"},{\"Name\":\"Role\",\"Value\":\"Developer\"}],\"Images\":[]}],\"FieldNames\":[\"Name\",\"Role\"]}],\"Lists\":[{\"Name\":\"Team Members Nested List\",\"Items\":[{\"NestedFields\":[{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Eric\"}],\"Images\":[]},{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Ann\"}],\"Images\":[]}],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Role\",\"Value\":\"Program Manager\"}],\"Images\":[]},{\"NestedFields\":[{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Bob\"}],\"Images\":[]},{\"NestedFields\":null,\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Name\",\"Value\":\"Richard\"}],\"Images\":[]}],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Name\":\"Role\",\"Value\":\"Developer\"}],\"Images\":[]}],\"FieldNames\":[\"Role\",\"Name\"]}],\"Fields\":[{\"Name\":\"Report date\",\"Value\":\"01.01.2000\"}],\"Images\":[{\"Name\":\"photo\",\"Binary\":\"AQID\"}]}";
+
+			var deserialized = JsonConvert.DeserializeObject<Content>(serialized);
+
+			Assert.IsTrue(valuesToFill.Equals(deserialized));
+		}
+
+		[TestMethod]
+		public void EqualsTest_ObjectsAreEqual_Equals()
+		{
+			
+			var firstValuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer")),
+				// Add nested list.	
+				new ListContent("Team Members Nested List")
+					.AddItem(new ListItemContent("Role", "Program Manager")
+						.AddNestedItem(new FieldContent("Name", "Eric"))
+						.AddNestedItem(new FieldContent("Name", "Ann")))
+					.AddItem(new ListItemContent("Role", "Developer")
+						.AddNestedItem(new FieldContent("Name", "Bob"))
+						.AddNestedItem(new FieldContent("Name", "Richard"))),
+				// Add image
+				new ImageContent("photo", new byte[] { 1, 2, 3 })
+				);
+
+			var secondValuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer")),
+				// Add nested list.	
+				new ListContent("Team Members Nested List")
+					.AddItem(new ListItemContent("Role", "Program Manager")
+						.AddNestedItem(new FieldContent("Name", "Eric"))
+						.AddNestedItem(new FieldContent("Name", "Ann")))
+					.AddItem(new ListItemContent("Role", "Developer")
+						.AddNestedItem(new FieldContent("Name", "Bob"))
+						.AddNestedItem(new FieldContent("Name", "Richard"))),
+				// Add image
+				new ImageContent("photo", new byte[] { 1, 2, 3 })
+				);
+
+			Assert.IsTrue(firstValuesToFill.Equals(secondValuesToFill));
+
+		}
+
+
+		[TestMethod]
+		public void EqualsTest_ObjectsDifferByItemsCount_NotEquals()
+		{
+
+			var firstValuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer"))
+				);
+
+			var secondValuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString())
+				);
+
+			Assert.IsFalse(firstValuesToFill.Equals(secondValuesToFill));
+
+		}
+
+		[TestMethod]
+		public void EqualsTest_CopareWithNull_NotEquals()
+		{
+
+			var firstValuesToFill = new Content(
+				// Add field.
+				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				// Add table.
+				new TableContent("Team Members Table")
+					.AddRow(
+						new FieldContent("Name", "Eric"),
+						new FieldContent("Role", "Program Manager"))
+					.AddRow(
+						new FieldContent("Name", "Bob"),
+						new FieldContent("Role", "Developer"))
+				);
+
+			Assert.IsFalse(firstValuesToFill.Equals(null));
+
+		}
+	}
+}

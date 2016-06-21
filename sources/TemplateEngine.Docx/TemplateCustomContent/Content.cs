@@ -1,39 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 
 namespace TemplateEngine.Docx
 {
-	public class Content:Container, IEnumerable<IContentItem>
+	public class Content : Container, IEquatable<Content>
 	{
+		public Content()
+		{
+		}
 		public Content(params IContentItem[] contentItems):base(contentItems)
 		{
 		}
 
-		public IEnumerator<IContentItem> GetEnumerator()
+		public bool Equals(Content other)
 		{
-			
-			foreach (var tableContent in Tables)
-			{
-				yield return tableContent;
-			}
+			return base.Equals(other);
+		}
 
-			foreach (var listContent in Lists)
-			{
-				yield return listContent;
-			}
-			foreach (var fieldContent in Fields)
-			{
-				yield return fieldContent;
-			}
-            foreach (var imageContent in Images)
-            {
-                yield return imageContent;
-            }
-        }
-
-		IEnumerator IEnumerable.GetEnumerator()
+		public override int GetHashCode()
 		{
-			return GetEnumerator();
+			return base.GetHashCode();
 		}
 	}
 }

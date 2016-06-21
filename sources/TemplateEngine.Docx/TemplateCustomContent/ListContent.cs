@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using DocumentFormat.OpenXml.Office.CustomUI;
 
 namespace TemplateEngine.Docx
 {
-	public class ListContent:IContentItem
+	public class ListContent : IContentItem, IEquatable<ListContent>
 	{
 		public string Name { get; set; }
 
@@ -45,7 +45,7 @@ namespace TemplateEngine.Docx
 
 		#endregion
 
-		#region fluent
+		#region Fluent
 
 		public static ListContent Create(string name, params ListItemContent[] items)
         {
@@ -104,6 +104,33 @@ namespace TemplateEngine.Docx
 			}			
 			return result;
 		}
+		#endregion
+
+		#region Equals
+		public bool Equals(ListContent other)
+		{
+			if (other == null) return false;
+			return Name.Equals(other.Name) &&
+			       Items.SequenceEqual(other.Items);
+		}
+
+		public bool Equals(IContentItem other)
+		{
+			if (!(other is ListContent)) return false;
+
+			return Equals((ListContent)other);
+		}
+
+
+		public override int GetHashCode()
+		{
+			var hc = 0;
+			if (Items != null)
+				hc = Items.Aggregate(hc, (current, p) => current ^ p.GetHashCode());
+			
+			return new { Name, hc }.GetHashCode();
+		}
+
 		#endregion
 	}
 }
