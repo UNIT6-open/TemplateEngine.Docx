@@ -187,5 +187,18 @@ namespace TemplateEngine.Docx.Tests
 
 			Assert.IsFalse(firstListContent.Equals(secondListContent));
 		}
+		[TestMethod]
+		public void EqualsTest_CompareWithNull_NotEquals()
+		{
+			var firstListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value",
+					new ListItemContent("Subsubheader1", "value"))));
+			
+			Assert.IsFalse(firstListContent.Equals(null));
+		}
 	}
 }

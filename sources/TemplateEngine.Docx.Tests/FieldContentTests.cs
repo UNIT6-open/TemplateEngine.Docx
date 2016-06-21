@@ -22,6 +22,7 @@ namespace TemplateEngine.Docx.Tests
 
             Assert.IsTrue(firstFieldContent.Equals(secondFieldContent));
         }
+
         [TestMethod]
         public void EqualsTest_ValuesAreNotEqual_NotEquals()
         {
@@ -29,6 +30,14 @@ namespace TemplateEngine.Docx.Tests
             var secondFieldContent = new FieldContent("Name", "Value2");
 
             Assert.IsFalse(firstFieldContent.Equals(secondFieldContent));
+        }
+        [TestMethod]
+        public void EqualsTest_CompareWithNull_NotEquals()
+        {
+            var firstFieldContent = new FieldContent("Name", "Value");
+            var secondFieldContent = new FieldContent("Name", "Value2");
+
+            Assert.IsFalse(firstFieldContent.Equals(null));
         }
     }
 }
