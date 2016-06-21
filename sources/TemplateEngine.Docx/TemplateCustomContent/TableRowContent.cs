@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TemplateEngine.Docx
 {
-    public class TableRowContent:Container
+    public class TableRowContent:Container, IEquatable<TableRowContent>
     {
         public TableRowContent()
         {
@@ -19,5 +20,19 @@ namespace TemplateEngine.Docx
 	    {
 		    Fields = fields;
 	    }
-    }
+
+		#region Equals
+
+		public bool Equals(TableRowContent other)
+	    {
+		    return base.Equals(other);
+	    }
+
+	    public override int GetHashCode()
+	    {
+		    return base.GetHashCode();
+		}
+
+		#endregion
+	}
 }

@@ -1,7 +1,10 @@
-﻿namespace TemplateEngine.Docx
+﻿using System;
+using System.Collections.Generic;
+
+namespace TemplateEngine.Docx
 {
-	public class FieldContent : IContentItem
-    {
+	public class FieldContent : IContentItem, IEquatable<FieldContent>
+	{
         public FieldContent()
         {
             
@@ -14,6 +17,26 @@
         }
    
         public string Name { get; set; }
-        public string Value { get; set; }
-    }
+		public string Value { get; set; }
+		public bool Equals(FieldContent other)
+		{
+			if (other == null) return false;
+
+			return Name.Equals(other.Name) &&
+			       Value.Equals(other.Value);
+		}
+
+		public bool Equals(IContentItem other)
+		{
+			if (!(other is FieldContent)) return false;
+
+			return Equals((FieldContent)other);
+		}
+
+
+		public override int GetHashCode()
+		{
+			return new { Name, Value }.GetHashCode();
+		}
+	}
 }

@@ -60,6 +60,7 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual("Value2", listItemContent.Fields.Last().Value);
 			Assert.IsNotNull(listItemContent.NestedFields);
 		}
+
 		[TestMethod]
 		public void ListItemContentFluentAddNestedItem_FillsNestedField()
 		{
@@ -73,6 +74,61 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(listItemContent.NestedFields.First().Fields.Count, 1);
 			Assert.AreEqual(listItemContent.NestedFields.First().Fields.First().Name, "NestedName");
 			Assert.AreEqual(listItemContent.NestedFields.First().Fields.First().Value, "NestedValue");
+		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesAreEqual_Equals()
+		{
+			var firstItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName", "NestedValue"));
+
+			var secondItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName", "NestedValue"));
+			
+			Assert.IsTrue(firstItemContent.Equals(secondItemContent));
+		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByName_NotEquals()
+		{
+			var firstItemContent = new ListItemContent("Name1", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName", "NestedValue"));
+
+			var secondItemContent = new ListItemContent("Name2", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName", "NestedValue"));
+			
+			Assert.IsFalse(firstItemContent.Equals(secondItemContent));
+		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByNestedValueName_NotEquals()
+		{
+			var firstItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName1", "NestedValue"));
+
+			var secondItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName2", "NestedValue"));
+			
+			Assert.IsFalse(firstItemContent.Equals(secondItemContent));
+		}
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByNestedValuesCounts_NotEquals()
+		{
+			var firstItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName1", "NestedValue"));
+
+			var secondItemContent = new ListItemContent("Name", "Value");
+			
+			Assert.IsFalse(firstItemContent.Equals(secondItemContent));
+		}
+
+		[TestMethod]
+		public void EqualsTest_CompareWithNull_NotEquals()
+		{
+			var firstItemContent = new ListItemContent("Name", "Value")
+				.AddNestedItem(ListItemContent.Create("NestedName1", "NestedValue"));
+			
+			Assert.IsFalse(firstItemContent.Equals(null));
 		}
 	}
 }

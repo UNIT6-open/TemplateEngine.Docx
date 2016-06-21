@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TemplateEngine.Docx
 {
-	public class ListItemContent:Container
+	public class ListItemContent : Container, IEquatable<ListItemContent>
 	{
 		public ICollection<ListItemContent> NestedFields { get; set; }
 
 		#region ctors
+
+		public ListItemContent()
+		{
+			
+		}
+
 		public ListItemContent(params IContentItem[] contentItems):base(contentItems)
         {
             
@@ -40,7 +47,7 @@ namespace TemplateEngine.Docx
 
 		#endregion
 
-		#region fluent
+		#region Fluent
 
 		public static ListItemContent Create(string name, string value, params ListItemContent[] nestedfields)
 		{
@@ -83,5 +90,28 @@ namespace TemplateEngine.Docx
 
 		#endregion
 
+		#region Equals
+		public bool Equals(ListItemContent other)
+		{
+			if (other == null) return false;
+
+			var equals = base.Equals(other);
+	
+			if (NestedFields != null)
+				return equals && NestedFields.SequenceEqual(other.NestedFields);
+
+			return equals;
+		}
+		public override int GetHashCode()
+		{
+			var nestedHc = 0;
+			
+			nestedHc = NestedFields.Aggregate(nestedHc, (current, p) => current ^ p.GetHashCode());
+			var baseHc = base.GetHashCode();
+
+			return new { baseHc, nestedHc }.GetHashCode();
+		}
+
+		#endregion
 	}
 }

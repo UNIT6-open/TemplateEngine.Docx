@@ -94,5 +94,111 @@ namespace TemplateEngine.Docx.Tests
 			Assert.AreEqual(listContent.Items.First().Fields.First().Name, "ItemName");
 			Assert.AreEqual(listContent.Items.First().Fields.First().Value, "Name");
 		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesAreEqual_Equals()
+		{
+			var firstListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value2",
+					new ListItemContent("Subsubheader", "value"))));
+
+			var secondListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value2",
+					new ListItemContent("Subsubheader", "value"))));
+
+
+			Assert.IsTrue(firstListContent.Equals(secondListContent));
+		}
+
+
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByName_NotEquals()
+		{
+			var firstListContent = new ListContent("Name1",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value2",
+					new ListItemContent("Subsubheader", "value"))));
+
+			var secondListContent = new ListContent("Name2",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value2",
+					new ListItemContent("Subsubheader", "value"))));
+
+
+			Assert.IsFalse(firstListContent.Equals(secondListContent));
+		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByListItemValue_NotEquals()
+		{
+			var firstListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value1",
+					new ListItemContent("Subsubheader", "value"))));
+
+			var secondListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value2",
+					new ListItemContent("Subsubheader", "value"))));
+
+
+			Assert.IsFalse(firstListContent.Equals(secondListContent));
+		}
+
+		[TestMethod]
+		public void EqualsTest_ValuesDifferByNestedValue_NotEquals()
+		{
+			var firstListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value",
+					new ListItemContent("Subsubheader1", "value"))));
+
+			var secondListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value",
+					new ListItemContent("Subsubheader2", "value"))));
+
+
+			Assert.IsFalse(firstListContent.Equals(secondListContent));
+		}
+		[TestMethod]
+		public void EqualsTest_CompareWithNull_NotEquals()
+		{
+			var firstListContent = new ListContent("Name",
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value")),
+			new ListItemContent("Header", "value",
+				new ListItemContent("Subheader", "value"),
+				new ListItemContent("Subheader", "value",
+					new ListItemContent("Subsubheader1", "value"))));
+			
+			Assert.IsFalse(firstListContent.Equals(null));
+		}
 	}
 }
