@@ -77,6 +77,28 @@ namespace TemplateEngine.Docx.Tests
 		}
 
 		[TestMethod]
+		public void ContentSerializationTest_EmptyContentSerializeToJson_Success()
+		{
+			var valuesToFill = new Content();
+
+			var serialized = JsonConvert.SerializeObject(valuesToFill);
+
+			Assert.AreEqual("{\"Tables\":[],\"Lists\":[],\"Fields\":[],\"Images\":[]}", serialized);
+		}
+
+		[TestMethod]
+		public void ContentDeserializationTest_EmptyContentDeserializeFromJson_Success()
+		{
+			var valuesToFill = new Content();
+
+			const string serialized = "{\"Tables\":[],\"Lists\":[],\"Fields\":[],\"Images\":[]}";
+
+			var deserialized = JsonConvert.DeserializeObject<Content>(serialized);
+
+			Assert.IsTrue(valuesToFill.Equals(deserialized));
+		}
+
+		[TestMethod]
 		public void EqualsTest_ObjectsAreEqual_Equals()
 		{
 			
