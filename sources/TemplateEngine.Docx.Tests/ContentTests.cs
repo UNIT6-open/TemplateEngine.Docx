@@ -14,6 +14,7 @@ namespace TemplateEngine.Docx.Tests
 			var valuesToFill = new Content(
 				// Add field.
 				new FieldContent("Report date", new DateTime(2000, 01, 01).ToShortDateString()),
+				
 				// Add table.
 				new TableContent("Team Members Table")
 					.AddRow(

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Packaging;
+using TemplateEngine.Docx.Errors;
 using TemplateEngine.Docx.Processors;
 
 
@@ -56,13 +58,31 @@ namespace TemplateEngine.Docx
 	    }
 
 		public TemplateProcessor FillContent(Content content)
-        {
-			var processResult =
-		        new ContentProcessor(
-					new ProcessContext(_wordDocument))
-					.SetRemoveContentControls(_isNeedToRemoveContentControls)
-			        .FillContent(Document.Root.Element(W.body), content);
+		{
+			var processor = new ContentProcessor(
+				new ProcessContext(_wordDocument))
+				.SetRemoveContentControls(_isNeedToRemoveContentControls);
 
+			var processResult = processor.FillContent(Document.Root.Element(W.body), content);
+
+			if (_wordDocument.HasFooters)
+			{
+				foreach (var footer in _wordDocument.FooterParts.Values)
+				{
+					var footerProcessResult = processor.FillContent(footer.Element(W.footer), content);
+					processResult.Merge(footerProcessResult);
+				}
+			}
+
+			if (_wordDocument.HasHeaders)
+			{
+				foreach (var header in _wordDocument.HeaderParts.Values)
+				{
+					var headerProcessResult = processor.FillContent(header.Element(W.header), content);
+					processResult.Merge(headerProcessResult);
+				}
+			}
+			
 			if (_isNeedToNoticeAboutErrors)
 				AddErrors(processResult.Errors);
 
@@ -78,7 +98,7 @@ namespace TemplateEngine.Docx
 		/// Adds a list of errors as red text on yellow at the beginning of the document.
 		/// </summary>
 		/// <param name="errors">List of errors.</param>
-	    private void AddErrors(IList<string> errors)
+	    private void AddErrors(IList<IError> errors)
 	    {
 		    if (errors.Any())
 			    Document.Root
@@ -95,7 +115,7 @@ namespace TemplateEngine.Docx
 									    new XAttribute(W.val, "28")),
 								    new XElement(W.highlight,
 									    new XAttribute(W.val, "yellow"))),
-							    new XElement(W.t, s)))));
+							    new XElement(W.t, s.Message)))));
 	    }
 
 	    public void Dispose()

@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace TemplateEngine.Docx
 {
+	[ContentItemName("Image")]
 	public class ImageContent : IContentItem, IEquatable<ImageContent>
     {
         public ImageContent()

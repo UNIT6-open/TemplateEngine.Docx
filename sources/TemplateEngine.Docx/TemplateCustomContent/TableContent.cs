@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace TemplateEngine.Docx
 {
+	[ContentItemName("Table")]
     public class TableContent:IContentItem, IEquatable<TableContent>
     {
 		public string Name { get; set; }

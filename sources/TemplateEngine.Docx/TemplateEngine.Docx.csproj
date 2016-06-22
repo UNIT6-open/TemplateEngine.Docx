@@ -37,6 +37,7 @@
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -50,6 +51,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttributesExtensions.cs" />
+    <Compile Include="ContentItemNameAttribute.cs" />
+    <Compile Include="Errors\CustomError.cs" />
+    <Compile Include="Errors\CustomContentItemError.cs" />
+    <Compile Include="Errors\ContentControlNotFoundError.cs" />
+    <Compile Include="Errors\IError.cs" />
     <Compile Include="R.cs" />
     <Compile Include="ListItem.cs" />
     <Compile Include="ListItemRetriever.cs" />
@@ -81,6 +88,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

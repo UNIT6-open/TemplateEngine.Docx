@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace TemplateEngine.Docx
 {
+	[ContentItemName("List")]
 	public class ListContent : IContentItem, IEquatable<ListContent>
 	{
 		public string Name { get; set; }
