@@ -49,10 +49,6 @@ namespace TemplateEngine.Docx.Processors
 			}
 			contentControl.ReplaceContentControlWithNewValue(field.Value);
 
-			if (item.Name == "Company name")
-			{
-				System.Diagnostics.Trace.WriteLine(item.Name);
-			}
 			processResult.AddItemToHandled(item);
 
 			return processResult;

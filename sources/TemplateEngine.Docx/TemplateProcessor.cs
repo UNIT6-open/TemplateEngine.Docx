@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-using DocumentFormat.OpenXml.InkML;
 using DocumentFormat.OpenXml.Packaging;
 using TemplateEngine.Docx.Errors;
 using TemplateEngine.Docx.Processors;
@@ -24,6 +23,8 @@ namespace TemplateEngine.Docx
 	    public XDocument StylesPart { get { return _wordDocument.StylesPart; } }
 
 	    public IEnumerable<ImagePart> ImagesPart { get { return _wordDocument.ImagesPart; } }
+		public Dictionary<string, XDocument> HeaderParts { get { return _wordDocument.HeaderParts; } }
+		public Dictionary<string, XDocument> FooterParts { get { return _wordDocument.FooterParts; } }
 
 	    private TemplateProcessor(WordprocessingDocument wordDocument)
         {
