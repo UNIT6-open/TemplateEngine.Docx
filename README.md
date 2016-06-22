@@ -532,7 +532,7 @@ namespace TemplateEngine.Docx.Example
 ```
 
 ###Content structure
-![content structure](http://unit6.ru/img/template-engine/Structure.PNG)
+![content structure](http://unit6.ru/img/template-engine/Structure.PNG?ver=2)
 
 Have fun!
 
