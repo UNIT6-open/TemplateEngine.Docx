@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using DocumentFormat.OpenXml.Packaging;
@@ -14,7 +15,18 @@ namespace TemplateEngine.Docx
 		internal XDocument MainDocumentPart { get; private set; }
 		internal XDocument NumberingPart { get; private set; }
 		internal XDocument StylesPart { get; private set; }
+		internal Dictionary<string, XDocument> HeaderParts { get; private set; }
+		internal Dictionary<string, XDocument> FooterParts { get; private set; }
 		internal IEnumerable<ImagePart> ImagesPart { get; private set; }
+
+		internal bool HasHeaders
+		{
+			get { return HeaderParts != null && HeaderParts.Any(); }
+		}
+		internal bool HasFooters
+		{
+			get { return FooterParts != null && FooterParts.Any(); }
+		}
 
 		internal WordDocumentContainer(WordprocessingDocument wordDocument)
 		{
@@ -25,7 +37,10 @@ namespace TemplateEngine.Docx
 			StylesPart = LoadPart(_wordDocument.MainDocumentPart.StyleDefinitionsPart);
 
 			ImagesPart = _wordDocument.MainDocumentPart.ImageParts;
-			
+
+			HeaderParts = LoadMultipleParts(_wordDocument.MainDocumentPart.HeaderParts);
+			FooterParts = LoadMultipleParts(_wordDocument.MainDocumentPart.FooterParts);
+
 		}
 		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null, IEnumerable<ImagePart> imagesPart = null)
 		{
@@ -94,6 +109,22 @@ namespace TemplateEngine.Docx
 					NumberingPart.Save(xw);
 				}
 			}
+
+			foreach (var footerId in FooterParts.Keys)
+			{
+				using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetPartById(footerId).GetStream(FileMode.Create, FileAccess.Write)))
+				{
+					FooterParts[footerId].Save(xw);
+				}
+			}
+			foreach (var headerId in HeaderParts.Keys)
+			{
+				using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetPartById(headerId).GetStream(FileMode.Create, FileAccess.Write)))
+				{
+					HeaderParts[headerId].Save(xw);
+				}
+			}
+
 			_wordDocument.Close();
 		}
 
@@ -119,6 +150,11 @@ namespace TemplateEngine.Docx
 				part = XDocument.Load(xr);
 
 			return part;
+		}
+
+		private Dictionary<string, XDocument> LoadMultipleParts(IEnumerable<OpenXmlPart> partsList)
+		{
+			return partsList.ToDictionary(part => _wordDocument.MainDocumentPart.GetIdOfPart(part), LoadPart);
 		}
 	}
 }

@@ -1143,6 +1143,106 @@ namespace TemplateEngine.Docx.Tests
 				RemoveRembed(processor.Document.ToString().Trim()));
 		}
 
+		[TestMethod]
+		public void FillingFieldsInHeaderAndFooter_WithCorrectValues_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateEmptyWithFieldsInHeaderAndFooter;
+			var expectedHeader = XDocument.Parse(Resources.DocumentWithFieldFilledInHeaderAndFooter_header);
+			var expectedFooter = XDocument.Parse(Resources.DocumentWithFieldFilledInHeaderAndFooter_footer);
+
+
+			var valuesToFill = new Content(
+				new FieldContent("Company name", "Spiderwasp Communications"),
+				new FieldContent("Copyright", "© All rights reserved"));
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.HeaderParts.Count(), 1);
+			Assert.AreEqual(processor.FooterParts.Count(), 1);
+
+			Assert.AreEqual(expectedHeader.ToString().Trim(), processor.HeaderParts.First().Value.ToString().Trim());
+			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
+		}
+		[TestMethod]
+		public void FillingFieldsInHeaderAndFooter_WithCorrectValuesAndRemoveContentControls_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateEmptyWithFieldsInHeaderAndFooter;
+			var expectedHeader = XDocument.Parse(Resources.DocumentWithFieldFilledInHeaderAndFooterAndRemovedCC_header);
+			var expectedFooter = XDocument.Parse(Resources.DocumentWithFieldFilledInHeaderAndFooterAndRemovedCC_footer);
+
+
+			var valuesToFill = new Content(
+				new FieldContent("Company name", "Spiderwasp Communications"),
+				new FieldContent("Copyright", "© All rights reserved"));
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(true)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.HeaderParts.Count(), 1);
+			Assert.AreEqual(processor.FooterParts.Count(), 1);
+
+			Assert.AreEqual(expectedHeader.ToString().Trim(), processor.HeaderParts.First().Value.ToString().Trim());
+			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
+		}
+
+		[TestMethod]
+		public void FillingTwoLists_InMainDocumentAndInFooter_Success()
+		{
+			var templateDocumentDocx = Resources.TemplateWithTwoListsInMainDocumentAndInFooter;
+			var expectedDocument = XDocument.Parse(Resources.DocumentWithTwoListsInMainDocumentAndInFooter_document);
+			var expectedFooter = XDocument.Parse(Resources.DocumentWithTwoListsInMainDocumentAndInFooter_footer);
+
+
+			var valuesToFill = new Content(new ListContent
+			{
+				Name = "Footer",
+				Items = new List<ListItemContent>
+                        {                   
+                             new ListItemContent ("Footer item", "Spiderwasp Communications"),
+                             new ListItemContent ("Footer item", "© All rights reserved")
+                        }
+			},
+					ListContent.Create("Document",
+					ListItemContent.Create("Header", "Introduction"),
+
+					ListItemContent.Create("Header", "Chapter 1 - The new start screen")
+						.AddNestedItem(ListItemContent.Create("Subheader", "What's new in Windows 8?"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Starting Windows 8")),
+
+					ListItemContent.Create("Header", "Chapter 2 - The traditional Desktop")
+						.AddNestedItem(ListItemContent.Create("Subheader", "Browsing the File Explorer"))
+						.AddNestedItem(ListItemContent.Create("Subheader", "Getting the Lowdown on Folders and Libraries")))
+				);
+
+			TemplateProcessor processor;
+
+			using (var ms = new MemoryStream(templateDocumentDocx))
+			{
+				processor = new TemplateProcessor(ms)
+					.SetRemoveContentControls(false)
+					.FillContent(valuesToFill);
+			}
+
+			Assert.AreEqual(processor.FooterParts.Count(), 1);
+
+			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
+			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
+		}
+
+
 	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
 	    {
 		    byte[] resultImage = null;

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace TemplateEngine.Docx
 {
+	[ContentItemName("Field")]
 	public class FieldContent : IContentItem, IEquatable<FieldContent>
 	{
         public FieldContent()

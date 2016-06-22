@@ -8,6 +8,8 @@ namespace TemplateEngine.Docx
             "http://schemas.openxmlformats.org/wordprocessingml/2006/main";
 
         public static XName body = w + "body";
+		public static XName header = w + "hdr";
+		public static XName footer = w + "ftr";
         public static XName sdt = w + "sdt";
         public static XName sdtPr = w + "sdtPr";
         public static XName tag = w + "tag";

@@ -14,7 +14,7 @@ namespace TemplateEngine.Docx.Processors
 		{
 			_processors = new List<IProcessor>
 			{
-				new FieldsProcessor(context),
+				new FieldsProcessor(),
 				new TableProcessor(context),
 				new ListProcessor(context),
                 new ImagesProcessor(context)
@@ -33,13 +33,13 @@ namespace TemplateEngine.Docx.Processors
 
 		public ProcessResult FillContent(XElement content, IEnumerable<IContentItem> data)
 		{
-			var errors = new List<string>();
-			var processedItems = new List<string>();
+			var result = ProcessResult.NotHandledResult; 
+			var processedItems = new List<IContentItem>();
 			data = data.ToList();
 
 			foreach (var contentItems in data.GroupBy(d=>d.Name))
 			{
-				if (processedItems.Contains(contentItems.Key)) continue;
+				if (processedItems.Any(i=>i.Name == contentItems.Key)) continue;
 
 				var contentControls = FindContentControls(content, contentItems.Key).ToList();
 
@@ -49,23 +49,25 @@ namespace TemplateEngine.Docx.Processors
 
 				foreach (var xElement in contentControls)
 				{
-					if (contentItems.Any(item => item is TableContent) && xElement != null)								
-						processedItems.AddRange(ProcessTableFields(data.OfType<FieldContent>(), xElement));
-					
+					if (contentItems.Any(item => item is TableContent) && xElement != null)
+					{
+						var processTableFieldsResult = ProcessTableFields(data.OfType<FieldContent>(), xElement);
+						processedItems.AddRange(processTableFieldsResult.HandledItems);
 
+						result.Merge(processTableFieldsResult);
+					}
+						
 					foreach (var processor in _processors)
 					{
-						var result = processor.FillContent(xElement, contentItems);
-						if (result.Handled && !result.Success)
-							errors.AddRange(result.Errors);
+						var processorResult = processor.FillContent(xElement, contentItems);
+
+						processedItems.AddRange(processorResult.HandledItems);
+						result.Merge(processorResult);
 					}
 				}
-				processedItems.Add(contentItems.Key);
 			}
 
-			return errors.Any()
-				? ProcessResult.ErrorResult(errors)
-				: ProcessResult.SuccessResult;
+			return result;
 		}
 
 		/// <summary>
@@ -74,9 +76,9 @@ namespace TemplateEngine.Docx.Processors
 		/// <param name="fields">Possible fields</param>
 		/// <param name="xElement">Table content control</param>
 		/// <returns>List of content items that were processed</returns>
-		private IEnumerable<string> ProcessTableFields(IEnumerable<FieldContent> fields, XElement xElement)
+		private ProcessResult ProcessTableFields(IEnumerable<FieldContent> fields, XElement xElement)
 		{
-			var processedItems = new List<IContentItem>();
+			var processResult = ProcessResult.NotHandledResult;
 			foreach (var fieldContentControl in fields)
 			{
 				var innerContentControls = FindContentControls(xElement.Element(W.sdtContent), fieldContentControl.Name);
@@ -85,13 +87,13 @@ namespace TemplateEngine.Docx.Processors
 					var processor = _processors.OfType<FieldsProcessor>().FirstOrDefault();
 					if (processor != null)
 					{
-						processor.FillContent(innerContentControl, fieldContentControl);
-						processedItems.Add(fieldContentControl);
+						var result = processor.FillContent(innerContentControl, fieldContentControl);
+						processResult.Merge(result);
 					}
 				}				
 			}
 
-			return processedItems.Select(i=>i.Name).Distinct();
+			return processResult;
 		}
 
 		public ProcessResult FillContent(XElement content, Content data)

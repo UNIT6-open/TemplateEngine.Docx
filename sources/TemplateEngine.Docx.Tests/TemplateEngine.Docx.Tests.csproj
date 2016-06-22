@@ -94,6 +94,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Resources\TemplateEmpty.docx" />
+    <None Include="Resources\TemplateEmptyWithFieldsInHeaderAndFooter.docx" />
     <None Include="Resources\TemplateWithImagesInsideList.docx" />
     <None Include="Resources\TemplateWithImagesInsideTable.docx" />
     <None Include="Resources\TemplateWithSingleImage.docx" />
@@ -127,6 +128,12 @@
     <None Include="Resources\DocumentWithImagesInsideTable.xml" />
     <None Include="Resources\DocumentWithImagesInsideListFilledAndRemovedCC.xml" />
     <None Include="Resources\DocumentWithSingleFieldFilledWithLinebreaks.xml" />
+    <None Include="Resources\DocumentWithFieldFilledInHeaderAndFooter_footer.xml" />
+    <None Include="Resources\DocumentWithFieldFilledInHeaderAndFooter_header.xml" />
+    <None Include="Resources\DocumentWithFieldFilledInHeaderAndFooterAndRemovedCC_footer.xml" />
+    <None Include="Resources\DocumentWithFieldFilledInHeaderAndFooterAndRemovedCC_header.xml" />
+    <None Include="Resources\DocumentWithTwoListsInMainDocumentAndInFooter_document.xml" />
+    <None Include="Resources\DocumentWithTwoListsInMainDocumentAndInFooter_footer.xml" />
     <Content Include="Tesla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -141,6 +148,7 @@
     <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document.xml" />
     <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilled_styles.xml" />
     <None Include="Resources\DocumentWithTwoTablesWithListsInsideFilled_numbering.xml" />
+    <None Include="Resources\TemplateWithTwoListsInMainDocumentAndInFooter.docx" />
     <None Include="Resources\TemplateWithTwoTablesWithListsInside_styles.xml" />
     <None Include="Resources\TemplateWithTwoTablesWithListsInside_numbering.xml" />
     <None Include="Resources\TemplateWithTwoTablesWithListsInside_document.xml" />

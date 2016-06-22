@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using TemplateEngine.Docx.Errors;
 
 namespace TemplateEngine.Docx.Processors
 {
@@ -185,20 +186,20 @@ namespace TemplateEngine.Docx.Processors
 
 		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			var processResult = new ProcessResult();
+			var processResult = ProcessResult.NotHandledResult; 
 			var handled = false;
 
 			foreach (var contentItem in items)
 			{
 				var itemProcessResult = FillContent(contentControl, contentItem);
+				processResult.Merge(itemProcessResult);
+
 				if (!itemProcessResult.Handled) continue;
 
 				handled = true;
-				if (!itemProcessResult.Success)
-					processResult.Errors.AddRange(itemProcessResult.Errors);
 			}
 
-			if (!handled) return ProcessResult.NotHandledResult;
+			if (!handled) return processResult;
 
 			if (processResult.Success && _isNeedToRemoveContentControls)
 			{
@@ -214,7 +215,7 @@ namespace TemplateEngine.Docx.Processors
 
 		private ProcessResult FillContent(XElement contentControl, IContentItem item)
 		{
-			var processResult = new ProcessResult();
+			var processResult = ProcessResult.NotHandledResult; 
 			if (!(item is ListContent))
 			{
 				return ProcessResult.NotHandledResult;
@@ -222,13 +223,10 @@ namespace TemplateEngine.Docx.Processors
 
 			var list = item as ListContent;
 
-			var listName = list.Name;
-
 			// If there isn't a list with that name, add an error to the error string.
 			if (contentControl == null)
 			{
-				processResult.Errors.Add(String.Format("List Content Control '{0}' not found.",
-					listName));
+				processResult.AddError(new ContentControlNotFoundError(list));
 
 				return processResult;
 			}
@@ -240,9 +238,9 @@ namespace TemplateEngine.Docx.Processors
 
 			if (itemsContentControl == null)
 			{
-				processResult.Errors.Add(String.Format(
-					"List Content Control '{0}' doesn't contain content controls in items.",
-					listName));
+				processResult.AddError(
+					new CustomContentItemError(list, "doesn't contain content controls in items"));
+			
 				return processResult;
 			}
 
@@ -253,10 +251,11 @@ namespace TemplateEngine.Docx.Processors
 
 			if (!prototype.IsValid)
 			{
-				processResult.Errors.Add(String.Format(
-					"List Content Control '{0}' doesn't contain items with content controls {1}.",
-					listName,
-					string.Join(", ", fieldNames)));
+				processResult.AddError(
+					new CustomContentItemError(list, 
+						String.Format("doesn't contain items with content controls {0}",
+						string.Join(", ", fieldNames))));
+
 				return processResult;
 			}
 
@@ -266,14 +265,14 @@ namespace TemplateEngine.Docx.Processors
 			// Propagates a prototype.
 			var propagationResult = PropagatePrototype(prototype, list.Items);
 
-			if (!propagationResult.Success)
-			{
-				processResult.Errors.AddRange(propagationResult.Errors);
-			}
+			processResult.Merge(propagationResult);
+			
 			// Remove the prototype row and add all of the newly constructed rows.
 			prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
 			prototype.PrototypeItems.Remove();
 
+			processResult.AddItemToHandled(list);
+			
 			return processResult;
 		}
 
@@ -290,9 +289,9 @@ namespace TemplateEngine.Docx.Processors
 				
 				if (currentLevelPrototype == null || !currentLevelPrototype.IsValid)
 				{
-					processResult.Errors.Add(
+					processResult.AddError(new CustomError(
 						string.Format("Prototype for list item '{0}' not found", 
-						string.Join(", ", contentItem.FieldNames)));
+							string.Join(", ", contentItem.FieldNames))));
 
 					continue;
 				}
@@ -314,7 +313,10 @@ namespace TemplateEngine.Docx.Processors
 						var fieldContent = contentItem.GetContentItem(sdt.SdtTagName());
 						if (fieldContent == null)
 						{
-							processResult.Errors.Add(string.Format("Field content for field '{0}' not found", sdt.SdtTagName()));
+							processResult.AddError(new CustomError(
+								string.Format("Field content for field '{0}' not found", 
+								sdt.SdtTagName())));
+
 							continue;
 						}
 						
@@ -322,8 +324,7 @@ namespace TemplateEngine.Docx.Processors
 							.SetRemoveContentControls(_isNeedToRemoveContentControls)
 							.FillContent(sdt, fieldContent);
 
-						if (!contentProcessResult.Success)
-							processResult.Errors.AddRange(processResult.Errors);
+						processResult.Merge(contentProcessResult);
 						
 						
 					}

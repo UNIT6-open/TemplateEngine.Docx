@@ -13,7 +13,13 @@ namespace TemplateEngine.Docx.Example
 
 			var valuesToFill = new Content(
 				// Add field.
-				new FieldContent("Report date", DateTime.Now.ToString()),
+				new FieldContent("Report date", DateTime.Now.ToShortDateString()),
+
+				// Add field in header.
+				new FieldContent("Company name", "Spiderwasp Communications"),
+
+				// Add field in footer.
+				new FieldContent("Copyright", "© All rights reserved"),
 
 				// Add table.
 				new TableContent("Team Members Table")
@@ -23,10 +29,8 @@ namespace TemplateEngine.Docx.Example
 					.AddRow(
 						new FieldContent("Name", "Bob"),
 						new FieldContent("Role", "Developer")),
-
 				// Add field inside table that not to propagate.
 				new FieldContent("Count", "2"),
-
 				// Add list.	
 				new ListContent("Team Members List")
 					.AddItem(
@@ -180,6 +184,7 @@ namespace TemplateEngine.Docx.Example
 						  1879, 1955)),
 					  new FieldContent("Info",
 						  "German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation')."))
+
 			);
 
 			using (var outputDocument = new TemplateProcessor("OutputDocument.docx")

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using TemplateEngine.Docx.Errors;
 
 namespace TemplateEngine.Docx.Processors
 {
@@ -22,7 +23,7 @@ namespace TemplateEngine.Docx.Processors
 		
 		public ProcessResult FillContent(XElement contentControl, IEnumerable<IContentItem> items)
 		{
-			var processResult = new ProcessResult();
+			var processResult = ProcessResult.NotHandledResult; 
 			var handled = false;
 			
 			foreach (var contentItem in items)
@@ -31,8 +32,8 @@ namespace TemplateEngine.Docx.Processors
 				if (!itemProcessResult.Handled) continue;
 
 				handled = true;
-				if (!itemProcessResult.Success)
-					processResult.Errors.AddRange(itemProcessResult.Errors);
+
+				processResult.Merge(itemProcessResult);
 			}
 
 			if (!handled) return ProcessResult.NotHandledResult;
@@ -58,20 +59,16 @@ namespace TemplateEngine.Docx.Processors
 		{
 			if (!(item is TableContent))
 				return ProcessResult.NotHandledResult;
-			
-			var processResult = new ProcessResult();
+
+			var processResult = ProcessResult.NotHandledResult; 
 
 			var table = item as TableContent;
-
-			// Find the content control with Table Name
-			var tableName = table.Name;
 
 			// If there isn't a table with that name, add an error to the error string,
 			// and continue with next table.
 			if (contentControl == null)
 			{
-				processResult.Errors.Add(String.Format("Table Content Control '{0}' not found.",
-					tableName));
+				processResult.AddError(new ContentControlNotFoundError(table));
 
 				return processResult;
 			}
@@ -82,9 +79,9 @@ namespace TemplateEngine.Docx.Processors
 				.FirstOrDefault();
 			if (cellContentControl == null)
 			{
-				processResult.Errors.Add(String.Format(
-					"Table Content Control '{0}' doesn't contain content controls in cells.",
-					tableName));
+				processResult.AddError(new CustomContentItemError(table,
+					string.Format("doesn't contain content controls in cells")));
+
 				return processResult;
 			}
 
@@ -107,11 +104,12 @@ namespace TemplateEngine.Docx.Processors
 					.Where(fn => !contentControlTagNames.Contains(fn))
 					.ToList();
 
-				processResult.Errors.Add(String.Format(
-					"Table Content Control '{0}' doesn't contain rows with cell content {1} {2}.",
-					tableName,
-					invalidFileNames.Count > 1 ? "controls" : "control",
-					string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn)))));
+				processResult.AddError(
+					new CustomContentItemError(table, 
+					String.Format("doesn't contain rows with cell content {0} {1}",
+						invalidFileNames.Count > 1 ? "controls" : "control",
+						string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn))))));
+
 			}
 
 
@@ -139,8 +137,7 @@ namespace TemplateEngine.Docx.Processors
 							.SetRemoveContentControls(_isNeedToRemoveContentControls)
 							.FillContent(sdt, content);
 
-						if (!contentProcessResult.Success)
-							processResult.Errors.AddRange(processResult.Errors);
+						processResult.Merge(contentProcessResult);
 					}
 				}
 
@@ -153,6 +150,8 @@ namespace TemplateEngine.Docx.Processors
 
 			// Remove the prototype rows
 			prototypeRows.Remove();
+
+			processResult.AddItemToHandled(table);
 
 			return processResult;
 		}
