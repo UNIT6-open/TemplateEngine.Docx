@@ -15,7 +15,8 @@ namespace TemplateEngine.Docx.Processors
 			_processors = new List<IProcessor>
 			{
 				new FieldsProcessor(),
-				new TableProcessor(context),
+                new RepeatProcessor(context),
+                new TableProcessor(context),
 				new ListProcessor(context),
                 new ImagesProcessor(context)
 			};
