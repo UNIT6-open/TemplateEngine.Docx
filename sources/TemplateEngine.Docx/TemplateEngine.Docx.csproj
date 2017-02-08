@@ -58,6 +58,7 @@
     <Compile Include="Errors\CustomContentItemError.cs" />
     <Compile Include="Errors\ContentControlNotFoundError.cs" />
     <Compile Include="Errors\IError.cs" />
+    <Compile Include="Processors\RepeatProcessor.cs" />
     <Compile Include="R.cs" />
     <Compile Include="ListItem.cs" />
     <Compile Include="ListItemRetriever.cs" />
@@ -76,9 +77,11 @@
     <Compile Include="TemplateCustomContent\FieldContent.cs" />
     <Compile Include="TemplateCustomContent\IContentItem.cs" />
     <Compile Include="TemplateCustomContent\Container.cs" />
+    <Compile Include="TemplateCustomContent\RepeatContent.cs" />
     <Compile Include="TemplateCustomContent\ListContent.cs" />
     <Compile Include="TemplateCustomContent\ListItemContent.cs" />
     <Compile Include="TemplateCustomContent\TableContent.cs" />
+    <Compile Include="TemplateCustomContent\RepeatItemContent.cs" />
     <Compile Include="TemplateCustomContent\TableRowContent.cs" />
     <Compile Include="TemplateProcessor.cs" />
     <Compile Include="A.cs" />

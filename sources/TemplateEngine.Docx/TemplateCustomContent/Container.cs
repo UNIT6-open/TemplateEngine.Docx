@@ -11,8 +11,9 @@ namespace TemplateEngine.Docx
 	{
 		protected Container()
 		{
-			
-				Lists = new List<ListContent>();
+
+                Repeats = new List<RepeatContent>();
+                Lists = new List<ListContent>();
 				Tables = new List<TableContent>();
 				Fields = new List<FieldContent>();
 				Images = new List<ImageContent>();
@@ -22,7 +23,8 @@ namespace TemplateEngine.Docx
 		{
 			if (contentItems != null)
 			{
-				Lists = contentItems.OfType<ListContent>().ToList();
+                Repeats = contentItems.OfType<RepeatContent>().ToList();
+                Lists = contentItems.OfType<ListContent>().ToList();
 				Tables = contentItems.OfType<TableContent>().ToList();
 				Fields = contentItems.OfType<FieldContent>().ToList();
                 Images = contentItems.OfType<ImageContent>().ToList();
@@ -35,7 +37,8 @@ namespace TemplateEngine.Docx
 			{
 				var result = new List<IContentItem>();
 
-				if (Tables != null) result = result.Concat(Tables).ToList();
+                if (Repeats != null) result = result.Concat(Repeats).ToList();
+                if (Tables != null) result = result.Concat(Tables).ToList();
 				if (Lists != null) result = result.Concat(Lists).ToList();
 				if (Fields != null) result = result.Concat(Fields).ToList();
                 if (Images != null) result = result.Concat(Images).ToList();
@@ -44,7 +47,9 @@ namespace TemplateEngine.Docx
 			}
 		}
 
-		public ICollection<TableContent> Tables { get; set; }
+        public ICollection<RepeatContent> Repeats { get; set; }
+
+        public ICollection<TableContent> Tables { get; set; }
 
 		public ICollection<ListContent> Lists { get; set; }
 
@@ -62,7 +67,12 @@ namespace TemplateEngine.Docx
 		{
 			get
 			{
-				var tablesFieldNames = Tables == null
+                var repeatsFieldNames = Repeats == null
+                    ? new List<string>()
+                    : Repeats.Select(t => t.Name)
+                        .Concat(Repeats.SelectMany(t => t.Items.SelectMany(r => r.FieldNames)));
+
+                var tablesFieldNames = Tables == null
 					? new List<string>()
 					: Tables.Select(t => t.Name)
 						.Concat(Tables.SelectMany(t => t.Rows.SelectMany(r => r.FieldNames)));
@@ -78,8 +88,9 @@ namespace TemplateEngine.Docx
 
 				var fieldNames = Fields == null ? new List<string>() : Fields.Select(f => f.Name);
 
-				return tablesFieldNames
-					.Concat(listsFieldNames)
+				return repeatsFieldNames
+                    .Concat(tablesFieldNames)
+                    .Concat(listsFieldNames)
 					.Concat(imagesFieldNames)
 					.Concat(fieldNames);
 			}
