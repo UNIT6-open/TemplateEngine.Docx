@@ -26,7 +26,7 @@ namespace TemplateEngine.Docx.Processors
 
         #region methods
 
-        private PropagationProcessResult PropagatePrototype(Prototype prototype, IEnumerable<RepeatItemContent> content)
+        private PropagationProcessResult PropagatePrototype(Prototype prototype, IEnumerable<Content> content)
         {
             var processResult = new PropagationProcessResult();
             var newRows = new List<XElement>();

@@ -1164,8 +1164,8 @@ namespace TemplateEngine.Docx.Tests
 					.FillContent(valuesToFill);
 			}
 
-			Assert.AreEqual(processor.HeaderParts.Count(), 1);
-			Assert.AreEqual(processor.FooterParts.Count(), 1);
+			Assert.AreEqual(processor.HeaderParts.Count, 1);
+			Assert.AreEqual(processor.FooterParts.Count, 1);
 
 			Assert.AreEqual(expectedHeader.ToString().Trim(), processor.HeaderParts.First().Value.ToString().Trim());
 			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
@@ -1191,8 +1191,8 @@ namespace TemplateEngine.Docx.Tests
 					.FillContent(valuesToFill);
 			}
 
-			Assert.AreEqual(processor.HeaderParts.Count(), 1);
-			Assert.AreEqual(processor.FooterParts.Count(), 1);
+			Assert.AreEqual(processor.HeaderParts.Count, 1);
+			Assert.AreEqual(processor.FooterParts.Count, 1);
 
 			Assert.AreEqual(expectedHeader.ToString().Trim(), processor.HeaderParts.First().Value.ToString().Trim());
 			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
@@ -1236,12 +1236,158 @@ namespace TemplateEngine.Docx.Tests
 					.FillContent(valuesToFill);
 			}
 
-			Assert.AreEqual(processor.FooterParts.Count(), 1);
+			Assert.AreEqual(processor.FooterParts.Count, 1);
 
 			Assert.AreEqual(expectedDocument.ToString().Trim(), processor.Document.ToString().Trim());
 			Assert.AreEqual(expectedFooter.ToString().Trim(), processor.FooterParts.First().Value.ToString().Trim());
 		}
 
+        [TestMethod]
+        public void FillingRepeatContent_WithCorrectValues_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithRepeatContentWithImagesAndFields;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithRepeatContentWithImagesAndFields_document);
+
+            var valuesToFill = new Content(new RepeatContent("Repeats")
+                .AddItem(new FieldContent("Name", "Nicola Tesla"),
+                    new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1856, 1943)),
+                    new FieldContent("Info",
+                        "Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"))
+                .AddItem(new FieldContent("Name", "Thomas Edison"),
+                    new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1847, 1931)),
+                    new FieldContent("Info",
+                        "American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."))
+                .AddItem(new FieldContent("Name", "Albert Einstein"),
+                    new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1879, 1955)),
+                    new FieldContent("Info",
+                        "German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation').")));
+
+
+            TemplateProcessor processor;
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+                processor = new TemplateProcessor(ms)
+                    .FillContent(valuesToFill);
+            }
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), RemoveRembed(processor.Document.ToString().Trim()));
+        }
+
+        [TestMethod]
+        public void FillingRepeatContent_WithCorrectValuesAndRemoveContentControls_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithRepeatContentWithImagesAndFields;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithRepeatContentWithImagesAndFieldsAndRemovedCC_document);
+            
+            var valuesToFill = new Content(new RepeatContent("Repeats")
+                .AddItem(new FieldContent("Name", "Nicola Tesla"),
+                    new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1856, 1943)),
+                    new FieldContent("Info",
+                        "Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"))
+                .AddItem(new FieldContent("Name", "Thomas Edison"),
+                    new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1847, 1931)),
+                    new FieldContent("Info",
+                        "American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."))
+                .AddItem(new FieldContent("Name", "Albert Einstein"),
+                    new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+                    new FieldContent("Dates of life", string.Format("{0}-{1}",
+                        1879, 1955)),
+                    new FieldContent("Info",
+                        "German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation').")));
+            
+
+            TemplateProcessor processor;
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(true)
+                    .FillContent(valuesToFill);
+            }
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()), RemoveRembed(processor.Document.ToString().Trim()));
+        }
+        
+        [TestMethod]
+        public void FillingRepeatContent_WithImageTableAndList_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithRepeatContentWithImageTableAndList;
+           
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithRepeatContentWithImageTableAndList_document);
+
+            var valuesToFill = new Content(new RepeatContent("Scientists")
+                .AddItem(new FieldContent("Name", "Nicola Tesla"),
+                    new ImageContent("Photo", File.ReadAllBytes("Tesla.jpg")),
+                    new FieldContent("Info",
+                        "Serbian American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for his contributions to the design of the modern alternating current (AC) electricity supply system"),
+                    new TableContent("Awards")
+                        .AddRow(new FieldContent("Award Name", "Order of St. Sava, II Class"), new FieldContent("Award Date", "1892"))
+                        .AddRow(new FieldContent("Award Name", "Elliott Cresson Medal"), new FieldContent("Award Date", "1894"))
+                        .AddRow(new FieldContent("Award Name", "Order of Prince Danilo I"), new FieldContent("Award Date", "1895"))
+                        .AddRow(new FieldContent("Award Name", "..."), new FieldContent("Award Date", "")),
+                    new ListContent("Inventions")
+                        .AddItem(new ListItemContent("Invention", "Rotating Magnetic Field"))
+                        .AddItem(new ListItemContent("Invention", "AC Motor"))
+                        .AddItem(new ListItemContent("Invention", "Tesla coil"))
+                        .AddItem(new ListItemContent("Invention", "...")))
+                 .AddItem(new FieldContent("Name", "Thomas Edison"),
+                    new ImageContent("Photo", File.ReadAllBytes("Edison.jpg")),
+                    new FieldContent("Info",
+                       "American inventor and businessman. He developed many devices that greatly influenced life around the world, including the phonograph, the motion picture camera, and the long-lasting, practical electric light bulb."),
+                    new TableContent("Awards")
+                        .AddRow(new FieldContent("Award Name", "Matteucci Medal"), new FieldContent("Award Date", "1887"))
+                        .AddRow(new FieldContent("Award Name", "Edward Longstreth Medal"), new FieldContent("Award Date", "1899"))
+                        .AddRow(new FieldContent("Award Name", "..."), new FieldContent("Award Date", "")),
+                    new ListContent("Inventions")
+                        .AddItem(new ListItemContent("Invention", "The Phonograph"))
+                        .AddItem(new ListItemContent("Invention", "The Carbon Microphone"))
+                        .AddItem(new ListItemContent("Invention", "The Incandescent Light Bulb"))
+                        .AddItem(new ListItemContent("Invention", "...")))
+                 .AddItem(new FieldContent("Name", "Albert Einstein"),
+                    new ImageContent("Photo", File.ReadAllBytes("Einstein.jpg")),
+                    new FieldContent("Info",
+                       "German-born theoretical physicist. He developed the general theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). Einstein's work is also known for its influence on the philosophy of science. Einstein is best known in popular culture for his mass–energy equivalence formula E = mc2 (which has been dubbed 'the world's most famous equation')."),
+                    new TableContent("Awards")
+                        .AddRow(new FieldContent("Award Name", "Copley Medal"), new FieldContent("Award Date", "1925"))
+                        .AddRow(new FieldContent("Award Name", "Franklin Medal"), new FieldContent("Award Date", "1936"))
+                        .AddRow(new FieldContent("Award Name", "..."), new FieldContent("Award Date", "")),
+                    new ListContent("Inventions")
+                        .AddItem(new ListItemContent("Invention", "Brownian movement"))
+                        .AddItem(new ListItemContent("Invention", "The quantum theory of light"))
+                        .AddItem(new ListItemContent("Invention", "The special theory of relativity"))
+                        .AddItem(new ListItemContent("Invention", "The link between mass and energy"))
+                        .AddItem(new ListItemContent("Invention", "..."))));
+
+
+            TemplateProcessor processor;
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(true)
+                    .FillContent(valuesToFill);
+            }
+
+
+            Assert.AreEqual(3, processor.ImagesPart.Count());
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()),
+                RemoveRembed(processor.Document.ToString().Trim()));
+        }
 
 	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
 	    {

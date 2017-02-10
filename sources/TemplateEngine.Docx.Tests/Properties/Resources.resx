@@ -403,4 +403,19 @@
   <data name="TemplateWithTwoListsInMainDocumentAndInFooter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TemplateWithTwoListsInMainDocumentAndInFooter.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="DocumentWithRepeatContentWithImagesAndFieldsAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithRepeatContentWithImagesAndFieldsAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithRepeatContentWithImagesAndFields" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithRepeatContentWithImagesAndFields.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="DocumentWithRepeatContentWithImagesAndFields_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithRepeatContentWithImagesAndFields_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithRepeatContentWithImageTableAndList_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithRepeatContentWithImageTableAndList_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TemplateWithRepeatContentWithImageTableAndList" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TemplateWithRepeatContentWithImageTableAndList.docx;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

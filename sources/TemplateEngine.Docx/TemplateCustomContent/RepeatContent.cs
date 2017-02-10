@@ -12,7 +12,7 @@ namespace TemplateEngine.Docx
 
         public string Name { get; set; }
 
-		public ICollection<RepeatItemContent> Items { get; set; }
+		public ICollection<Content> Items { get; set; }
 
         public IEnumerable<string> FieldNames
         {
@@ -35,13 +35,13 @@ namespace TemplateEngine.Docx
             Name = name;
         }
 
-		public RepeatContent(string name, IEnumerable<RepeatItemContent> items)
+		public RepeatContent(string name, IEnumerable<Content> items)
             : this(name)
         {
             Items = items.ToList();
         }
 
-		public RepeatContent(string name, params RepeatItemContent[] items)
+		public RepeatContent(string name, params Content[] items)
             : this(name)
         {
 			Items = items.ToList();
@@ -51,25 +51,25 @@ namespace TemplateEngine.Docx
 
 		#region Fluent
 
-		public static RepeatContent Create(string name, params RepeatItemContent[] items)
+		public static RepeatContent Create(string name, params Content[] items)
         {
 			return new RepeatContent(name, items);
         }
-		public static RepeatContent Create(string name, IEnumerable<RepeatItemContent> items)
+		public static RepeatContent Create(string name, IEnumerable<Content> items)
         {
 			return new RepeatContent(name, items);
         }
 
-		public RepeatContent AddItem(RepeatItemContent item)
+		public RepeatContent AddItem(Content item)
 		{
-			if (Items == null) Items = new Collection<RepeatItemContent>();
+			if (Items == null) Items = new Collection<Content>();
 			Items.Add(item);
 			return this;
 		}
 		public RepeatContent AddItem(params IContentItem[] contentItems)
 		{
-			if (Items == null) Items = new Collection<RepeatItemContent>();
-			Items.Add(new RepeatItemContent(contentItems));
+			if (Items == null) Items = new Collection<Content>();
+			Items.Add(new Content(contentItems));
 			return this;
 		}
 

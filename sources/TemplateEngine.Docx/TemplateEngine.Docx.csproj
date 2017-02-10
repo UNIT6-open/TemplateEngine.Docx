@@ -81,7 +81,6 @@
     <Compile Include="TemplateCustomContent\ListContent.cs" />
     <Compile Include="TemplateCustomContent\ListItemContent.cs" />
     <Compile Include="TemplateCustomContent\TableContent.cs" />
-    <Compile Include="TemplateCustomContent\RepeatItemContent.cs" />
     <Compile Include="TemplateCustomContent\TableRowContent.cs" />
     <Compile Include="TemplateProcessor.cs" />
     <Compile Include="A.cs" />

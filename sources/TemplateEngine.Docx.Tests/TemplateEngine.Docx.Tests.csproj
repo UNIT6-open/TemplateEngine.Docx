@@ -40,9 +40,9 @@
       <Private>True</Private>
       <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=3.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.3.5.8\lib\35\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -66,14 +66,15 @@
   <ItemGroup>
     <Compile Include="ContentTests.cs" />
     <Compile Include="FieldContentTests.cs" />
-    <Compile Include="ListContentTests.cs" />
-    <Compile Include="ListItemContentTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RepeatContentTests.cs" />
+    <Compile Include="ListContentTests.cs" />
+    <Compile Include="ListItemContentTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableContentTests.cs" />
     <Compile Include="TableRowContentTests.cs" />
     <Compile Include="TemplateProcessorTests.cs" />
@@ -97,6 +98,9 @@
     <None Include="Resources\TemplateEmptyWithFieldsInHeaderAndFooter.docx" />
     <None Include="Resources\TemplateWithImagesInsideList.docx" />
     <None Include="Resources\TemplateWithImagesInsideTable.docx" />
+    <None Include="Resources\TemplateWithRepeatContentWithImagesAndFields.docx" />
+    <None Include="Resources\TemplateWithRepeatContentWithImagesAndFieldsAndRemovedCC.docx" />
+    <None Include="Resources\TemplateWithRepeatContentWithImageTableAndList.docx" />
     <None Include="Resources\TemplateWithSingleImage.docx" />
     <None Include="Resources\TemplateWithSingleTable.xml" />
   </ItemGroup>
@@ -134,6 +138,14 @@
     <None Include="Resources\DocumentWithFieldFilledInHeaderAndFooterAndRemovedCC_header.xml" />
     <None Include="Resources\DocumentWithTwoListsInMainDocumentAndInFooter_document.xml" />
     <None Include="Resources\DocumentWithTwoListsInMainDocumentAndInFooter_footer.xml" />
+    <None Include="Resources\DocumentWithRepeatContentWithImagesAndFields_document.xml" />
+    <None Include="Resources\DocumentWithRepeatContentWithImagesAndFieldsAndRemovedCC_document.xml" />
+    <None Include="Resources\DocumentWithRepeatContentWithImageTableAndList_document.xml" />
+    <None Include="Resources\DocumentWithRepeatContentWithImageTableAndList_numbering.xml" />
+    <None Include="Resources\DocumentWithRepeatContentWithImageTableAndList_styles.xml" />
+    <None Include="Resources\TemplateWithRepeatContentWithImageTableAndList_document.xml" />
+    <None Include="Resources\TemplateWithRepeatContentWithImageTableAndList_numbering.xml" />
+    <None Include="Resources\TemplateWithRepeatContentWithImageTableAndList_styles.xml" />
     <Content Include="Tesla.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
