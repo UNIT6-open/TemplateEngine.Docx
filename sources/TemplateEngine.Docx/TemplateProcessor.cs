@@ -23,8 +23,45 @@ namespace TemplateEngine.Docx
 	    public XDocument StylesPart { get { return _wordDocument.StylesPart; } }
 
 	    public IEnumerable<ImagePart> ImagesPart { get { return _wordDocument.ImagesPart; } }
-		public Dictionary<string, XDocument> HeaderParts { get { return _wordDocument.HeaderParts; } }
-		public Dictionary<string, XDocument> FooterParts { get { return _wordDocument.FooterParts; } }
+
+		public Dictionary<string, XDocument> HeaderParts {
+			get
+			{
+				return _wordDocument.HeaderParts
+					.Select(x => new {x.Identifier, x.MainDocumentPart})
+					.ToDictionary(x => x.Identifier, y => y.MainDocumentPart);
+			}
+		}
+
+        public Dictionary<string, IEnumerable<ImagePart>> HeaderImagesParts
+        {
+            get
+            {
+                return _wordDocument.HeaderParts
+                    .Select(x => new { x.Identifier, x.ImagesPart })
+                    .ToDictionary(x => x.Identifier, y => y.ImagesPart);
+            }
+        }
+
+		public Dictionary<string, XDocument> FooterParts
+		{
+			get
+			{
+				return _wordDocument.FooterParts
+					.Select(x => new { x.Identifier, x.MainDocumentPart })
+					.ToDictionary(x => x.Identifier, y => y.MainDocumentPart);
+			}
+		}
+
+        public Dictionary<string, IEnumerable<ImagePart>> FooterImagesParts
+        {
+            get
+            {
+                return _wordDocument.FooterParts
+                    .Select(x => new { x.Identifier, x.ImagesPart })
+                    .ToDictionary(x => x.Identifier, y => y.ImagesPart);
+            }
+        }
 
 	    private TemplateProcessor(WordprocessingDocument wordDocument)
         {
@@ -68,18 +105,26 @@ namespace TemplateEngine.Docx
 
 			if (_wordDocument.HasFooters)
 			{
-				foreach (var footer in _wordDocument.FooterParts.Values)
+				foreach (var footer in _wordDocument.FooterParts)
 				{
-					var footerProcessResult = processor.FillContent(footer.Element(W.footer), content);
+					var footerProcessor = new ContentProcessor(
+				        new ProcessContext(footer))
+				        .SetRemoveContentControls(_isNeedToRemoveContentControls);
+
+					var footerProcessResult = footerProcessor.FillContent(footer.MainDocumentPart.Element(W.footer), content);
 					processResult.Merge(footerProcessResult);
 				}
 			}
 
 			if (_wordDocument.HasHeaders)
 			{
-				foreach (var header in _wordDocument.HeaderParts.Values)
+				foreach (var header in _wordDocument.HeaderParts)
 				{
-					var headerProcessResult = processor.FillContent(header.Element(W.header), content);
+					var headerProcessor = new ContentProcessor(
+			            new ProcessContext(header))
+			            .SetRemoveContentControls(_isNeedToRemoveContentControls);
+
+					var headerProcessResult = headerProcessor.FillContent(header.MainDocumentPart.Element(W.header), content);
 					processResult.Merge(headerProcessResult);
 				}
 			}

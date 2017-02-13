@@ -8,15 +8,15 @@ using DocumentFormat.OpenXml.Packaging;
 
 namespace TemplateEngine.Docx
 {
-	internal class WordDocumentContainer:IDisposable
+	internal class WordDocumentContainer : IDisposable, IDocumentContainer
 	{
 		private readonly WordprocessingDocument _wordDocument;
 
-		internal XDocument MainDocumentPart { get; private set; }
-		internal XDocument NumberingPart { get; private set; }
-		internal XDocument StylesPart { get; private set; }
-		internal Dictionary<string, XDocument> HeaderParts { get; private set; }
-		internal Dictionary<string, XDocument> FooterParts { get; private set; }
+		public XDocument MainDocumentPart { get; private set; }
+		public XDocument NumberingPart { get; private set; }
+		public XDocument StylesPart { get; private set; }
+		internal List<NestedWordDocumentContainer> HeaderParts { get; private set; }
+		internal List<NestedWordDocumentContainer> FooterParts { get; private set; }
 		internal IEnumerable<ImagePart> ImagesPart { get; private set; }
 
 		internal bool HasHeaders
@@ -38,8 +38,8 @@ namespace TemplateEngine.Docx
 
 			ImagesPart = _wordDocument.MainDocumentPart.ImageParts;
 
-			HeaderParts = LoadMultipleParts(_wordDocument.MainDocumentPart.HeaderParts);
-			FooterParts = LoadMultipleParts(_wordDocument.MainDocumentPart.FooterParts);
+			HeaderParts = LoadHeaders(_wordDocument.MainDocumentPart.HeaderParts);
+			FooterParts = LoadFooters(_wordDocument.MainDocumentPart.FooterParts);
 
 		}
 		internal WordDocumentContainer(XDocument templateSource, XDocument stylesPart = null, XDocument numberingPart = null, IEnumerable<ImagePart> imagesPart = null)
@@ -50,7 +50,7 @@ namespace TemplateEngine.Docx
 			ImagesPart = imagesPart;
 		}
 
-		internal OpenXmlPart GetPartById(string partIdentifier)
+		public OpenXmlPart GetPartById(string partIdentifier)
 		{
 			if (_wordDocument == null)
 				return null;
@@ -64,7 +64,7 @@ namespace TemplateEngine.Docx
 				return null;
 			}
 		}
-		internal void RemovePartById(string partIdentifier)
+		public void RemovePartById(string partIdentifier)
 		{
 			if (_wordDocument == null)
 				return;
@@ -75,7 +75,7 @@ namespace TemplateEngine.Docx
 				_wordDocument.MainDocumentPart.DeletePart(part);
 			}
 		}
-		internal string AddImagePart(byte[] bytes)
+		public string AddImagePart(byte[] bytes)
 		{
 			if (_wordDocument == null)
 				return null;
@@ -110,19 +110,13 @@ namespace TemplateEngine.Docx
 				}
 			}
 
-			foreach (var footerId in FooterParts.Keys)
+			foreach (var footer in FooterParts)
 			{
-				using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetPartById(footerId).GetStream(FileMode.Create, FileAccess.Write)))
-				{
-					FooterParts[footerId].Save(xw);
-				}
+				footer.Save();
 			}
-			foreach (var headerId in HeaderParts.Keys)
+			foreach (var header in HeaderParts)
 			{
-				using (var xw = XmlWriter.Create(_wordDocument.MainDocumentPart.GetPartById(headerId).GetStream(FileMode.Create, FileAccess.Write)))
-				{
-					HeaderParts[headerId].Save(xw);
-				}
+				header.Save();
 			}
 
 			_wordDocument.Close();
@@ -152,9 +146,26 @@ namespace TemplateEngine.Docx
 			return part;
 		}
 
-		private Dictionary<string, XDocument> LoadMultipleParts(IEnumerable<OpenXmlPart> partsList)
+		private List<NestedWordDocumentContainer> LoadHeaders(IEnumerable<OpenXmlPart> partsList)
 		{
-			return partsList.ToDictionary(part => _wordDocument.MainDocumentPart.GetIdOfPart(part), LoadPart);
+			return partsList
+				.Select(part => 
+					new HeaderWordDocumentContainer(
+						_wordDocument.MainDocumentPart.GetIdOfPart(part),
+						_wordDocument))
+                .Cast<NestedWordDocumentContainer>()
+				.ToList();
 		}
+
+        private List<NestedWordDocumentContainer> LoadFooters(IEnumerable<OpenXmlPart> partsList)
+        {
+            return partsList
+                .Select(part =>
+                    new FooterWordDocumentContainer(
+                        _wordDocument.MainDocumentPart.GetIdOfPart(part),
+                        _wordDocument))
+                .Cast<NestedWordDocumentContainer>()
+                .ToList();
+        }
 	}
 }
