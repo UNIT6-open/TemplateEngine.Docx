@@ -433,15 +433,6 @@
   <data name="DocumentWithSingleImageInHeaderAndRemovedCC_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleImageInHeaderAndRemovedCC_header.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="DocumentWithSingleImageInHeader_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleImageInHeader_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DocumentWithSingleImageInHeader_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleImageInHeader_header.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="DocumentWithSingleImageInHeader_document1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DocumentWithSingleImageInHeader_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="DocumentWithImagesInHeaderBodyAndFooterAndRemovedCC_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithImagesInHeaderBodyAndFooterAndRemovedCC_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
@@ -456,5 +447,11 @@
   </data>
   <data name="DocumentWithSingleImageInFooterAndRemovedCC_footer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\DocumentWithSingleImageInFooterAndRemovedCC_footer.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleImageInHeader_document" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleImageInHeader_document.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="DocumentWithSingleImageInHeader_header" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DocumentWithSingleImageInHeader_header.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>
