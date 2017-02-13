@@ -17,6 +17,9 @@ namespace TemplateEngine.Docx.Example
 				// Add field in header.
 				new FieldContent("Company name", "Spiderwasp Communications"),
 
+                // Add image in header.
+                new ImageContent("Logo", File.ReadAllBytes("Logo.jpg")),
+
 				// Add field in footer.
 				new FieldContent("Copyright", "© All rights reserved"),
 

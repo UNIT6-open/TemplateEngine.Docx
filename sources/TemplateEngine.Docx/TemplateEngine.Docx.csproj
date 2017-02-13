@@ -58,7 +58,10 @@
     <Compile Include="Errors\CustomContentItemError.cs" />
     <Compile Include="Errors\ContentControlNotFoundError.cs" />
     <Compile Include="Errors\IError.cs" />
+    <Compile Include="HeaderWordDocumentContainer.cs" />
+    <Compile Include="FooterWordDocumentContainer.cs" />
     <Compile Include="Processors\RepeatProcessor.cs" />
+    <Compile Include="IDocumentContainer.cs" />
     <Compile Include="R.cs" />
     <Compile Include="ListItem.cs" />
     <Compile Include="ListItemRetriever.cs" />
@@ -85,6 +88,7 @@
     <Compile Include="TemplateProcessor.cs" />
     <Compile Include="A.cs" />
     <Compile Include="W.cs" />
+    <Compile Include="NestedWordDocumentContainer.cs" />
     <Compile Include="WordDocumentContainer.cs" />
     <Compile Include="XElementExtensions.cs" />
   </ItemGroup>

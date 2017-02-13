@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using DocumentFormat.OpenXml.Packaging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TemplateEngine.Docx.Tests.Properties;
 
@@ -990,7 +991,7 @@ namespace TemplateEngine.Docx.Tests
 					.SetRemoveContentControls(true)
 					.FillContent(valuesToFill);
 
-				resultImage = GetImageFromPart(processor, 0);
+				resultImage = GetImageFromPart(processor.ImagesPart, 0);
 			}
 
 			Assert.AreEqual(processor.ImagesPart.Count(), 1);
@@ -1021,7 +1022,7 @@ namespace TemplateEngine.Docx.Tests
 					.SetRemoveContentControls(false)
 					.FillContent(valuesToFill);
 
-				resultImage = GetImageFromPart(processor, 0);
+				resultImage = GetImageFromPart(processor.ImagesPart, 0);
 			}
 
 			Assert.AreEqual(processor.ImagesPart.Count(), 1);
@@ -1389,15 +1390,194 @@ namespace TemplateEngine.Docx.Tests
                 RemoveRembed(processor.Document.ToString().Trim()));
         }
 
-	    private static byte[] GetImageFromPart(TemplateProcessor processor, int partIndex)
+        [TestMethod]
+        public void FillingSingleImageInHeader_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithSingleImageInHeader;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImageInHeaderAndRemovedCC_document);
+            var expectedHeader = XDocument.Parse(Resources.DocumentWithSingleImageInHeaderAndRemovedCC_header);
+
+            var newFile = File.ReadAllBytes("Logo.jpg");
+
+            var valuesToFill = new Content(
+                        new ImageContent("Logo", newFile));
+
+            TemplateProcessor processor;
+            byte[] resultImage;
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(true)
+                    .FillContent(valuesToFill);
+
+                resultImage = GetImageFromPart(processor.HeaderImagesParts.First().Value, 0);
+            }
+
+            Assert.AreEqual(1, processor.HeaderParts.Count);
+            Assert.AreEqual(1, processor.HeaderImagesParts.Count);
+            Assert.AreEqual(processor.HeaderParts.First().Key, processor.HeaderImagesParts.First().Key);
+            Assert.IsNotNull(resultImage);
+            Assert.IsTrue(resultImage.SequenceEqual(newFile));
+
+            Assert.AreEqual(expectedDocument.ToString().Trim(),
+                processor.Document.ToString().Trim());
+
+            Assert.AreEqual(RemoveRembed(expectedHeader.ToString().Trim()),
+               RemoveRembed(processor.HeaderParts.First().Value.ToString().Trim()));
+        }
+
+        [TestMethod]
+        public void FillingSingleImageInHeader_PreverseContentControl_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithSingleImageInHeader;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImageInHeader_document);
+            var expectedHeader = XDocument.Parse(Resources.DocumentWithSingleImageInHeader_header);
+
+            var newFile = File.ReadAllBytes("Logo.jpg");
+
+            var valuesToFill = new Content(
+                        new ImageContent("Logo", newFile));
+
+            TemplateProcessor processor;
+            byte[] resultImage;
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(false)
+                    .FillContent(valuesToFill);
+
+                resultImage = GetImageFromPart(processor.HeaderImagesParts.First().Value, 0);
+            }
+
+            Assert.AreEqual(1, processor.HeaderParts.Count);
+            Assert.AreEqual(1, processor.HeaderImagesParts.Count);
+            Assert.AreEqual(processor.HeaderParts.First().Key, processor.HeaderImagesParts.First().Key);
+            Assert.IsNotNull(resultImage);
+            Assert.IsTrue(resultImage.SequenceEqual(newFile));
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()),
+                RemoveRembed(processor.Document.ToString().Trim()));
+
+            Assert.AreEqual(RemoveRembed(expectedHeader.ToString().Trim()),
+               RemoveRembed(processor.HeaderParts.First().Value.ToString().Trim()));
+        }
+
+
+        [TestMethod]
+        public void FillingSingleImageInFooter_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithSingleImageInFooter;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithSingleImageInFooterAndRemovedCC_document);
+            var expectedFooter = XDocument.Parse(Resources.DocumentWithSingleImageInFooterAndRemovedCC_footer);
+
+            var newFile = File.ReadAllBytes("Logo.jpg");
+
+            var valuesToFill = new Content(
+                        new ImageContent("Logo", newFile));
+
+            TemplateProcessor processor;
+            byte[] resultImage;
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(true)
+                    .FillContent(valuesToFill);
+
+                resultImage = GetImageFromPart(processor.FooterImagesParts.First().Value, 0);
+            }
+
+            Assert.AreEqual(1, processor.FooterParts.Count);
+            Assert.AreEqual(1, processor.FooterImagesParts.Count);
+            Assert.AreEqual(processor.FooterParts.First().Key, processor.FooterImagesParts.First().Key);
+            Assert.IsNotNull(resultImage);
+            Assert.IsTrue(resultImage.SequenceEqual(newFile));
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()),
+                RemoveRembed(processor.Document.ToString().Trim()));
+
+            Assert.AreEqual(RemoveRembed(expectedFooter.ToString().Trim()),
+              RemoveRembed(processor.FooterParts.First().Value.ToString().Trim()));
+        }
+
+
+        [TestMethod]
+        public void FillingImagesInHeaderBodyAndFooter_Success()
+        {
+            var templateDocumentDocx = Resources.TemplateWithImagesInHeaderBodyAndFooter;
+            var expectedDocument = XDocument.Parse(Resources.DocumentWithImagesInHeaderBodyAndFooterAndRemovedCC_document);
+            var expectedHeader = XDocument.Parse(Resources.DocumentWithImagesInHeaderBodyAndFooterAndRemovedCC_header);
+            var expectedFooter = XDocument.Parse(Resources.DocumentWithImagesInHeaderBodyAndFooterAndRemovedCC_footer);
+
+            var headerFile = File.ReadAllBytes("Edison.jpg");
+            var bodyFile = File.ReadAllBytes("Einstein.jpg");
+            var footerFile = File.ReadAllBytes("Tesla.jpg");
+
+            var valuesToFill = new Content(
+                   new ImageContent("HeaderImage", headerFile),
+                   new ImageContent("BodyImage", bodyFile),
+                   new ImageContent("FooterImage", footerFile)
+               );
+
+            TemplateProcessor processor;
+            byte[] resultHeaderImage;
+            byte[] resultBodyImage;
+            byte[] resultFooterImage;
+
+            using (var ms = new MemoryStream())
+            {
+                ms.Write(templateDocumentDocx, 0, templateDocumentDocx.Length);
+
+                processor = new TemplateProcessor(ms)
+                    .SetRemoveContentControls(true)
+                    .FillContent(valuesToFill);
+
+                resultHeaderImage = GetImageFromPart(processor.HeaderImagesParts.First().Value, 0);
+                resultBodyImage = GetImageFromPart(processor.ImagesPart, 0);
+                resultFooterImage = GetImageFromPart(processor.FooterImagesParts.First().Value, 0);
+            }
+
+            Assert.AreEqual(1, processor.HeaderParts.Count);
+            Assert.AreEqual(1, processor.HeaderImagesParts.Count);
+            Assert.AreEqual(processor.HeaderParts.First().Key, processor.HeaderImagesParts.First().Key);
+            Assert.IsNotNull(resultHeaderImage);
+            Assert.IsTrue(resultHeaderImage.SequenceEqual(headerFile));
+
+            Assert.AreEqual(1, processor.FooterParts.Count);
+            Assert.AreEqual(1, processor.FooterImagesParts.Count);
+            Assert.AreEqual(processor.FooterParts.First().Key, processor.FooterImagesParts.First().Key);
+            Assert.IsNotNull(resultFooterImage);
+            Assert.IsTrue(resultFooterImage.SequenceEqual(footerFile));
+
+            Assert.AreEqual(1, processor.ImagesPart.Count());
+            Assert.IsNotNull(resultBodyImage);
+            Assert.IsTrue(resultBodyImage.SequenceEqual(bodyFile));
+
+            Assert.AreEqual(RemoveRembed(expectedDocument.ToString().Trim()),
+                RemoveRembed(processor.Document.ToString().Trim()));
+
+            Assert.AreEqual(RemoveRembed(expectedFooter.ToString().Trim()),
+             RemoveRembed(processor.FooterParts.First().Value.ToString().Trim()));
+
+            Assert.AreEqual(RemoveRembed(expectedHeader.ToString().Trim()),
+             RemoveRembed(processor.HeaderParts.First().Value.ToString().Trim()));
+        }
+
+
+	    private static byte[] GetImageFromPart(IEnumerable<ImagePart> imageParts, int partIndex)
 	    {
 		    byte[] resultImage = null;
-		    if (processor.ImagesPart.Any())
+            if (imageParts.Any())
 		    {
-			    var stream = processor.ImagesPart.ToArray()[partIndex].GetStream();
+                var stream = imageParts.ToArray()[partIndex].GetStream();
 
 			    resultImage = new byte[stream.Length];
-			    using (var reader = new BinaryReader(processor.ImagesPart.First().GetStream()))
+                using (var reader = new BinaryReader(stream))
 			    {
 				    reader.Read(resultImage, 0, (int) stream.Length);
 			    }
