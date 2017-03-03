@@ -263,12 +263,15 @@ namespace TemplateEngine.Docx.Processors
 					.ResetNumbering(prototype.PrototypeItems);
 
 			// Propagates a prototype.
-			var propagationResult = PropagatePrototype(prototype, list.Items);
-
-			processResult.Merge(propagationResult);
+			if (list.Items != null)
+			{
+				var propagationResult = PropagatePrototype(prototype, list.Items);
+				processResult.Merge(propagationResult);
+				// add all of the newly constructed rows.
+				prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+			}
 			
-			// Remove the prototype row and add all of the newly constructed rows.
-			prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+			// Remove the prototype row 
 			prototype.PrototypeItems.Remove();
 
 			processResult.AddItemToHandled(list);
