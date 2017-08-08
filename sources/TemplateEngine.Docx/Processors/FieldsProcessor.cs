@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Linq;
+using DocumentFormat.OpenXml.Wordprocessing;
 using TemplateEngine.Docx.Errors;
 
 namespace TemplateEngine.Docx.Processors
@@ -47,7 +48,9 @@ namespace TemplateEngine.Docx.Processors
 				processResult.AddError(new ContentControlNotFoundError(field));
 				return processResult;
 			}
-			contentControl.ReplaceContentControlWithNewValue(field.Value);
+
+            var newValue = field.IsHidden ? "" : field.Value;
+			contentControl.ReplaceContentControlWithNewValue(newValue);
 
 			processResult.AddItemToHandled(item);
 

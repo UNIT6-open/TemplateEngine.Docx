@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace TemplateEngine.Docx
 {
@@ -17,7 +18,9 @@ namespace TemplateEngine.Docx
         }
    
         public string Name { get; set; }
-		public string Value { get; set; }
+        public bool IsHidden { get; set; }
+	    public string Value { get; set; }       
+
 		public bool Equals(FieldContent other)
 		{
 			if (other == null) return false;
@@ -33,10 +36,15 @@ namespace TemplateEngine.Docx
 			return Equals((FieldContent)other);
 		}
 
-
 		public override int GetHashCode()
 		{
 			return new { Name, Value }.GetHashCode();
 		}
+
+	    public FieldContent Hide()
+	    {
+	        IsHidden = true;
+	        return this;
+	    }
 	}
 }

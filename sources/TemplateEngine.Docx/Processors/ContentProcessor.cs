@@ -38,8 +38,8 @@ namespace TemplateEngine.Docx.Processors
 			var processedItems = new List<IContentItem>();
 			data = data.ToList();
 
-			foreach (var contentItems in data.GroupBy(d=>d.Name))
-			{
+			foreach (var contentItems in data.GroupBy(d => d.Name))
+			{                
 				if (processedItems.Any(i=>i.Name == contentItems.Key)) continue;
 
 				var contentControls = FindContentControls(content, contentItems.Key).ToList();
@@ -108,7 +108,7 @@ namespace TemplateEngine.Docx.Processors
 		}
 		private IEnumerable<XElement> FindContentControls(XElement content, string tagName)
 		{
-			return content
+            return content
 				//top level content controls
 				.FirstLevelDescendantsAndSelf(W.sdt)
 				//with specified tagName

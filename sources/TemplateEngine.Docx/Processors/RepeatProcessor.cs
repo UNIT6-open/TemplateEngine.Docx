@@ -121,7 +121,7 @@ namespace TemplateEngine.Docx.Processors
             processResult.Merge(propagationResult);
 
             // Remove the prototype row and add all of the newly constructed rows.
-            prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+            if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
             prototype.PrototypeItems.Remove();
 
             processResult.AddItemToHandled(repeat);

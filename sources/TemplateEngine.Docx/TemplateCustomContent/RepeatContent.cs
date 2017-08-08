@@ -11,8 +11,9 @@ namespace TemplateEngine.Docx
         #region properties
 
         public string Name { get; set; }
-
-		public ICollection<Content> Items { get; set; }
+	    public bool IsHidden { get; set; }
+	    
+	    public ICollection<Content> Items { get; set; }
 
         public IEnumerable<string> FieldNames
         {
@@ -55,6 +56,7 @@ namespace TemplateEngine.Docx
         {
 			return new RepeatContent(name, items);
         }
+
 		public static RepeatContent Create(string name, IEnumerable<Content> items)
         {
 			return new RepeatContent(name, items);
@@ -66,6 +68,7 @@ namespace TemplateEngine.Docx
 			Items.Add(item);
 			return this;
 		}
+
 		public RepeatContent AddItem(params IContentItem[] contentItems)
 		{
 			if (Items == null) Items = new Collection<Content>();
@@ -73,10 +76,15 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-		#endregion
+	    public RepeatContent Hide()
+	    {
+	        IsHidden = true;
+	        return this;
+	    }
+        #endregion
 
-		#region Equals
-		public bool Equals(RepeatContent other)
+        #region Equals
+        public bool Equals(RepeatContent other)
 		{
 			if (other == null) return false;
 			return Name.Equals(other.Name) &&

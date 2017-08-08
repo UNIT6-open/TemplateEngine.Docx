@@ -106,7 +106,7 @@ namespace TemplateEngine.Docx.Processors
 
 				processResult.AddError(
 					new CustomContentItemError(table, 
-					String.Format("doesn't contain rows with cell content {0} {1}",
+					string.Format("doesn't contain rows with cell content {0} {1}",
 						invalidFileNames.Count > 1 ? "controls" : "control",
 						string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn))))));
 
@@ -146,7 +146,7 @@ namespace TemplateEngine.Docx.Processors
 				newRows.Add(newRowsEntry);
 			}
 
-			prototypeRows.Last().AddAfterSelf(newRows);
+			if (!item.IsHidden) prototypeRows.Last().AddAfterSelf(newRows);
 
 			// Remove the prototype rows
 			prototypeRows.Remove();

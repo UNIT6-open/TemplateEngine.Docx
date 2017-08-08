@@ -9,8 +9,9 @@ namespace TemplateEngine.Docx
 	public class ListContent : IContentItem, IEquatable<ListContent>
 	{
 		public string Name { get; set; }
+	    public bool IsHidden { get; set; }
 
-		public ICollection<ListItemContent> Items { get; set; }
+	    public ICollection<ListItemContent> Items { get; set; }
 
 		public IEnumerable<string> FieldNames
 		{
@@ -52,6 +53,7 @@ namespace TemplateEngine.Docx
         {
 			return new ListContent(name, items);
         }
+
 		public static ListContent Create(string name, IEnumerable<ListItemContent> items)
         {
 			return new ListContent(name, items);
@@ -63,6 +65,7 @@ namespace TemplateEngine.Docx
 			Items.Add(item);
 			return this;
 		}
+
 		public ListContent AddItem(params IContentItem[] contentItems)
 		{
 			if (Items == null) Items = new Collection<ListItemContent>();
@@ -70,10 +73,16 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-		#endregion
+	    public ListContent Hide()
+	    {
+	        IsHidden = true;
+	        return this;
+	    }
 
-		#region IContentItem implementation
-		private List<string> GetFieldNames(IEnumerable<ListItemContent> items)
+        #endregion
+
+        #region IContentItem implementation
+        private List<string> GetFieldNames(IEnumerable<ListItemContent> items)
 		{
 			var result = new List<string>();
 			if (items == null) return null;

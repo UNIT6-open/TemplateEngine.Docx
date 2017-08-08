@@ -58,26 +58,33 @@ namespace TemplateEngine.Docx.Processors
 				return processResult;
 			}
 
-
-            var blip = contentControl.DescendantsAndSelf(A.blip).First();
-            if (blip == null)
-            {
-                processResult.AddError(new CustomContentItemError(field, "doesn't contain an image for replace"));
-                return processResult;
+		    if (item.IsHidden)
+		    {
+		        var graphic = contentControl.DescendantsAndSelf(W.drawing).First();
+		        graphic.Remove();
             }
+		    else
+		    {
+		        var blip = contentControl.DescendantsAndSelf(A.blip).First();
+		        if (blip == null)
+		        {
+		            processResult.AddError(new CustomContentItemError(field, "doesn't contain an image for replace"));
+		            return processResult;
+		        }
 
-            var imageId = blip.Attribute(R.embed).Value;
+		        var imageId = blip.Attribute(R.embed).Value;
 
-            var imagePart = (ImagePart)_context.Document.GetPartById(imageId);
+		        var imagePart = (ImagePart)_context.Document.GetPartById(imageId);
 
-			if (imagePart != null)
-			{
-				_context.Document.RemovePartById(imageId);
-			}
+		        if (imagePart != null)
+		        {
+		            _context.Document.RemovePartById(imageId);
+		        }
 
-			var imagePartId = _context.Document.AddImagePart(field.Binary);
+		        var imagePartId = _context.Document.AddImagePart(field.Binary);
 
-			blip.Attribute(R.embed).SetValue(imagePartId);
+		        blip.Attribute(R.embed).SetValue(imagePartId);
+            }                    
 
 			processResult.AddItemToHandled(item);
 			return processResult;

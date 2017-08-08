@@ -18,10 +18,17 @@ namespace TemplateEngine.Docx
         }
    
         public string Name { get; set; }
-		public byte[] Binary { get; set; }
+        public bool IsHidden { get; set; }
+        public byte[] Binary { get; set; }
 
-		#region Equals
-		public bool Equals(ImageContent other)
+        public ImageContent Hide()
+        {
+            IsHidden = true;
+            return this;
+        }
+
+        #region Equals
+        public bool Equals(ImageContent other)
 		{
 			if (other == null) return false;
 

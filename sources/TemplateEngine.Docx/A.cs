@@ -7,5 +7,7 @@ namespace TemplateEngine.Docx
         public static XNamespace a = "http://schemas.openxmlformats.org/drawingml/2006/main";
 
         public static XName blip = a + "blip";   
+
+        public static XName graphic = a + "graphic";
     }
 }

@@ -8,7 +8,9 @@ namespace TemplateEngine.Docx
     public class TableContent:IContentItem, IEquatable<TableContent>
     {
 		public string Name { get; set; }
-		public ICollection<TableRowContent> Rows { get; set; }
+        public bool IsHidden { get; set; }
+
+        public ICollection<TableRowContent> Rows { get; set; }
 
 		public IEnumerable<string> FieldNames
 		{
@@ -62,10 +64,16 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-		#endregion
+        public TableContent Hide()
+        {
+            IsHidden = true;
+            return this;
+        }
 
-		#region Equals
-		public bool Equals(TableContent other)
+        #endregion
+
+        #region Equals
+        public bool Equals(TableContent other)
 	    {
 			if (other == null) return false;
 
