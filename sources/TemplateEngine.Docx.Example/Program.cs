@@ -20,7 +20,7 @@ namespace TemplateEngine.Docx.Example
                         new FieldContent("Name", "Test"),
                         new FieldContent("Role", "Test1")
                     )
-                    .Hide(),
+                    .Hide(t => t.Rows.Count != 1),
 
                 new ImageContent("Logo", File.ReadAllBytes("Logo.jpg"))
                     .Hide(),
@@ -29,10 +29,10 @@ namespace TemplateEngine.Docx.Example
                     .AddItem(
                         new FieldContent("Name", "Eric"),
                         new FieldContent("Role", "Program Manager"))
+                    .Hide()
                     .AddItem(
                         new FieldContent("Name", "Bob"),
-                        new FieldContent("Role", "Developer"))
-                    .Hide(),
+                        new FieldContent("Role", "Developer")),
 
                 new RepeatContent("Repeats")
                     .AddItem(new FieldContent("Name", "Nicola Tesla"),

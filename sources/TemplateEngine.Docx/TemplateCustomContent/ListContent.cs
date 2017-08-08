@@ -6,23 +6,14 @@ using System.Linq;
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("List")]
-	public class ListContent : IContentItem, IEquatable<ListContent>
+	public class ListContent : HiddenContent<ListContent>, IEquatable<ListContent>
 	{
-		public string Name { get; set; }
-	    public bool IsHidden { get; set; }
-
 	    public ICollection<ListItemContent> Items { get; set; }
 
-		public IEnumerable<string> FieldNames
-		{
-			get
-			{
-				return Items == null ? new List<string>() : GetFieldNames(Items);
-			}
-		}
+		public IEnumerable<string> FieldNames => Items == null ? new List<string>() : GetFieldNames(Items);
 
+	    #region ctors
 
-		#region ctors
 		public ListContent()
         {
             
@@ -73,15 +64,10 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-	    public ListContent Hide()
-	    {
-	        IsHidden = true;
-	        return this;
-	    }
-
         #endregion
 
         #region IContentItem implementation
+
         private List<string> GetFieldNames(IEnumerable<ListItemContent> items)
 		{
 			var result = new List<string>();
@@ -114,9 +100,11 @@ namespace TemplateEngine.Docx
 			}			
 			return result;
 		}
+
 		#endregion
 
 		#region Equals
+
 		public bool Equals(ListContent other)
 		{
 			if (other == null) return false;
@@ -124,7 +112,7 @@ namespace TemplateEngine.Docx
 			       Items.SequenceEqual(other.Items);
 		}
 
-		public bool Equals(IContentItem other)
+		public override bool Equals(IContentItem other)
 		{
 			if (!(other is ListContent)) return false;
 

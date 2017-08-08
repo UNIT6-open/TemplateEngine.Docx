@@ -6,12 +6,9 @@ using System.Linq;
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("Repeat")]
-	public class RepeatContent : IContentItem, IEquatable<RepeatContent>
+	public class RepeatContent : HiddenContent<RepeatContent>, IContentItem, IEquatable<RepeatContent>
 	{
         #region properties
-
-        public string Name { get; set; }
-	    public bool IsHidden { get; set; }
 	    
 	    public ICollection<Content> Items { get; set; }
 
@@ -19,13 +16,14 @@ namespace TemplateEngine.Docx
         {
             get
             {
-                return Items == null ? new List<string>() : Items.SelectMany(r => r.FieldNames).Distinct().ToList();
+                return Items?.SelectMany(r => r.FieldNames).Distinct().ToList() ?? new List<string>();
             }
         }
 
         #endregion properties
 
         #region ctors
+
         public RepeatContent()
         {
             
@@ -76,14 +74,10 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-	    public RepeatContent Hide()
-	    {
-	        IsHidden = true;
-	        return this;
-	    }
         #endregion
 
         #region Equals
+
         public bool Equals(RepeatContent other)
 		{
 			if (other == null) return false;
@@ -91,7 +85,7 @@ namespace TemplateEngine.Docx
 			       Items.SequenceEqual(other.Items);
 		}
 
-		public bool Equals(IContentItem other)
+		public override bool Equals(IContentItem other)
 		{
 			if (!(other is RepeatContent)) return false;
 

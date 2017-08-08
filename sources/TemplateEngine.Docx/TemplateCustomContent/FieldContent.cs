@@ -1,10 +1,9 @@
 ﻿using System;
-using Newtonsoft.Json;
 
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("Field")]
-	public class FieldContent : IContentItem, IEquatable<FieldContent>
+	public class FieldContent : HiddenContent<FieldContent>, IEquatable<FieldContent>
 	{
         public FieldContent()
         {
@@ -17,8 +16,6 @@ namespace TemplateEngine.Docx
             Value = value;
         }
    
-        public string Name { get; set; }
-        public bool IsHidden { get; set; }
 	    public string Value { get; set; }       
 
 		public bool Equals(FieldContent other)
@@ -29,7 +26,7 @@ namespace TemplateEngine.Docx
 			       Value.Equals(other.Value);
 		}
 
-		public bool Equals(IContentItem other)
+		public override bool Equals(IContentItem other)
 		{
 			if (!(other is FieldContent)) return false;
 
@@ -40,11 +37,5 @@ namespace TemplateEngine.Docx
 		{
 			return new { Name, Value }.GetHashCode();
 		}
-
-	    public FieldContent Hide()
-	    {
-	        IsHidden = true;
-	        return this;
-	    }
-	}
+    }
 }

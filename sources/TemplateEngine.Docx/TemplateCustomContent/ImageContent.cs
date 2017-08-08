@@ -4,7 +4,7 @@ using System.Linq;
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("Image")]
-	public class ImageContent : IContentItem, IEquatable<ImageContent>
+	public class ImageContent : HiddenContent<ImageContent>, IEquatable<ImageContent>
     {
         public ImageContent()
         {
@@ -16,18 +16,11 @@ namespace TemplateEngine.Docx
             Name = name;
             Binary = binary;
         }
-   
-        public string Name { get; set; }
-        public bool IsHidden { get; set; }
+
         public byte[] Binary { get; set; }
 
-        public ImageContent Hide()
-        {
-            IsHidden = true;
-            return this;
-        }
-
         #region Equals
+
         public bool Equals(ImageContent other)
 		{
 			if (other == null) return false;
@@ -36,7 +29,7 @@ namespace TemplateEngine.Docx
 			       Binary.SequenceEqual(other.Binary);
 		}
 
-		public bool Equals(IContentItem other)
+		public override bool Equals(IContentItem other)
 		{
 			if (!(other is ImageContent)) return false;
 

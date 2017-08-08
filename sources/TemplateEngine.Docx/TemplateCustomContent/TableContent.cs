@@ -5,22 +5,20 @@ using System.Linq;
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("Table")]
-    public class TableContent:IContentItem, IEquatable<TableContent>
+    public class TableContent : HiddenContent<TableContent>, IContentItem, IEquatable<TableContent>
     {
-		public string Name { get; set; }
-        public bool IsHidden { get; set; }
-
         public ICollection<TableRowContent> Rows { get; set; }
 
 		public IEnumerable<string> FieldNames
 		{
 			get
 			{
-				return Rows == null ? new List<string>() : Rows.SelectMany(r => r.FieldNames).Distinct().ToList();
+				return Rows?.SelectMany(r => r.FieldNames).Distinct().ToList() ?? new List<string>();
 			}
 		} 
 
 		#region ctors
+
 		public TableContent()
         {
             
@@ -42,6 +40,7 @@ namespace TemplateEngine.Docx
         {
             Rows = rows.ToList();
         }
+
 		#endregion
 
 		#region Fluent
@@ -64,15 +63,10 @@ namespace TemplateEngine.Docx
 			return this;
 		}
 
-        public TableContent Hide()
-        {
-            IsHidden = true;
-            return this;
-        }
-
         #endregion
 
         #region Equals
+
         public bool Equals(TableContent other)
 	    {
 			if (other == null) return false;
@@ -81,7 +75,7 @@ namespace TemplateEngine.Docx
 			   Rows.SequenceEqual(other.Rows);
 	    }
 
-	    public bool Equals(IContentItem other)
+	    public override bool Equals(IContentItem other)
 	    {
 		    if (!(other is TableContent)) return false;
 
@@ -96,6 +90,7 @@ namespace TemplateEngine.Docx
 
 			return new { Name, hc }.GetHashCode();
 		}
+
 		#endregion
 	}
 }
