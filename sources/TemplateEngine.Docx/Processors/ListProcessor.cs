@@ -201,16 +201,15 @@ namespace TemplateEngine.Docx.Processors
 
 			if (!handled) return processResult;
 
-			if (processResult.Success && _isNeedToRemoveContentControls)
-			{
-				foreach (var sdt in contentControl.Descendants(W.sdt).ToList())
-				{
-					// Remove the content control, and replace it with its contents.
-					sdt.RemoveContentControl();
-				}
-				contentControl.RemoveContentControl();
-			}
-			return processResult;
+		    if (!processResult.Success || !_isNeedToRemoveContentControls) return processResult;
+
+		    foreach (var sdt in contentControl.Descendants(W.sdt).ToList())
+		    {
+		        // Remove the content control, and replace it with its contents.
+		        sdt.RemoveContentControl();
+		    }
+		    contentControl.RemoveContentControl();
+		    return processResult;
 		}
 
 		private ProcessResult FillContent(XElement contentControl, IContentItem item)
@@ -253,7 +252,7 @@ namespace TemplateEngine.Docx.Processors
 			{
 				processResult.AddError(
 					new CustomContentItemError(list, 
-						String.Format("doesn't contain items with content controls {0}",
+						string.Format("doesn't contain items with content controls {0}",
 						string.Join(", ", fieldNames))));
 
 				return processResult;
@@ -262,13 +261,16 @@ namespace TemplateEngine.Docx.Processors
 			new NumberingAccessor(_context.Document.NumberingPart, _context.LastNumIds)
 					.ResetNumbering(prototype.PrototypeItems);
 
-			// Propagates a prototype.
-			var propagationResult = PropagatePrototype(prototype, list.Items);
+            // Propagates a prototype.
+		    if (list.Items != null)
 
-			processResult.Merge(propagationResult);
+		    {
+		        var propagationResult = PropagatePrototype(prototype, list.Items);
+		        processResult.Merge(propagationResult);
+                // add all of the newly constructed rows.
+		        if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+            }
 			
-			// Remove the prototype row and add all of the newly constructed rows.
-			if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
 			prototype.PrototypeItems.Remove();
 
 			processResult.AddItemToHandled(list);

@@ -169,8 +169,11 @@ namespace TemplateEngine.Docx.Processors
 				.Where(tr =>
 					tr.Descendants(W.sdt)
 						.Any(sdt =>
-							fieldNames.Contains(
-								sdt.SdtTagName())))
+					        {
+					            var names = fieldNames as string[] ?? fieldNames.ToArray();
+					            return !names.Any() || names.Contains(
+					                       sdt.SdtTagName());
+					        }))
 				.ToList();
 
 
