@@ -85,71 +85,75 @@ namespace TemplateEngine.Docx.Processors
 				return processResult;
 			}
 
-			var fieldNames = table.FieldNames.ToList();
+		    if (item.IsHidden)
+		    {
+		        contentControl.Descendants(W.tr).Remove();
+		    }
+		    else
+		    {
+		        var fieldNames = table.FieldNames.ToList();
 
-			var prototypeRows = GetPrototype(contentControl, fieldNames);
+		        var prototypeRows = GetPrototype(contentControl, fieldNames);
 
-			//Select content controls tag names
-			var contentControlTagNames = prototypeRows
-				.Descendants(W.sdt)
-				.Select(sdt => sdt.SdtTagName())
-				.Where(fieldNames.Contains)
-				.ToList();
-
-
-			//If there are not content controls with the one of specified field name we need to add the warning
-			if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
-			{
-				var invalidFileNames = fieldNames
-					.Where(fn => !contentControlTagNames.Contains(fn))
-					.ToList();
-
-				processResult.AddError(
-					new CustomContentItemError(table, 
-					string.Format("doesn't contain rows with cell content {0} {1}",
-						invalidFileNames.Count > 1 ? "controls" : "control",
-						string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn))))));
-
-			}
+		        //Select content controls tag names
+		        var contentControlTagNames = prototypeRows
+		            .Descendants(W.sdt)
+		            .Select(sdt => sdt.SdtTagName())
+		            .Where(fieldNames.Contains)
+		            .ToList();
 
 
-			// Create a list of new rows to be inserted into the document.  Because this
-			// is a document centric transform, this is written in a non-functional
-			// style, using tree modification.
-			var newRows = new List<List<XElement>>();
-			foreach (var row in table.Rows)
-			{
-				// Clone the prototypeRows into newRowsEntry.
-				var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
+		        //If there are not content controls with the one of specified field name we need to add the warning
+		        if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
+		        {
+		            var invalidFileNames = fieldNames
+		                .Where(fn => !contentControlTagNames.Contains(fn))
+		                .ToList();
 
-				// Create new rows that will contain the data that was passed in to this
-				// method in the XML tree.
-				foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
-				{
-					// Get fieldName from the content control tag.
-					var fieldName = sdt.SdtTagName();
+		            processResult.AddError(
+		                new CustomContentItemError(table,
+		                    string.Format("doesn't contain rows with cell content {0} {1}",
+		                        invalidFileNames.Count > 1 ? "controls" : "control",
+		                        string.Join(", ", invalidFileNames.Select(fn => string.Format("'{0}'", fn))))));
 
-					var content = row.GetContentItem(fieldName);
+		        }
 
-					if (content != null)
-					{
-						var contentProcessResult = new ContentProcessor(_context)
-							.SetRemoveContentControls(_isNeedToRemoveContentControls)
-							.FillContent(sdt, content);
+		        // Create a list of new rows to be inserted into the document.  Because this
+		        // is a document centric transform, this is written in a non-functional
+		        // style, using tree modification.
+		        var newRows = new List<List<XElement>>();
+		        foreach (var row in table.Rows)
+		        {
+		            // Clone the prototypeRows into newRowsEntry.
+		            var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
 
-						processResult.Merge(contentProcessResult);
-					}
-				}
+		            // Create new rows that will contain the data that was passed in to this
+		            // method in the XML tree.
+		            foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
+		            {
+		                // Get fieldName from the content control tag.
+		                var fieldName = sdt.SdtTagName();
 
-				// Add the newRow to the list of rows that will be placed in the newly
-				// generated table.
-				newRows.Add(newRowsEntry);
-			}
+		                var content = row.GetContentItem(fieldName);
 
-			if (!item.IsHidden) prototypeRows.Last().AddAfterSelf(newRows);
+		                if (content == null) continue;
+		                var contentProcessResult = new ContentProcessor(_context)
+		                    .SetRemoveContentControls(_isNeedToRemoveContentControls)
+		                    .FillContent(sdt, content);
 
-			// Remove the prototype rows
-			prototypeRows.Remove();
+		                processResult.Merge(contentProcessResult);
+		            }
+
+		            // Add the newRow to the list of rows that will be placed in the newly
+		            // generated table.
+		            newRows.Add(newRowsEntry);
+		        }
+
+		        prototypeRows.Last().AddAfterSelf(newRows);
+
+		        // Remove the prototype rows
+		        prototypeRows.Remove();
+            }            
 
 			processResult.AddItemToHandled(table);
 
