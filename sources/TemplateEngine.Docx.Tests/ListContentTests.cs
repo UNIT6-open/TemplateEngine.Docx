@@ -19,7 +19,7 @@ namespace TemplateEngine.Docx.Tests
 		[TestMethod]
 		public void ListContentConstructorWithNameAndEnumerableFieldContent_FillsNameAndItems()
 		{
-			var listContent = new ListContent("Name", new List<ListItemContent>());
+			var listContent = new ListContent("Name", new ListItemContent[]{});
 
 			Assert.IsNotNull(listContent.Items);
 			Assert.AreEqual("Name", listContent.Name);
@@ -30,7 +30,7 @@ namespace TemplateEngine.Docx.Tests
 		{
 			var listContent = new ListContent("Name", new ListItemContent(), new ListItemContent());
 
-			Assert.AreEqual(2, listContent.Items.Count());
+			Assert.AreEqual(2, listContent.Items.Count);
 			Assert.AreEqual("Name", listContent.Name);
 		}
 
@@ -67,7 +67,7 @@ namespace TemplateEngine.Docx.Tests
 		{
 			var listContent = ListContent.Create("Name", new ListItemContent(), new ListItemContent());
 
-			Assert.AreEqual(2, listContent.Items.Count());
+			Assert.AreEqual(2, listContent.Items.Count);
 			Assert.AreEqual("Name", listContent.Name);
 		}
 

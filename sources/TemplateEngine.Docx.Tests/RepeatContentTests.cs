@@ -19,7 +19,7 @@ namespace TemplateEngine.Docx.Tests
 		[TestMethod]
         public void RepeatContentConstructorWithNameAndEnumerableFieldContent_FillsNameAndItems()
 		{
-            var repeatContent = new RepeatContent("Name", new List<Content>());
+            var repeatContent = new RepeatContent("Name", new Content[]{});
 
             Assert.IsNotNull(repeatContent.Items);
             Assert.AreEqual("Name", repeatContent.Name);
@@ -64,7 +64,7 @@ namespace TemplateEngine.Docx.Tests
 		{
             var repeatContent = RepeatContent.Create("Name", new Content(), new Content());
 
-            Assert.AreEqual(2, repeatContent.Items.Count());
+            Assert.AreEqual(2, repeatContent.Items.Count);
             Assert.AreEqual("Name", repeatContent.Name);
 		}
 
