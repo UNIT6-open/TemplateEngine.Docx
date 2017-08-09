@@ -15,6 +15,7 @@ namespace TemplateEngine.Docx.Processors
 		{
 			_context = context;
 		}
+
 		public IProcessor SetRemoveContentControls(bool isNeedToRemove)
 		{
 			_isNeedToRemoveContentControls = isNeedToRemove;
@@ -121,35 +122,38 @@ namespace TemplateEngine.Docx.Processors
 		        // Create a list of new rows to be inserted into the document.  Because this
 		        // is a document centric transform, this is written in a non-functional
 		        // style, using tree modification.
-		        var newRows = new List<List<XElement>>();
-		        foreach (var row in table.Rows)
+		        if (table.Rows != null)
 		        {
-		            // Clone the prototypeRows into newRowsEntry.
-		            var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
-
-		            // Create new rows that will contain the data that was passed in to this
-		            // method in the XML tree.
-		            foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
+		            var newRows = new List<List<XElement>>();
+		            foreach (var row in table.Rows)
 		            {
-		                // Get fieldName from the content control tag.
-		                var fieldName = sdt.SdtTagName();
+		                // Clone the prototypeRows into newRowsEntry.
+		                var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
 
-		                var content = row.GetContentItem(fieldName);
+		                // Create new rows that will contain the data that was passed in to this
+		                // method in the XML tree.
+		                foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
+		                {
+		                    // Get fieldName from the content control tag.
+		                    var fieldName = sdt.SdtTagName();
 
-		                if (content == null) continue;
-		                var contentProcessResult = new ContentProcessor(_context)
-		                    .SetRemoveContentControls(_isNeedToRemoveContentControls)
-		                    .FillContent(sdt, content);
+		                    var content = row.GetContentItem(fieldName);
 
-		                processResult.Merge(contentProcessResult);
+		                    if (content == null) continue;
+		                    var contentProcessResult = new ContentProcessor(_context)
+		                        .SetRemoveContentControls(_isNeedToRemoveContentControls)
+		                        .FillContent(sdt, content);
+
+		                    processResult.Merge(contentProcessResult);
+		                }
+
+		                // Add the newRow to the list of rows that will be placed in the newly
+		                // generated table.
+		                newRows.Add(newRowsEntry);
 		            }
 
-		            // Add the newRow to the list of rows that will be placed in the newly
-		            // generated table.
-		            newRows.Add(newRowsEntry);
-		        }
-
-		        prototypeRows.Last().AddAfterSelf(newRows);
+		            prototypeRows.Last().AddAfterSelf(newRows);
+                }		        
 
 		        // Remove the prototype rows
 		        prototypeRows.Remove();
