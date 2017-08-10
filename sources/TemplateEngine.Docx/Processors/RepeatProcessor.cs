@@ -100,29 +100,36 @@ namespace TemplateEngine.Docx.Processors
                 return processResult;
             }
 
-            var fieldNames = repeat.FieldNames.ToList();
-
-            // Create a prototype of new items to be inserted into the document.
-            var prototype = new Prototype(_context, contentControl, fieldNames);
-
-            if (!prototype.IsValid)
+            if (repeat.IsHidden || repeat.Items == null)
             {
-                processResult.AddError(
-                    new CustomContentItemError(repeat,
-                        String.Format("doesn't contain items with content controls {0}",
-                        string.Join(", ", fieldNames))));
-
-                return processResult;
+                contentControl.DescendantsAndSelf(W.sdt).Remove();
             }
+            else
+            {
+                var fieldNames = repeat.FieldNames.ToList();
 
-            // Propagates a prototype.
-            var propagationResult = PropagatePrototype(prototype, repeat.Items);
+                // Create a prototype of new items to be inserted into the document.
+                var prototype = new Prototype(_context, contentControl, fieldNames);
 
-            processResult.Merge(propagationResult);
+                if (!prototype.IsValid)
+                {
+                    processResult.AddError(
+                        new CustomContentItemError(repeat,
+                            String.Format("doesn't contain items with content controls {0}",
+                                string.Join(", ", fieldNames))));
 
-            // Remove the prototype row and add all of the newly constructed rows.
-            if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
-            prototype.PrototypeItems.Remove();
+                    return processResult;
+                }
+
+                // Propagates a prototype.
+                var propagationResult = PropagatePrototype(prototype, repeat.Items);
+
+                processResult.Merge(propagationResult);
+
+                // Remove the prototype row and add all of the newly constructed rows.
+                prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+                prototype.PrototypeItems.Remove();
+            }           
 
             processResult.AddItemToHandled(repeat);
 

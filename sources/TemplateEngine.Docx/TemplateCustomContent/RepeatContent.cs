@@ -6,7 +6,7 @@ using System.Linq;
 namespace TemplateEngine.Docx
 {
 	[ContentItemName("Repeat")]
-	public class RepeatContent : HiddenContent<RepeatContent>, IContentItem, IEquatable<RepeatContent>
+	public class RepeatContent : HiddenContent<RepeatContent>, IEquatable<RepeatContent>
 	{
         #region properties
 	    
@@ -82,7 +82,7 @@ namespace TemplateEngine.Docx
 		{
 			if (other == null) return false;
 			return Name.Equals(other.Name) &&
-			       Items.SequenceEqual(other.Items);
+			       FieldNames.SequenceEqual(other.FieldNames);
 		}
 
 		public override bool Equals(IContentItem other)

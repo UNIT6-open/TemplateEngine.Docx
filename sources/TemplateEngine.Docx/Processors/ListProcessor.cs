@@ -241,38 +241,45 @@ namespace TemplateEngine.Docx.Processors
 					new CustomContentItemError(list, "doesn't contain content controls in items"));
 			
 				return processResult;
-			}
+			}			
 
-			var fieldNames = list.FieldNames.ToList();
-
-			// Create a prototype of new items to be inserted into the document.
-			var prototype = new Prototype(_context, contentControl, fieldNames);
-
-			if (!prototype.IsValid)
-			{
-				processResult.AddError(
-					new CustomContentItemError(list, 
-						string.Format("doesn't contain items with content controls {0}",
-						string.Join(", ", fieldNames))));
-
-				return processResult;
-			}
-
-			new NumberingAccessor(_context.Document.NumberingPart, _context.LastNumIds)
-					.ResetNumbering(prototype.PrototypeItems);
-
-            // Propagates a prototype.
-		    if (list.Items != null)
-
+		    if (list.IsHidden || list.FieldNames == null)
 		    {
-		        var propagationResult = PropagatePrototype(prototype, list.Items);
-		        processResult.Merge(propagationResult);
-                // add all of the newly constructed rows.
-		        if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
-            }
-			
-			prototype.PrototypeItems.Remove();
+		        contentControl.Descendants(W.tr).Remove();
+		    }
+		    else
+		    {
+		        var fieldNames = list.FieldNames.ToList();
 
+		        // Create a prototype of new items to be inserted into the document.
+                var prototype = new Prototype(_context, contentControl, fieldNames);
+
+		        if (!prototype.IsValid)
+		        {
+		            processResult.AddError(
+		                new CustomContentItemError(list,
+		                    string.Format("doesn't contain items with content controls {0}",
+		                        string.Join(", ", fieldNames))));
+
+		            return processResult;
+		        }
+
+		        new NumberingAccessor(_context.Document.NumberingPart, _context.LastNumIds)
+		            .ResetNumbering(prototype.PrototypeItems);
+
+		        // Propagates a prototype.
+		        if (list.Items != null)
+
+		        {
+		            var propagationResult = PropagatePrototype(prototype, list.Items);
+		            processResult.Merge(propagationResult);
+		            // add all of the newly constructed rows.
+		            if (!item.IsHidden) prototype.PrototypeItems.Last().AddAfterSelf(propagationResult.Result);
+		        }
+
+		        prototype.PrototypeItems.Remove();
+            }                        
+				
 			processResult.AddItemToHandled(list);
 			
 			return processResult;

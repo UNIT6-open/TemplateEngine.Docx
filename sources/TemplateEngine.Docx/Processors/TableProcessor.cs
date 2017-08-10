@@ -86,15 +86,14 @@ namespace TemplateEngine.Docx.Processors
 				return processResult;
 			}
 
-		    if (item.IsHidden)
+		    if (table.IsHidden || table.Rows == null)
 		    {
-		        contentControl.Descendants(W.tr).Remove();
-		    }
+		        contentControl.Descendants(W.tbl).Remove();
+            }
 		    else
 		    {
 		        var fieldNames = table.FieldNames.ToList();
-
-		        var prototypeRows = GetPrototype(contentControl, fieldNames);
+                var prototypeRows = GetPrototype(contentControl, fieldNames);
 
 		        //Select content controls tag names
 		        var contentControlTagNames = prototypeRows
@@ -102,7 +101,6 @@ namespace TemplateEngine.Docx.Processors
 		            .Select(sdt => sdt.SdtTagName())
 		            .Where(fieldNames.Contains)
 		            .ToList();
-
 
 		        //If there are not content controls with the one of specified field name we need to add the warning
 		        if (contentControlTagNames.Intersect(fieldNames).Count() != fieldNames.Count())
@@ -122,38 +120,35 @@ namespace TemplateEngine.Docx.Processors
 		        // Create a list of new rows to be inserted into the document.  Because this
 		        // is a document centric transform, this is written in a non-functional
 		        // style, using tree modification.
-		        if (table.Rows != null)
+		        var newRows = new List<List<XElement>>();
+		        foreach (var row in table.Rows)
 		        {
-		            var newRows = new List<List<XElement>>();
-		            foreach (var row in table.Rows)
+		            // Clone the prototypeRows into newRowsEntry.
+		            var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
+
+		            // Create new rows that will contain the data that was passed in to this
+		            // method in the XML tree.
+		            foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
 		            {
-		                // Clone the prototypeRows into newRowsEntry.
-		                var newRowsEntry = prototypeRows.Select(prototypeRow => new XElement(prototypeRow)).ToList();
+		                // Get fieldName from the content control tag.
+		                var fieldName = sdt.SdtTagName();
 
-		                // Create new rows that will contain the data that was passed in to this
-		                // method in the XML tree.
-		                foreach (var sdt in newRowsEntry.FirstLevelDescendantsAndSelf(W.sdt).ToList())
-		                {
-		                    // Get fieldName from the content control tag.
-		                    var fieldName = sdt.SdtTagName();
+		                var content = row.GetContentItem(fieldName);
 
-		                    var content = row.GetContentItem(fieldName);
+		                if (content == null) continue;
+		                var contentProcessResult = new ContentProcessor(_context)
+		                    .SetRemoveContentControls(_isNeedToRemoveContentControls)
+		                    .FillContent(sdt, content);
 
-		                    if (content == null) continue;
-		                    var contentProcessResult = new ContentProcessor(_context)
-		                        .SetRemoveContentControls(_isNeedToRemoveContentControls)
-		                        .FillContent(sdt, content);
-
-		                    processResult.Merge(contentProcessResult);
-		                }
-
-		                // Add the newRow to the list of rows that will be placed in the newly
-		                // generated table.
-		                newRows.Add(newRowsEntry);
+		                processResult.Merge(contentProcessResult);
 		            }
 
-		            prototypeRows.Last().AddAfterSelf(newRows);
-                }		        
+		            // Add the newRow to the list of rows that will be placed in the newly
+		            // generated table.
+		            newRows.Add(newRowsEntry);
+		        }
+
+		        prototypeRows.Last().AddAfterSelf(newRows);              		        
 
 		        // Remove the prototype rows
 		        prototypeRows.Remove();

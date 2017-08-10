@@ -10,7 +10,7 @@ namespace TemplateEngine.Docx
 	{
 	    public ICollection<ListItemContent> Items { get; set; }
 
-		public IEnumerable<string> FieldNames => Items == null ? new List<string>() : GetFieldNames(Items);
+		public IEnumerable<string> FieldNames => GetFieldNames(Items) ?? new List<string>();
 
 	    #region ctors
 
@@ -84,7 +84,7 @@ namespace TemplateEngine.Docx
 
 					if (item.NestedFields != null)
 					{
-						var listItem = item as ListItemContent;
+						var listItem = item;
 						if (listItem.NestedFields != null)
 						{
 							var nestedFieldNames = GetFieldNames(listItem.NestedFields);
@@ -108,8 +108,9 @@ namespace TemplateEngine.Docx
 		public bool Equals(ListContent other)
 		{
 			if (other == null) return false;
-			return Name.Equals(other.Name) &&
-			       Items.SequenceEqual(other.Items);
+
+            return Name.Equals(other.Name) && 
+                FieldNames.SequenceEqual(other.FieldNames);
 		}
 
 		public override bool Equals(IContentItem other)
@@ -118,7 +119,6 @@ namespace TemplateEngine.Docx
 
 			return Equals((ListContent)other);
 		}
-
 
 		public override int GetHashCode()
 		{
