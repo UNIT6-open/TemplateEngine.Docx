@@ -70,7 +70,7 @@ namespace TemplateEngine.Docx
         public bool Equals(TableContent other)
 	    {
 			if (other == null) return false;
-
+            
 			return Name.Equals(other.Name) &&
 			   Rows.SequenceEqual(other.Rows);
 	    }

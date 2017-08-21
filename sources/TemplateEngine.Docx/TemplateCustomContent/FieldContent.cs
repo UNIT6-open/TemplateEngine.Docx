@@ -16,9 +16,11 @@ namespace TemplateEngine.Docx
             Value = value;
         }
    
-	    public string Value { get; set; }       
+	    public string Value { get; set; }
 
-		public bool Equals(FieldContent other)
+	    #region Equals
+
+        public bool Equals(FieldContent other)
 		{
 			if (other == null) return false;
 
@@ -37,5 +39,7 @@ namespace TemplateEngine.Docx
 		{
 			return new { Name, Value }.GetHashCode();
 		}
+
+        #endregion
     }
 }
