@@ -19,7 +19,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -62,7 +62,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilled_document {
             get {
@@ -72,7 +72,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilled_numbering {
             get {
@@ -82,7 +82,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilled_styles {
             get {
@@ -92,7 +92,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_document {
             get {
@@ -102,7 +102,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_numbering {
             get {
@@ -112,7 +112,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldAndListInsideNestedListFilledAndRemovedCC_styles {
             get {
@@ -162,7 +162,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithFieldInTableHeaderFilled {
             get {
@@ -222,7 +222,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTable_document {
             get {
@@ -232,7 +232,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTable_numbering {
             get {
@@ -242,7 +242,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTable_styles {
             get {
@@ -252,7 +252,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTableAndRemovedCC_document {
             get {
@@ -262,7 +262,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTableAndRemovedCC_numbering {
             get {
@@ -272,7 +272,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithNestedListInsideTableAndRemovedCC_styles {
             get {
@@ -349,7 +349,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingD [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessing [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleFieldWrongFilled {
             get {
@@ -359,7 +359,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingD [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessing [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleFieldWrongFilledWithoutErrorsNotifications {
             get {
@@ -459,7 +459,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilled_document {
             get {
@@ -469,7 +469,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilled_numbering {
             get {
@@ -479,7 +479,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilled_styles {
             get {
@@ -489,7 +489,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilledAndRemovedCC_document {
             get {
@@ -499,7 +499,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilledAndRemovedCC_numbering {
             get {
@@ -509,7 +509,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListFilledAndRemovedCC_styles {
             get {
@@ -528,7 +528,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListWrongFilled_numbering {
             get {
@@ -538,7 +538,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleListWrongFilled_styles {
             get {
@@ -548,7 +548,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFIlled_document {
             get {
@@ -558,7 +558,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFIlled_numbering {
             get {
@@ -568,7 +568,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFIlled_styles {
             get {
@@ -578,7 +578,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFilledAndRemovedCC_document {
             get {
@@ -588,7 +588,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFilledAndRemovedCC_numbering {
             get {
@@ -598,7 +598,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleNestedListFilledAndRemovedCC_styles {
             get {
@@ -608,7 +608,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableFilledWithTwoRows {
             get {
@@ -618,7 +618,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableFilledWithTwoRowsAndRemovedCC {
             get {
@@ -628,7 +628,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableWithAdjacentRowsFilled {
             get {
@@ -638,7 +638,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableWithMergedVerticallyRowsFilled {
             get {
@@ -648,7 +648,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableWithTwoBlocksFilled {
             get {
@@ -658,7 +658,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithSingleTableWithTwoBlocksFilledAndRemovedCC {
             get {
@@ -678,7 +678,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideList_document {
             get {
@@ -688,7 +688,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideList_numbering {
             get {
@@ -698,7 +698,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideList_styles {
             get {
@@ -708,7 +708,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideListAndRemovedCC_document {
             get {
@@ -718,7 +718,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideListAndRemovedCC_numbering {
             get {
@@ -728,7 +728,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTableInsideListAndRemovedCC_styles {
             get {
@@ -758,7 +758,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilled_document {
             get {
@@ -768,7 +768,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilled_numbering {
             get {
@@ -778,7 +778,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilled_styles {
             get {
@@ -788,7 +788,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_document {
             get {
@@ -798,7 +798,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_numbering {
             get {
@@ -808,7 +808,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DocumentWithTwoTablesWithListsInsideFilledAndRemovedCC_styles {
             get {
@@ -838,7 +838,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithFieldAndListInsideNestedList_document {
             get {
@@ -848,7 +848,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithFieldAndListInsideNestedList_numbering {
             get {
@@ -858,7 +858,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithFieldAndListInsideNestedList_styles {
             get {
@@ -868,7 +868,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithFieldInTableHeader {
             get {
@@ -908,7 +908,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithNestedListInsideTable_document {
             get {
@@ -918,7 +918,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithNestedListInsideTable_numbering {
             get {
@@ -928,7 +928,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithNestedListInsideTable_styles {
             get {
@@ -958,7 +958,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleField {
             get {
@@ -968,7 +968,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleFieldWithSeveralTextEntries {
             get {
@@ -1008,7 +1008,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleList_document {
             get {
@@ -1018,7 +1018,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleList_numbering {
             get {
@@ -1028,7 +1028,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleList_styles {
             get {
@@ -1038,7 +1038,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleNestedList_document {
             get {
@@ -1048,7 +1048,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleNestedList_numbering {
             get {
@@ -1058,7 +1058,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleNestedList_styles {
             get {
@@ -1068,7 +1068,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleTable {
             get {
@@ -1078,7 +1078,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleTableWithAdjacentRows {
             get {
@@ -1088,7 +1088,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleTableWithMergedVerticallyRows {
             get {
@@ -1098,7 +1098,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithSingleTableWithTwoBlocks {
             get {
@@ -1108,7 +1108,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTableInsideList_document {
             get {
@@ -1118,7 +1118,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTableInsideList_numbering {
             get {
@@ -1128,7 +1128,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTableInsideList_styles {
             get {
@@ -1148,7 +1148,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/2010 [rest of string was truncated]&quot;;.
+        ///&lt;w:document xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTwoTablesWithListsInside_document {
             get {
@@ -1158,7 +1158,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/201 [rest of string was truncated]&quot;;.
+        ///&lt;w:numbering xmlns:wpc=&quot;http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas&quot; xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:o=&quot;urn:schemas-microsoft-com:office:office&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:m=&quot;http://schemas.openxmlformats.org/officeDocument/2006/math&quot; xmlns:v=&quot;urn:schemas-microsoft-com:vml&quot; xmlns:wp14=&quot;http://schemas.microsoft.com/office/word/20 [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTwoTablesWithListsInside_numbering {
             get {
@@ -1168,7 +1168,7 @@ namespace TemplateEngine.Docx.Tests.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot; w [rest of string was truncated]&quot;;.
+        ///&lt;w:styles xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot; xmlns:r=&quot;http://schemas.openxmlformats.org/officeDocument/2006/relationships&quot; xmlns:w=&quot;http://schemas.openxmlformats.org/wordprocessingml/2006/main&quot; xmlns:w14=&quot;http://schemas.microsoft.com/office/word/2010/wordml&quot; xmlns:w15=&quot;http://schemas.microsoft.com/office/word/2012/wordml&quot; mc:Ignorable=&quot;w14 w15&quot;&gt;&lt;w:docDefaults&gt;&lt;w:rPrDefault&gt;&lt;w:rPr&gt;&lt;w:rFonts w:asciiTheme=&quot;minorHAnsi&quot;  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string TemplateWithTwoTablesWithListsInside_styles {
             get {
