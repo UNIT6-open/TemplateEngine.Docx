@@ -34,7 +34,7 @@ namespace TemplateEngine.Docx.Tests
 				// Add image
 				new ImageContent("photo", new byte[]{1, 2, 3}),
 
-                // Add repeat content// Add image
+                // Add repeat content
 				new RepeatContent("Repeat")
                     .AddItem(new FieldContent("Weekend", "Saturday"))
                     .AddItem(new FieldContent("Weekend", "Sunday"))
@@ -43,7 +43,9 @@ namespace TemplateEngine.Docx.Tests
 
 
 			var serialized = JsonConvert.SerializeObject(valuesToFill);
-		    const string expectedSerialized = "{\"Repeats\":[{\"Items\":[{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Saturday\",\"Name\":\"Weekend\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]},{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Sunday\",\"Name\":\"Weekend\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]}],\"FieldNames\":[\"Weekend\"],\"Name\":\"Repeat\",\"IsHidden\":false}],\"Tables\":[{\"Rows\":[{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Eric\",\"Name\":\"Name\",\"IsHidden\":false},{\"Value\":\"Program Manager\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]},{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Bob\",\"Name\":\"Name\",\"IsHidden\":false},{\"Value\":\"Developer\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]}],\"FieldNames\":[\"Name\",\"Role\"],\"Name\":\"Team Members Table\",\"IsHidden\":false}],\"Lists\":[{\"Items\":[{\"NestedFields\":[{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Eric\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]},{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Ann\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]}],\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Program Manager\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]},{\"NestedFields\":[{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Bob\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]},{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Richard\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]}],\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Developer\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[],\"Charts\":[]}],\"FieldNames\":[\"Role\",\"Name\"],\"Name\":\"Team Members Nested List\",\"IsHidden\":false}],\"Fields\":[{\"Value\":\"01.01.2000\",\"Name\":\"Report date\",\"IsHidden\":false}],\"Images\":[{\"Binary\":\"AQID\",\"Name\":\"photo\",\"IsHidden\":false}],\"Charts\":[]}";
+
+			const string expectedSerialized =
+				"{\"Repeats\":[{\"Items\":[{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Saturday\",\"Name\":\"Weekend\",\"IsHidden\":false}],\"Images\":[]},{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Sunday\",\"Name\":\"Weekend\",\"IsHidden\":false}],\"Images\":[]}],\"FieldNames\":[\"Weekend\"],\"Name\":\"Repeat\",\"IsHidden\":false}],\"Tables\":[{\"Rows\":[{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Eric\",\"Name\":\"Name\",\"IsHidden\":false},{\"Value\":\"Program Manager\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[]},{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Bob\",\"Name\":\"Name\",\"IsHidden\":false},{\"Value\":\"Developer\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[]}],\"FieldNames\":[\"Name\",\"Role\"],\"Name\":\"Team Members Table\",\"IsHidden\":false}],\"Lists\":[{\"Items\":[{\"NestedFields\":[{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Eric\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[]},{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Ann\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[]}],\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Program Manager\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[]},{\"NestedFields\":[{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Bob\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[]},{\"NestedFields\":null,\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Richard\",\"Name\":\"Name\",\"IsHidden\":false}],\"Images\":[]}],\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[{\"Value\":\"Developer\",\"Name\":\"Role\",\"IsHidden\":false}],\"Images\":[]}],\"FieldNames\":[\"Role\",\"Name\"],\"Name\":\"Team Members Nested List\",\"IsHidden\":false}],\"Fields\":[{\"Value\":\"01.01.2000\",\"Name\":\"Report date\",\"IsHidden\":false}],\"Images\":[{\"Binary\":\"AQID\",\"Name\":\"photo\",\"IsHidden\":false}]}";
 
             Assert.AreEqual(expectedSerialized, serialized);
 
@@ -90,7 +92,7 @@ namespace TemplateEngine.Docx.Tests
 
 			var serialized = JsonConvert.SerializeObject(valuesToFill);
 
-			Assert.AreEqual("{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[],\"Images\":[],\"Charts\":[]}", serialized);
+			Assert.AreEqual("{\"Repeats\":[],\"Tables\":[],\"Lists\":[],\"Fields\":[],\"Images\":[]}", serialized);
 		}
 
 		[TestMethod]
