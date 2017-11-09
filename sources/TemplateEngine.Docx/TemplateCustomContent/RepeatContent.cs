@@ -82,7 +82,7 @@ namespace TemplateEngine.Docx
 		{
 			if (other == null) return false;
 			return Name.Equals(other.Name) &&
-			       FieldNames.SequenceEqual(other.FieldNames);
+			       Items.SequenceEqual(other.Items);
 		}
 
 		public override bool Equals(IContentItem other)
