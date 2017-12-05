@@ -1,7 +1,15 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	<DebugType>Full</DebugType>	
+	<DebugType>Full</DebugType>
+	<Version>1.1.5</Version>
+	<Authors>AIVolkov, Eric White</Authors>
+	<Copyright></Copyright>
+	<Company>AIVolkov</Company>
+	<Description>Smart template engine for generating Word docx documents on the server-side with a human-created Word templates, based on content controls Word feature</Description>
+	<PackageProjectUrl>http://unit6.ru/template-engine</PackageProjectUrl>
+	<PackageLicenseUrl>http://opensource.org/licenses/ms-pl</PackageLicenseUrl>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>	
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DocumentFormat.OpenXml" Version="2.7.2" />
