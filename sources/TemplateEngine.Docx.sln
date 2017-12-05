@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Docx", "TemplateEngine.Docx\TemplateEngine.Docx.csproj", "{B6320046-B27F-41E7-9AA7-C2EE252C0DA5}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateEngine.Docx", "TemplateEngine.Docx\TemplateEngine.Docx.csproj", "{B6320046-B27F-41E7-9AA7-C2EE252C0DA5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateEngine.Docx.Tests", "TemplateEngine.Docx.Tests\TemplateEngine.Docx.Tests.csproj", "{F2E9C8DD-6940-40F5-8D74-3DE53F453675}"
 EndProject
@@ -28,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6CC262DC-3CAF-4939-AEF8-9F3F9CDCA572}
 	EndGlobalSection
 EndGlobal

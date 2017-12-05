@@ -10,7 +10,7 @@ namespace TemplateEngine.Docx
 				.GetCustomAttributes(typeof(ContentItemNameAttribute), true)
 				   .FirstOrDefault() as ContentItemNameAttribute;
 
-			return contentItemNameAttribute != null ? contentItemNameAttribute.Name : null;
+			return contentItemNameAttribute?.Name;
 		}
 	}
 }

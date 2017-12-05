@@ -7,7 +7,7 @@ namespace TemplateEngine.Docx
 	{
 		private class ListItemInfo
 		{
-			public bool IsListItem { get; set; }
+			public bool IsListItem { get; }
 			public XElement Lvl { get; set; }
 			public int? Start { get; set; }
 			public int? AbstractNumId { get; set; }
@@ -23,15 +23,15 @@ namespace TemplateEngine.Docx
 			if (numId == 0)
 				return new ListItemInfo(false);
 			var listItemInfo = new ListItemInfo(true);
-			var num = numbering.Root.Elements(W.num)
-				.Where(e => (int)e.Attribute(W.numId) == numId).FirstOrDefault();
+			var num = numbering.Root
+				.Elements(W.num).FirstOrDefault(e => (int)e.Attribute(W.numId) == numId);
 			if (num == null)
 				return new ListItemInfo(false);
 
 			listItemInfo.AbstractNumId = (int?)num.Elements(W.abstractNumId)
 				.Attributes(W.val).FirstOrDefault();
-			var lvlOverride = num.Elements(W.lvlOverride)
-				.Where(e => (int)e.Attribute(W.ilvl) == ilvl).FirstOrDefault();
+			var lvlOverride = num
+				.Elements(W.lvlOverride).FirstOrDefault(e => (int)e.Attribute(W.ilvl) == ilvl);
 			// If there is a w:lvlOverride element, and if the w:lvlOverride contains a
 			// w:lvl element, then return it.  Otherwise, go look in the abstract numbering
 			// definition.
@@ -51,15 +51,15 @@ namespace TemplateEngine.Docx
 				}
 			}
 			var a = listItemInfo.AbstractNumId;
-			var abstractNum = numbering.Root.Elements(W.abstractNum)
-				.Where(e => (int)e.Attribute(W.abstractNumId) == a).FirstOrDefault();
+			var abstractNum = numbering.Root
+				.Elements(W.abstractNum).FirstOrDefault(e => (int)e.Attribute(W.abstractNumId) == a);
 			var numStyleLink = (string)abstractNum.Elements(W.numStyleLink)
 				.Attributes(W.val).FirstOrDefault();
 			if (numStyleLink != null)
 			{
-				var style = styles.Root.Elements(W.style)
-					.Where(e => (string)e.Attribute(W.styleId) == numStyleLink)
-					.FirstOrDefault();
+				var style = styles.Root
+					.Elements(W.style)
+					.FirstOrDefault(e => (string)e.Attribute(W.styleId) == numStyleLink);
 				var numPr = style.Elements(W.pPr).Elements(W.numPr).FirstOrDefault();
 				var lNumId = (int)numPr.Elements(W.numId).Attributes(W.val)
 					.FirstOrDefault();
@@ -67,8 +67,8 @@ namespace TemplateEngine.Docx
 			}
 			for (int l = ilvl; l >= 0; --l)
 			{
-				listItemInfo.Lvl = abstractNum.Elements(W.lvl)
-					.Where(e => (int)e.Attribute(W.ilvl) == l).FirstOrDefault();
+				listItemInfo.Lvl = abstractNum
+					.Elements(W.lvl).FirstOrDefault(e => (int)e.Attribute(W.ilvl) == l);
 				if (listItemInfo.Lvl == null)
 					continue;
 				if (listItemInfo.Start == null)
@@ -85,21 +85,21 @@ namespace TemplateEngine.Docx
 			// If you have to find the w:lvl by style id, then we can't find it in the
 			// w:lvlOverride, as that requires that you have determined the level already.
 			var listItemInfo = new ListItemInfo(true);
-			var num = numbering.Root.Elements(W.num)
-				.Where(e => (int)e.Attribute(W.numId) == numId).FirstOrDefault();
+			var num = numbering.Root
+				.Elements(W.num).FirstOrDefault(e => (int)e.Attribute(W.numId) == numId);
 
 			listItemInfo.AbstractNumId = (int)num.Elements(W.abstractNumId)
 				.Attributes(W.val).FirstOrDefault();
 			var a = listItemInfo.AbstractNumId;
-			var abstractNum = numbering.Root.Elements(W.abstractNum)
-				.Where(e => (int)e.Attribute(W.abstractNumId) == a).FirstOrDefault();
+			var abstractNum = numbering.Root
+				.Elements(W.abstractNum).FirstOrDefault(e => (int)e.Attribute(W.abstractNumId) == a);
 			var numStyleLink = (string)abstractNum.Element(W.numStyleLink)
 				.Attributes(W.val).FirstOrDefault();
 			if (numStyleLink != null)
 			{
-				var style = styles.Root.Elements(W.style)
-					.Where(e => (string)e.Attribute(W.styleId) == numStyleLink)
-					.FirstOrDefault();
+				var style = styles.Root
+					.Elements(W.style)
+					.FirstOrDefault(e => (string)e.Attribute(W.styleId) == numStyleLink);
 				var numPr = style.Elements(W.pPr).Elements(W.numPr).FirstOrDefault();
 				var lNumId = (int)numPr.Elements(W.numId).Attributes(W.val).FirstOrDefault();
 				return GetListItemInfoByNumIdAndStyleId(numbering, styles, lNumId,
@@ -157,31 +157,26 @@ namespace TemplateEngine.Docx
 			}
 			if (paragraphStyle != null)
 			{
-				var style = styles.Root.Elements(W.style).Where(s =>
-					(string)s.Attribute(W.type) == "paragraph" &&
-					(string)s.Attribute(W.styleId) == paragraphStyle).FirstOrDefault();
-				
-				if (style != null)
+				var style = styles.Root.Elements(W.style).FirstOrDefault(s => (string)s.Attribute(W.type) == "paragraph" &&
+					(string)s.Attribute(W.styleId) == paragraphStyle);
+
+				var styleNumberingProperties = style?.Elements(W.pPr)
+					.Elements(W.numPr).FirstOrDefault();
+				if (styleNumberingProperties?.Element(W.numId) != null)
 				{
-					var styleNumberingProperties = style.Elements(W.pPr)
-						.Elements(W.numPr).FirstOrDefault();
-					if (styleNumberingProperties != null &&
-						styleNumberingProperties.Element(W.numId) != null)
-					{
-						var numId = (int)styleNumberingProperties.Elements(W.numId)
-							.Attributes(W.val).FirstOrDefault();
+					var numId = (int)styleNumberingProperties.Elements(W.numId)
+						.Attributes(W.val).FirstOrDefault();
 
-						var ilvl = (int?)styleNumberingProperties.Elements(W.ilvl)
-							.Attributes(W.val).FirstOrDefault();
+					var ilvl = (int?)styleNumberingProperties.Elements(W.ilvl)
+						.Attributes(W.val).FirstOrDefault();
 
-						if (ilvl == null)
-							ilvl = 0;
+					if (ilvl == null)
+						ilvl = 0;
 
-						listItemInfo = GetListItemInfoByNumIdAndIlvl(numbering, styles,
-							numId, (int)ilvl);
-						paragraph.AddAnnotation(listItemInfo);
-						return new ListItem(paragraph, listItemInfo.AbstractNumId, numId, ilvl, listItemInfo.IsListItem);
-					}
+					listItemInfo = GetListItemInfoByNumIdAndIlvl(numbering, styles,
+						numId, (int)ilvl);
+					paragraph.AddAnnotation(listItemInfo);
+					return new ListItem(paragraph, listItemInfo.AbstractNumId, numId, ilvl, listItemInfo.IsListItem);
 				}
 			}
 			listItemInfo = new ListItemInfo(false);
