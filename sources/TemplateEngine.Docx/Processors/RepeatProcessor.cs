@@ -216,7 +216,7 @@ namespace TemplateEngine.Docx.Processors
 					.Select(sdt => sdt.SdtTagName());
 
 				// If any field not found return empty list.
-				if (fieldNames.Any(fn => !tagsInPrototype.Contains(fn)))
+				if (tagsInPrototype.Any(fn => !fieldNames.Contains(fn)) /*fieldNames.Any(fn => !tagsInPrototype.Contains(fn))*/)
 				{
 					IsValid = false;
 					return;
