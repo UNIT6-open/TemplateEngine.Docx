@@ -127,10 +127,10 @@ namespace TemplateEngine.Docx
 
 			try
 			{
-				return sdt
-					.Element(W.sdtPr)
-					.Element(W.tag)
-					.Attribute(W.val)
+				return sdt?
+					.Element(W.sdtPr)?
+					.Element(W.tag)?
+					.Attribute(W.val)?
 					.Value;
 			}
 			catch (Exception)
