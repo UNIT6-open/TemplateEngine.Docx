@@ -62,7 +62,7 @@ namespace TemplateEngine.Docx
 					var next = Random.Next(int.MaxValue);
 					var nsid = newAbstractNumElement.Element(W.nsid);
 					if (nsid != null)
-						nsid.Attribute(W.val).SetValue(next.ToString("X"));
+						nsid.Attribute(W.val).SetValue(next.ToString("X8"));
 
 					lastAbstractNumElement.AddAfterSelf(newAbstractNumElement);
 
