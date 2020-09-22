@@ -57,13 +57,13 @@ namespace TemplateEngine.Docx
 					}
 					else
 					{
-						sdtContentElement.Add(new XElement(W.p), new XElement(W.r, new XElement(W.t, newValue)));
+						sdtContentElement.Add(new XElement(W.p, new XElement(W.r, new XElement(W.t, newValue))));
 					}
 				}
 			}
 			else
 			{
-				sdt.Add(new XElement(W.sdtContent, new XElement(W.p), new XElement(W.r, new XElement(W.t, newValue))));
+				sdt.Add(new XElement(W.sdtContent, new XElement(W.p, new XElement(W.r, new XElement(W.t, newValue)))));
 			}
 
 			ReplaceNewLinesWithBreaks(sdt);
