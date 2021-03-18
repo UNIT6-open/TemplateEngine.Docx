@@ -143,18 +143,22 @@ namespace TemplateEngine.Docx
 		{
 			if (xElem == null) return;
 
-			var textWithBreaks = xElem.Descendants(W.t).Where(t => t.Value.Contains("\r\n"));
-			foreach (var textWithBreak in textWithBreaks)
-			{
+			var textWithBreaks = xElem.Descendants(W.t).Where(t => t.Value.Contains("\r\n")).ToList();
+            for (var i = textWithBreaks.Count - 1; i >= 0; i--)
+            {
+				var textWithBreak = textWithBreaks[i];
 				var text = textWithBreak.Value;
 				var split = text.Replace("\r\n", "\n").Split(new[] { "\n" }, StringSplitOptions.None);
-				textWithBreak.Value = string.Empty;
+
+				var parent = textWithBreak.Parent;
+				textWithBreak.Remove();
+
 				foreach (var s in split)
 				{
-					textWithBreak.Add(new XElement(W.t, s));
-					textWithBreak.Add(new XElement(W.br));
+					parent.Add(new XElement(W.t, s));
+					parent.Add(new XElement(W.br));
 				}
-				textWithBreak.Descendants(W.br).Last().Remove();
+				parent.Descendants(W.br).Last().Remove();
 			}
 		}
 	}
