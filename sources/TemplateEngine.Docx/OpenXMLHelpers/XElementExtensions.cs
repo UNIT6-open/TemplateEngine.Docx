@@ -143,7 +143,7 @@ namespace TemplateEngine.Docx
 		{
 			if (xElem == null) return;
 
-			var textWithBreaks = xElem.Descendants(W.t).Where(t => t.Value.Contains("\r\n")).ToList();
+			var textWithBreaks = xElem.Descendants(W.t).Where(t => t.Value.Contains("\n")).ToList();
             for (var i = textWithBreaks.Count - 1; i >= 0; i--)
             {
 				var textWithBreak = textWithBreaks[i];
